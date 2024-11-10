@@ -1,56 +1,83 @@
 'use client'
 
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import HeaderSocial from './HeaderSocial';
-import Data from './Data';
+import { motion } from 'framer-motion';
+import { Linkedin, Github, Instagram, Twitter } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import type { FC } from 'react';
 
-export default function Header() {
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+interface HeaderSocialProps {
+  className?: string; // Add className as an optional prop
+}
+const HeaderSocial: FC = () => {
+  const socialIcons = [
+    { Icon: Linkedin, href: "https://www.linkedin.com/in/amansuryavanshi/", label: "LinkedIn" },
+    { Icon: Github, href: "https://github.com/AmanSuryavanshi-1", label: "GitHub" },
+    { Icon: Instagram, href: "https://www.instagram.com/__aman_suryavanshi__/", label: "Instagram" },
+    { Icon: Twitter, href: "https://twitter.com/_AmanSurya", label: "Twitter" },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { 
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
-    <motion.section 
-      id="header" 
-      className="w-full min-h-screen p-4 bg-gradient-to-br from-primaryVariant to-primary overflow-hidden md:mb-4 md:p-0"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
+    <TooltipProvider>
       <motion.div 
-        className="container relative flex flex-col items-center justify-center h-full gap-8 mx-auto md:h-5/6"
-        style={{ opacity, scale }}
+        className="flex justify-center gap-6 mb-4 md:grid header_socials md:justify-start md:mb-0"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <div className="grid grid-cols-1 md:grid-cols-[100px_1fr_1fr] gap-8 md:gap-28 pt-8 md:pt-22 items-center">
-          <motion.div 
-            className="relative order-1 w-64 h-64 mx-auto md:order-3 md:w-96 md:h-96 md:mx-0"
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20, duration: 1.2 }}
-          >
-            <Image
-              src='/Images/Profile-Large.png'
-              alt="Profile"
-              priority
-              className="object-cover w-full h-full border-4 shadow-inner md:border-8 border-bg rounded-full"
-              style={{ 
-                animation: "profile__animate 8s ease-in-out infinite 1s",
-                borderRadius: "50%",
-                background: "linear-gradient(145deg, #436850, #FBFADA)",
-                boxShadow: "25px 25px 32px #ADBC9F, -25px -25px 32px #FBFADA"
-              }}
-              fill
-            />
-          </motion.div>
-          <div className="order-2 md:order-1">
-            <HeaderSocial />
-          </div>
-          <div className="order-3 md:order-2">
-            <Data />
-          </div>
-        </div>
+        {socialIcons.map(({ Icon, href, label }) => (
+          <Tooltip key={href}>
+            <TooltipTrigger asChild>
+              <motion.a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative text-2xl text-bgVariant transition-colors hover:text-primary"
+                aria-label={`Visit Aman Suryavanshi's ${label} profile`}
+                variants={itemVariants}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-primary rounded-full"
+                  initial={{ scale: 0 }}
+                  whileHover={{ scale: 1.5 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                />
+                <motion.div className="relative z-10">
+                  <Icon className="w-5 h-5" />
+                </motion.div>
+              </motion.a>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{label}</p>
+            </TooltipContent>
+          </Tooltip>
+        ))}
       </motion.div>
-    </motion.section>
+    </TooltipProvider>
   );
-}
+};
+
+export default HeaderSocial;
