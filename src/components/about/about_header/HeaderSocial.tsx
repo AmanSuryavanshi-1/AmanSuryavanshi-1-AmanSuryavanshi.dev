@@ -11,9 +11,10 @@ import {
 import type { FC } from 'react';
 
 interface HeaderSocialProps {
-  className?: string; // Add className as an optional prop
+  className?: string;
 }
-const HeaderSocial: FC = () => {
+
+const HeaderSocial: FC<HeaderSocialProps> = ({ className = '' }) => {
   const socialIcons = [
     { Icon: Linkedin, href: "https://www.linkedin.com/in/amansuryavanshi/", label: "LinkedIn" },
     { Icon: Github, href: "https://github.com/AmanSuryavanshi-1", label: "GitHub" },
@@ -41,7 +42,7 @@ const HeaderSocial: FC = () => {
   return (
     <TooltipProvider>
       <motion.div 
-        className="flex justify-center gap-6 mb-4 md:grid header_socials md:justify-start md:mb-0"
+        className={`flex justify-center gap-6 mb-4 md:grid header_socials md:justify-start md:mb-0 ${className}`}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
