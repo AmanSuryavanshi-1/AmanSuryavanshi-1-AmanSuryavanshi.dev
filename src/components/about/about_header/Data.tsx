@@ -33,7 +33,7 @@ const Data: React.FC = () => {
         className="mb-2 font-serif text-xl font-semibold text-bgVariant"
         variants={itemVariants}
       >
-        Hello, I'm
+        Hello, I&apos;m   {/* production fixes */}
       </motion.h3>
       <motion.h1 
         className="mb-1 font-serif text-3xl font-bold md:text-5xl text-bg"
