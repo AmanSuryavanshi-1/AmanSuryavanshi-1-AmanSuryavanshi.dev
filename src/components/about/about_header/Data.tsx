@@ -67,15 +67,16 @@ const Data: React.FC = () => {
           asChild
           variant="default"
           size="lg"
-          className="group relative overflow-hidden bg-forest-900 hover:bg-forest-500 text-lime-100"
+          className="group relative border-4 rounded-3xl border-lime-500 overflow-hidden bg-transparent hover:bg-lime-500 text-forest-900"
         >
           <motion.a
             href="https://drive.google.com/file/d/1Xfv_tYMc9UiyYy3QqmPFadyi0xY-p2TI/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Download CV"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95, rotate: -5 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
             <motion.span
               className="absolute inset-0 bg-sage-300"
@@ -84,7 +85,13 @@ const Data: React.FC = () => {
               transition={{ type: "tween", ease: "easeInOut" }}
             />
             <span className="relative z-10 flex items-center">
-              <Download className="w-5 h-5 mr-2" />
+              <motion.div
+                className="flex items-center"
+                whileHover={{ scale: 1.2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Download className="w-5 h-5 mr-2" />
+              </motion.div>
               <span>Download CV</span>
             </span>
           </motion.a>
@@ -92,24 +99,30 @@ const Data: React.FC = () => {
 
         <Button
           asChild
-          variant="outline"
           size="lg"
-          className="group relative overflow-hidden border-2 border-bg bg-sage-100  text-forest-700 hover:bg-sage-300"
+          className="group relative border-4 rounded-3xl border-forest-900 overflow-hidden bg-forest-900 hover:bg-forest-700 hover:border-forest-700 text-sage-100"
         >
           <motion.a
             href="/contact"
             aria-label="Say Hello"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95, rotate: -5 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
             <motion.span
-              className="absolute inset-0 bg-sage-100"
+              className="absolute inset-0 bg-forest-900"
               initial={{ y: "100%" }}
               whileHover={{ y: 0 }}
               transition={{ type: "tween", ease: "easeInOut" }}
             />
             <span className="relative z-10 flex items-center">
-              <MessageCircle className="w-5 h-5 mr-2" />
+              <motion.div
+                className="flex items-center"
+                whileHover={{ scale: 1.2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+              </motion.div>
               <span>Say Hello</span>
             </span>
           </motion.a>
