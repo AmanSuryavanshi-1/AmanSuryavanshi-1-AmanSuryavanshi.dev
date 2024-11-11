@@ -10,12 +10,14 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-				white: '#FFFFFF',       
-				bg: '#12372A',
-				bgVariant: '#436850',   
-				main: '#ADBC9F', 
-				mainVariant: '#FBFADA', 
-				textColor: '#4A4A4A', 
+			white: '#FFFFFF',
+			dark: '#12372A',
+			'dark-variant': '#436850',
+			'primary-light': '#ADBC9F',
+			'primary-variant': '#FBFADA',
+			'secondary-light': '#9dcd6f',
+			'secondary-variant': '#749a48',
+			text: '#4A4A4A',
 		
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
