@@ -10,14 +10,47 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-			white: '#FFFFFF',
-			dark: '#12372A',
-			'dark-variant': '#436850',
-			'primary-light': '#ADBC9F',
-			'primary-variant': '#FBFADA',
-			'secondary-light': '#9dcd6f',
-			'secondary-variant': '#749a48',
-			text: '#4A4A4A',
+			// white: '#FFFFFF',
+			// dark: '#12372A',
+			// 'dark-variant': '#436850',
+			// 'primary-light': '#ADBC9F',
+			// 'primary-variant': '#FBFADA',
+			// 'secondary-light': '#9dcd6f',
+			// 'secondary-variant': '#749a48',
+			// text: '#4A4A4A',
+				forest: {
+				  900: '#12372A',  // Dark shade for primary text and backgrounds
+				  700: '#2A5741',  // Slightly lighter shade for variety
+				  500: '#436850',  // Mid-tone for accents and secondary elements
+				},
+				sage: {
+				  300: '#ADBC9F',  // Light shade for backgrounds and subtle accents
+				  100: '#FBFADA',  // Very light shade for backgrounds and highlights
+				},
+				lime: {
+				  500: '#9DCF6F',  // Brighter green for call-to-action and highlights
+				  700: '#749A48',  // Darker lime for contrast and variety
+				},
+
+				// forest: {
+				// 	900: '#12372A',
+				// 	800: '#1E4435',
+				// 	700: '#2A5741',
+				// 	600: '#375F4B',
+				// 	500: '#436850',
+				//   },
+				//   sage: {
+				// 	300: '#ADBC9F',
+				// 	200: '#C4CFBA',
+				// 	100: '#FBFADA',
+				//   },
+				//   lime: {
+				// 	600: '#8AB85D',
+				// 	500: '#9DCF6F',
+				// 	400: '#AFD988',
+				//   },
+
+				//  ==== ShadCN ====
 		
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

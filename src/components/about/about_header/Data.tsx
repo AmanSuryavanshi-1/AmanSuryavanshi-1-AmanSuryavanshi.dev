@@ -30,23 +30,23 @@ const Data: React.FC = () => {
       animate="visible"
     >
       <motion.h3 
-        className="mb-2 font-serif text-xl font-semibold text-bgVariant"
+        className="mb-2 font-serif text-xl font-semibold text-forest-500"
         variants={itemVariants}
       >
         Hello, I&apos;m   {/* production fixes */}
       </motion.h3>
       <motion.h1 
-        className="mb-1 font-serif text-3xl font-bold md:text-5xl text-bg"
+        className="mb-1 font-serif text-3xl font-bold md:text-5xl text-lime-500"
         variants={itemVariants}
       >
         Aman Suryavanshi
       </motion.h1>
       <motion.h3 
-        className="relative pl-24 mb-4 font-serif text-lg font-light text-bg"
+        className="relative pl-24 mb-4 font-serif text-lg font-light text-forest-500"
         variants={itemVariants}
       >
         <motion.span 
-          className="absolute left-0 top-3 w-20 h-0.5 bg-bgVariant"
+          className="absolute left-0 top-[0.8rem] w-20 h-0.5 bg-forest-700"
           initial={{ width: 0 }}
           animate={{ width: 80 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -54,7 +54,7 @@ const Data: React.FC = () => {
         A Tech Geek
       </motion.h3>
       <motion.p 
-        className="max-w-lg mx-auto mb-8 text-sm text-justify md:mb-12 text-textColor md:text-base"
+        className="max-w-lg mx-auto mb-8 text-sm text-justify md:mb-12 text-forest-700 md:text-base"
         variants={itemVariants}
       >
         To succeed in an environment of growth and excellence and earn a job which provides me job satisfaction and self-development and help me achieve personal as well as organization goals.
@@ -67,7 +67,7 @@ const Data: React.FC = () => {
           asChild
           variant="default"
           size="lg"
-          className="group relative overflow-hidden bg-primary hover:bg-primaryVariant text-bg"
+          className="group relative overflow-hidden bg-forest-900 hover:bg-forest-500 text-lime-100"
         >
           <motion.a
             href="https://drive.google.com/file/d/1Xfv_tYMc9UiyYy3QqmPFadyi0xY-p2TI/view?usp=drive_link"
@@ -78,7 +78,7 @@ const Data: React.FC = () => {
             whileTap={{ scale: 0.95 }}
           >
             <motion.span
-              className="absolute inset-0 bg-primaryVariant"
+              className="absolute inset-0 bg-sage-300"
               initial={{ x: "100%" }}
               whileHover={{ x: 0 }}
               transition={{ type: "tween", ease: "easeInOut" }}
@@ -94,7 +94,7 @@ const Data: React.FC = () => {
           asChild
           variant="outline"
           size="lg"
-          className="group relative overflow-hidden border-2 border-bg text-bg hover:text-primary"
+          className="group relative overflow-hidden border-2 border-bg bg-sage-100  text-forest-700 hover:bg-sage-300"
         >
           <motion.a
             href="/contact"
@@ -103,7 +103,7 @@ const Data: React.FC = () => {
             whileTap={{ scale: 0.95 }}
           >
             <motion.span
-              className="absolute inset-0 bg-bg"
+              className="absolute inset-0 bg-sage-100"
               initial={{ y: "100%" }}
               whileHover={{ y: 0 }}
               transition={{ type: "tween", ease: "easeInOut" }}

@@ -3,7 +3,7 @@ import Header from "../components/about/about_header/Header"
 const page = () => {
   return (
     // <div className='bg-gradient-to-br from-primaryVariant to-bgVariant'>
-    <div className='bg-main'>
+    <div>
       <Header/>
       <Header/>
       <Header/>
