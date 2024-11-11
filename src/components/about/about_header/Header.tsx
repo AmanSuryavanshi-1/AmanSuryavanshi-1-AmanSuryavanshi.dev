@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import HeaderSocial from './HeaderSocial';
 import Data from './Data';
-
+// import profilePic from '../../../../'
 export default function Header() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -30,15 +30,15 @@ export default function Header() {
             transition={{ type: "spring", stiffness: 260, damping: 20, duration: 1.2 }}
           >
             <Image
-              src='/Images/Profile-Large.png'
+              src='/public/Images/profile-pic.png'
               alt="Profile"
               priority
-              className="object-cover w-full h-full border-4 shadow-inner md:border-8 border-bg rounded-full"
+              className="object-cover w-full h-full border-4 shadow-inner md:border-8 border-mainVariant rounded-full"
               style={{ 
                 animation: "profile__animate 8s ease-in-out infinite 1s",
                 borderRadius: "50%",
-                background: "linear-gradient(145deg, #436850, #FBFADA)",
-                boxShadow: "25px 25px 32px #ADBC9F, -25px -25px 32px #FBFADA"
+                background: "linear-gradient(145deg, #436850, #ADBC9F)",
+                boxShadow: "25px 25px 32px #436850, -25px -25px 32px #ADBC9F"
               }}
               fill
             />
