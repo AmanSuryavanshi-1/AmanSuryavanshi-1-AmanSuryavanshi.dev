@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Briefcase, GitBranch, Globe, Clock, Database, Code, Server, Monitor, Zap, Feather, Settings, Figma, TrendingUp, Film, Edit3, ImageIcon, Brain, Book, PenTool, BookOpen, Layers, Package } from 'lucide-react';
+import { Briefcase, Globe, Clock, Database, Code, Server, Monitor, Zap, Feather, Settings, Figma, TrendingUp, Film, Edit3, ImageIcon, Brain, Book, PenTool, BookOpen, Layers, Package } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 const WorkBanner = () => {
     const works = [

@@ -3,7 +3,6 @@
 import React from 'react';
 import { Award, Users, Folder, Code, Globe, Coffee } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 const ExperienceCards = () => {
   const stats = [
