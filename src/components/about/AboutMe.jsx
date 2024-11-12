@@ -4,6 +4,7 @@ import { MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
+import AmanSuryavanshi from '../../../public/Profile/me main.png'
 
 const AboutMe = () => {
   return (
@@ -33,8 +34,8 @@ const AboutMe = () => {
               />
               <div className="relative h-full overflow-hidden rounded-2xl">
                 <Image
-                  src="/Profile/Me Main.png"
-                  alt="John Doe - Web Developer and UI/UX Designer working on a laptop" // Enhanced alt text
+                  src={AmanSuryavanshi}
+                  alt="Aman Suryavanshi - Web Developer and UI/UX Designer" // Enhanced alt text
                   fill
                   sizes="(max-width: 768px) 90vw, (max-width: 1200px) 40vw, 33vw"
                   priority
