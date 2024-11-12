@@ -57,7 +57,7 @@ const Data: React.FC = () => {
         className="max-w-lg mx-auto mb-8 text-sm text-justify md:mb-12 text-forest-700 md:text-base"
         variants={itemVariants}
       >
-        To succeed in an environment of growth and excellence and earn a job which provides me job satisfaction and self-development and help me achieve personal as well as organization goals.
+        Driven by growth and excellence, I’m here to build impactful digital solutions that bring satisfaction and self-development. Let’s achieve remarkable goals together—creating innovative and user-centered experiences that benefit both individuals and organizations.
       </motion.p>
       <motion.div 
         className="flex flex-col justify-center gap-4 md:flex-row md:gap-5 md:justify-start"

@@ -1,63 +1,80 @@
-"use client";
-
+'use client';
 import React from 'react';
-import img from '../../../public/Profile/me main.png'; 
-import { Download, MessageCircle, Award, Users, Folder } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { MessageCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import Image from 'next/image';
 
 const AboutMe = () => {
   return (
-    <div className="flex items-center justify-center h-full mx-2 mb-4 sm:mx-8">
-      <div className="w-full max-w-6xl px-2 mx-2 sm:px-4 sm:mx-12">
-        <h5 className="mb-2 text-xs text-center uppercase text-sage-300">Get To Know</h5>
-        <h2 className="mb-4 font-serif text-2xl font-bold text-center sm:mb-8 sm:text-3xl text-forest-900">About Me</h2>
-
-        <div className="grid items-center grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="relative flex items-center justify-center mb-4">
-            <div className="absolute shadow-lg w-56 sm:w-72 h-48 sm:h-64 bg-sage-300 rounded-2xl transform transition duration-300 hover:rotate-[-10deg]"></div>
-            <div className="w-56 sm:w-72 h-48 sm:h-64 overflow-hidden transform rotate-[-8deg] duration-300 bg-sage-100 shadow-lg rounded-2xl transition hover:rotate-0">
-              <img src={img} loading='eager' alt="AboutImage" className="object-cover w-full h-full" />
-            </div>
-          </div>
-
-          <div className="about_content">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {[
-                { icon: <Award className="mx-auto mb-2 text-2xl sm:text-3xl text-forest-900" />, title: "Experience", description: "1+ Years Working" },
-                { icon: <Users className="mx-auto mb-2 text-2xl sm:text-3xl text-forest-900" />, title: "Worked With", description: "2+ Companies" },
-                { icon: <Folder className="mx-auto mb-2 text-2xl sm:text-3xl text-forest-900" />, title: "Projects", description: "35+ Completed" },
-              ].map((item, index) => (
-                <motion.article
-                  key={index}
-                  className="p-4 sm:p-6 text-center transition-all text-primaryVariant duration-300 border-2 rounded-2xl shadow-md shadow-sage-300 bg-sage-100 border-white hover:shadow-sm hover:shadow-primary hover:text-bg hover:bg-white hover:border-bg transform hover:translate-y-[-10px]"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {item.icon}
-                  <h5 className="mb-2 font-serif text-base font-bold sm:text-lg">{item.title}</h5>
-                  <small className="text-xs">{item.description}</small>
-                </motion.article>
-              ))}
-            </div>
-
-            <div className="flex justify-center mt-6 sm:mt-8">
-              <Link href="/contact" className="inline-flex items-center px-6 py-2 font-semibold transition-all duration-300 border-2 rounded-full shadow-lg text-bg border-bg bg-primary hover:bg-primaryVariant hover:text-bg hover:scale-105 focus:outline-none">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                <span>Let's Talk</span>
-              </Link>
-            </div>
-          </div>
+    <section className="w-full py-12">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <span className="inline-block mb-2 text-forest-500 font-medium tracking-wider uppercase text-sm">
+            Get To Know
+          </span>
+          <h1 className="text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-4">
+            About <span className="text-lime-500">Me</span>
+          </h1>
         </div>
 
-        <div className="flex justify-center">
-          <p className="max-w-6xl my-6 text-base leading-6 text-justify sm:my-10 sm:text-lg sm:leading-7 text-primary-light">
-            Hi, I'm a web developer and UI/UX designer with a passion for creating beautiful, functional, and user-centered digital experiences. I am always looking for new and innovative ways to bring my visions to life. I believe that design is about more than just making things look pretty - it's about solving problems and creating intuitive, enjoyable experiences for users. Whether I'm working on a website or a mobile app, I bring my commitment to design excellence and user-centered thinking to every project I work on. I look forward to the opportunity to bring my skills and passion to the next project.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mx-auto">
+          {/* Left Column - Image */}
+          <div className="lg:col-span-5">
+            <div className="relative group w-full h-[280px] max-w-sm mx-auto">
+              <div 
+                className="absolute inset-0 rounded-2xl bg-lime-500 transform rotate-6 group-hover:rotate-[10deg] transition-transform duration-300"
+                aria-hidden="true"
+              />
+              <div className="relative h-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/Profile/Me Main.png"
+                  alt="Profile picture of a web developer and UI/UX designer"
+                  fill
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 40vw, 33vw"
+                  priority
+                  className="object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                  quality={90}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Content */}
+          <div className="lg:col-span-7 my-4">
+            <div className="prose prose-forest max-w-none">
+              <p className="text-forest-700 leading-relaxed mb-4">
+                Hi, I'm a passionate web developer and UI/UX designer dedicated to creating beautiful, functional, and user-centered digital experiences. With a keen eye for design and a strong technical foundation, I bridge the gap between aesthetics and functionality.
+              </p>
+              <p className="text-forest-700 leading-relaxed">
+                I believe that design is about more than just making things look pretty - it's about solving problems and creating intuitive, enjoyable experiences for users. Whether I'm working on a website or a mobile app, I bring my commitment to design excellence and user-centered thinking to every project I work on.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div className="flex mt-8 max-lg:justify-center">
+              <Button
+                asChild
+                className="group relative px-8 py-3 text-md border-4 rounded-2xl border-forest-900 overflow-hidden bg-forest-900 hover:bg-forest-700 hover:border-forest-700 text-sage-100 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <Link href="/contact" aria-label="Contact me for discussion">
+                  <span className="relative z-10 flex items-center gap-3">
+                    <MessageCircle className="w-7 h-7" strokeWidth={2} aria-hidden="true" />
+                    <span className="font-semibold tracking-wide">Let's Talk</span>
+                    <span 
+                      className="absolute inset-0 bg-forest-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left -z-10"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default AboutMe;
