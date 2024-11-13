@@ -13,7 +13,7 @@ import logo from "../../../public/Profile/PFP-Cricular.png"
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeItem, setActiveItem] = useState('Home')
-  const { scrollY } = useScroll()
+  // const { scrollY } = useScroll()
   const { theme, setTheme } = useTheme()
   
   // const headerBackground = useTransform(
