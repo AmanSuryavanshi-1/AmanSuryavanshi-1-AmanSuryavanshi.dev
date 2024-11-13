@@ -3,7 +3,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion} from 'framer-motion' 
+//  useScroll, useTransform 
 import { Menu, X, Sun, Moon, Home, FolderGit2, User2, Briefcase, BookOpen, Mail } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
