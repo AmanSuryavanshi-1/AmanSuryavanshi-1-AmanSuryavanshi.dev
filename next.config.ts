@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
-
+const SITE_URL = "https://amansuryavanshi-dev.vercel.app/";
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: [SITE_URL],
+  },
 };
 
 export default nextConfig;

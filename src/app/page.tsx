@@ -1,9 +1,9 @@
 import React from 'react'
 import Hero from "../components/hero/Hero"
-import About from "../components/about/AboutMe"
-import ExperienceCards from '@/components/about/ExperienceCards'
-import WorkBanner from '@/components/about/WorkBanner'
+import ExperienceCards from '@/components/ExperienceCards'
+import WorkBanner from '@/components/WorkBanner'
 import Services from '@/components/services/services'
+import AboutMe from '../components/about/AboutMe'
 const page = () => {
   return (
     // <div className='bg-gradient-to-br from-primaryVariant to-bgVariant'>
@@ -12,7 +12,7 @@ const page = () => {
       <Hero/>
       {/* About */}
         <div className='min-h-screen'>
-          <About/>
+          <AboutMe/>
           <WorkBanner/>
         </div>
 
