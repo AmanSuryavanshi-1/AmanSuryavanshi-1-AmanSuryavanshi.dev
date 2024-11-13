@@ -9,7 +9,7 @@ import AmanSuryavanshi from '../../../public/Profile/me main.png'
 const AboutMe = () => {
   return (
     // Added semantic main tag since this appears to be main content
-    <main className="w-full">
+    <main id='about'  className="w-full pt-12">
       {/* Added aria-labelledby for better section labeling */}
       <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="about-heading">
         {/* Header Section */}

@@ -37,7 +37,7 @@ const WorkBanner = () => {
       aria-label="Work Experience and Skills"
       data-testid="work-banner"
     >
-        <div className="overflow-hidden py-3">
+        <div className="overflow-hidden py-[0.4rem]">
             {/* For SEO */}
         <h2 className="sr-only">Work Experience and Skills</h2>
           <motion.div
@@ -58,7 +58,7 @@ const WorkBanner = () => {
             {[...works, ...works].map((item, index) => (
               <div
                 key={index}
-                className="flex items-center gap-3 px-8 rounded-xl py-3 border-4 border-sage-100 bg-lime-500 sm:px-6 sm:py-2 xs:px-2 xs:py-2"
+                className="flex items-center gap-3 px-3 rounded-xl py-1 border-4 border-sage-100 bg-lime-500 sm:px-6 sm:py-[0.4rem] xs:px-2 xs:py-2"
               >
                 <span className="text-forest-500 sm:text-sm xs:text-xs">{item.icon}</span>
                 <span className="text-lg font-medium text-forest-900 sm:text-base xs:text-sm">

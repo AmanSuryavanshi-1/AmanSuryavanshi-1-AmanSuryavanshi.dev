@@ -9,7 +9,7 @@ const ConstructionAlert = () => {
 
   return (
     <div 
-      className="fixed top-4 right-4 max-w-sm p-4 
+      className="fixed top-12 right-4 max-w-sm p-2 
         bg-yellow-50 border-l-4 border-yellow-400 rounded-md shadow-md
         animate-fade-in"
       role="alert"
