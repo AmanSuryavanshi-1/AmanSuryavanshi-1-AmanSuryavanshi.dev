@@ -16,11 +16,11 @@ const Header = () => {
   const { scrollY } = useScroll()
   const { theme, setTheme } = useTheme()
   
-  const headerBackground = useTransform(
-    scrollY,
-    [0, 50],
-    ['rgba(18, 55, 42, 0)', 'rgba(78, 135, 115, 0.95)']
-  )
+  // const headerBackground = useTransform(
+  //   scrollY,
+  //   [0, 50],
+  //   ['rgba(18, 55, 42, 0)', 'rgba(78, 135, 115, 0.95)']
+  // )
 
   const navItems = [
     { name: 'Home', href: '/#home', icon: <Home className="w-4 h-4" /> },
