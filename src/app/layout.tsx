@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import UnderConstructionBanner from "../components/UnderConstructionBanner"
+import Header from "@/components/header/header";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -80,6 +81,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Header/>
         <UnderConstructionBanner/>
         {children}
       </body>

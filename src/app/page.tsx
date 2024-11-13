@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from "../components/header/Header"
+import Header from "../components/hero/Hero"
 import About from "../components/about/AboutMe"
 import ExperienceCards from '@/components/about/ExperienceCards'
 import WorkBanner from '@/components/about/WorkBanner'
@@ -11,11 +11,12 @@ const page = () => {
       {/* Header */}
       <Header/>
       {/* About */}
-        <div>
+        <div className='h-[94vh]'>
           <About/>
           <WorkBanner/>
-          <ExperienceCards/>
         </div>
+
+          <ExperienceCards/>
       
     </div>
   )

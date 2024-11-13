@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import HeaderSocial from './HeaderSocial';
+import HeaderSocial from './HeroSocial';
 import Data from './Data';
 import { ChevronDown } from 'lucide-react';
 import pfp from '../../../public/Profile/PFP.png'
@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <motion.section 
       id="header" 
-      className="relative w-full min-h-screen p-4 overflow-hidden md:mb-4 md:p-0"
+      className="relative w-full min-h-[94vh] p-4 overflow-hidden md:mb-4 md:p-0"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

@@ -1,10 +1,43 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Award, Users, Folder, Code, Globe, Coffee } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
 const ExperienceCards = () => {
+  const ref = useRef(null);
+  const [inViewAmount, setInViewAmount] = useState(0.4);
+  const isInView = useInView(ref, { once: true, amount: inViewAmount });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Adjust the amount based on screen width
+      if (window.innerWidth < 640) { // sm breakpoint
+        setInViewAmount(0.2); // Show cards earlier on mobile
+      } else if (window.innerWidth < 768) { // md breakpoint
+        setInViewAmount(0.3);
+      } else {
+        setInViewAmount(0.4); // Default for larger screens
+      }
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
   const stats = [
     {
       icon: <Award className="w-6 h-6" />,
@@ -45,7 +78,7 @@ const ExperienceCards = () => {
   ];
 
   return (
-    <section className="w-full py-16" aria-labelledby="experience-cards-heading">
+    <section className="w-full py-16" aria-labelledby="experience-cards-heading" ref={ref}>
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="experience-cards-heading" className="text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-8 text-center">
           My <span className="text-lime-500">Experience</span>
@@ -55,10 +88,32 @@ const ExperienceCards = () => {
             <motion.div
               key={index}
               className="p-8 rounded-3xl bg-gradient-to-br from-lime-500 to-lime-300/10 border-4 border-sage-100 hover:from-forest-900 hover:to-forest-500 hover:text-sage-100 transition-colors duration-300 group"
-              whileHover={{ y: -20 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={{
+                hidden: { 
+                  opacity: 0,
+                  scale: 0.8,
+                  x: index % 2 === 0 ? -50 : 50,
+                  rotate: index % 2 === 0 ? -5 : 5
+                },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  x: 0,
+                  rotate: 0,
+                  transition: {
+                    type: "spring",
+                    damping: 12,
+                    stiffness: 100,
+                    delay: index * 0.1
+                  }
+                }
+              }}
+              initial="hidden"
+              animate={controls}
+              whileHover={{ 
+                y: -20,
+                transition: { type: "spring", stiffness: 300 }
+              }}
             >
               <div className="flex justify-center mb-2 text-forest-700 group-hover:text-lime-500">
                 {stat.icon}
