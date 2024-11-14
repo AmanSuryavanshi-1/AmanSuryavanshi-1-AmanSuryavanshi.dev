@@ -4,6 +4,7 @@ import ExperienceCards from '@/components/ExperienceCards'
 import WorkBanner from '@/components/WorkBanner'
 import Services from '@/components/services/services'
 import AboutMe from '../components/about/AboutMe'
+import ContactPage from '../app/contact/page'
 const page = () => {
   return (
     // <div className='bg-gradient-to-br from-primaryVariant to-bgVariant'>
@@ -18,6 +19,7 @@ const page = () => {
 
           <ExperienceCards/>
           <Services/>
+          <ContactPage/>
       
     </div>
   )
