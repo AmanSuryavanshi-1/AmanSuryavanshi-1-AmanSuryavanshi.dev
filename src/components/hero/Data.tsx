@@ -22,6 +22,8 @@ const Data: React.FC = () => {
     visible: { opacity: 1, y: 0 }
   };
 
+  const nameArray = "Aman Suryavanshi".split("");
+
   return (
     <motion.div 
       className="max-w-full px-4 text-center md:text-left md:px-0"
@@ -39,7 +41,19 @@ const Data: React.FC = () => {
         className="mb-1 font-serif text-3xl font-bold md:text-5xl text-lime-500"
         variants={itemVariants}
       >
-        Aman Suryavanshi
+        {nameArray.map((char, index) => (
+          <motion.span
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 0.2,
+              delay: index * 0.1,
+            }}
+          >
+            {char}
+          </motion.span>
+        ))}
       </motion.h1>
       <motion.h3 
         className="relative pl-24 mb-4 font-serif text-lg font-light text-forest-500"

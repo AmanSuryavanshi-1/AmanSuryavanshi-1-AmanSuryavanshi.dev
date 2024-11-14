@@ -10,10 +10,10 @@ interface HeaderSocialProps {
 
 const HeaderSocial: FC<HeaderSocialProps> = ({ className = '' }) => {
   const socialIcons = [
-    { Icon: Linkedin, href: "https://www.linkedin.com/in/amansuryavanshi/", label: "LinkedIn" },
-    { Icon: Github, href: "https://github.com/AmanSuryavanshi-1", label: "GitHub" },
-    { Icon: Instagram, href: "https://www.instagram.com/__aman_suryavanshi__/", label: "Instagram" },
     { Icon: Twitter, href: "https://twitter.com/_AmanSurya", label: "Twitter" },
+    { Icon: Github, href: "https://github.com/AmanSuryavanshi-1", label: "GitHub" },
+    { Icon: Linkedin, href: "https://www.linkedin.com/in/amansuryavanshi/", label: "LinkedIn" },
+    { Icon: Instagram, href: "https://www.instagram.com/__aman_suryavanshi__/", label: "Instagram" },    
   ];
 
   const containerVariants = {

@@ -152,7 +152,7 @@ export default function RootLayout({
       >
         <Header />
         <UnderConstructionBanner />
-        <main className="flex-grow">
+        <main className="flex-grow bg-gradient-to-br from-sage-100 to-lime-500">
           {children}
         </main>
         <footer className="mt-auto">
