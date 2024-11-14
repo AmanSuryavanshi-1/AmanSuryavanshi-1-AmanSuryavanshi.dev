@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/Profile/PFP-Cricular.png',
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],

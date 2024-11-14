@@ -87,7 +87,7 @@ const ExperienceCards = () => {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="p-8 rounded-3xl bg-gradient-to-br from-lime-500 to-lime-300/10 border-4 border-sage-100 hover:from-forest-900 hover:to-forest-500 hover:text-sage-100 transition-colors duration-300 group"
+              className="p-8 rounded-3xl bg-gradient-to-br from-lime-500 to-lime-300/10 border-4 shadow-lg  shadow-forest-500 border-sage-100 hover:from-forest-900 hover:to-forest-500  hover:text-sage-100 transition-colors duration-300 group"
               variants={{
                 hidden: { 
                   opacity: 0,

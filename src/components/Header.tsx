@@ -131,13 +131,15 @@ const Header = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button
-                variant="default"
-                className="bg-lime-500 hover:bg-lime-700 text-forest-900 flex items-center gap-2 rounded-full"
-              >
-                <Mail className="w-4 h-4" />
-                Contact
-              </Button>
+              <Link href="/contact">
+                <Button
+                  variant="default"
+                  className="bg-lime-500 hover:bg-lime-700 text-forest-900 flex items-center gap-2 rounded-full"
+                >
+                  <Mail className="w-4 h-4" />
+                  Contact
+                </Button>
+              </Link>
             </motion.div>
           </div>
 
@@ -175,9 +177,9 @@ const Header = () => {
               opacity: { duration: 0.2 }
             }
           }}
-          className="md:hidden overflow-hidden bg-forest-900/30 backdrop-blur-lg border border-forest-900/20 mt-2 rounded-lg"
+          className="md:hidden overflow-hidden fixed top-[4rem] left-0 right-0 z-50 bg-forest-900/30 backdrop-blur-lg border-y border-forest-900/20"
         >
-          <div className="px-4 py-2 space-y-1">
+          <div className="px-4 py-4 space-y-2 max-w-screen-xl mx-auto">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -192,7 +194,7 @@ const Header = () => {
                     setIsOpen(false)
                   }}
                   className={cn(
-                    "flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+                    "flex items-center gap-2 px-3 py-2 text-base font-medium rounded-lg transition-colors",
                     activeItem === item.name 
                       ? "text-forest-900 bg-lime-500" 
                       : "text-sage-100 hover:text-lime-500"
@@ -219,14 +221,16 @@ const Header = () => {
                 <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Toggle theme</span>
               </Button>
-              <Button
-                variant="default"
-                className="bg-lime-500 hover:bg-lime-700 text-forest-900 flex items-center gap-2 rounded-full"
-                onClick={() => setIsOpen(false)}
-              >
-                <Mail className="w-4 h-4" />
-                Contact
-              </Button>
+              <Link href="/contact">
+                <Button
+                  variant="default"
+                  className="bg-lime-500 hover:bg-lime-700 text-forest-900 flex items-center gap-2 rounded-full"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Mail className="w-4 h-4" />
+                  Contact
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </motion.div>
