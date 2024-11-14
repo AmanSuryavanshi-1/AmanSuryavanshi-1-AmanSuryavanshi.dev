@@ -1,17 +1,18 @@
-
-
-// src/app/about/page.tsx
 import { Metadata } from 'next';
-// import PersonJsonLd from 'next-seo/lib/jsonld/breadcrumb';
 import AboutMe from '@/components/about/AboutMe';
 
-const SITE_URL = "https://AmanSuryavanshi.dev";
+// Site Constants
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://amansuryavanshi-dev.vercel.app/";
 const ABOUT_TITLE = "About Aman Suryavanshi - Web Developer & UI/UX Designer";
 const ABOUT_DESCRIPTION = "Learn about Aman Suryavanshi, a passionate web developer and UI/UX designer specializing in creating beautiful, functional digital experiences using React, Next.js, and modern web technologies.";
 
+// Metadata configuration
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
   description: ABOUT_DESCRIPTION,
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
   openGraph: {
     title: ABOUT_TITLE,
     description: ABOUT_DESCRIPTION,
@@ -31,52 +32,119 @@ export const metadata: Metadata = {
     title: ABOUT_TITLE,
     description: ABOUT_DESCRIPTION,
     images: ['/Images/about-preview.png'],
+    creator: '@_AmanSurya',
   },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1,
+  },
+};
+
+// Structured data for the about page
+const aboutStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/about#webpage`,
+      url: `${SITE_URL}/about`,
+      name: ABOUT_TITLE,
+      description: ABOUT_DESCRIPTION,
+      isPartOf: {
+        "@id": `${SITE_URL}#website`
+      },
+      breadcrumb: {
+        "@id": `${SITE_URL}/about#breadcrumb`
+      },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/about#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          item: {
+            "@id": SITE_URL,
+            name: "Home"
+          }
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          item: {
+            "@id": `${SITE_URL}/about`,
+            name: "About"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/about#person`,
+      name: "Aman Suryavanshi",
+      givenName: "Aman",
+      familyName: "Suryavanshi",
+      url: `${SITE_URL}/about`,
+      image: {
+        "@type": "ImageObject",
+        url: "/Images/about-preview.png",
+        width: 1200,
+        height: 630
+      },
+      description: ABOUT_DESCRIPTION,
+      jobTitle: "Web Developer & UI/UX Designer",
+      sameAs: [
+        "https://github.com/AmanSuryavanshi-1",
+        "https://www.linkedin.com/in/amansuryavanshi/"
+      ],
+      knowsAbout: [
+        "Web Development",
+        "UI/UX Design",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Frontend Development",
+        "Responsive Design"
+      ],
+      worksFor: {
+        "@type": "Organization",
+        name: "Freelance"
+      },
+      skills: [
+        "Frontend Development",
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "UI/UX Design",
+        "Responsive Web Design",
+        "Web Performance Optimization",
+        "SEO"
+      ]
+    }
+  ]
 };
 
 export default function AboutPage() {
   return (
     <>
-      {/* <PersonJsonLd
-        type="Person"
-        name="Aman Suryavanshi"
-        url={`${SITE_URL}/about`}
-        sameAs={[
-          'https://github.com/AmanSuryavanshi-1',
-          'https://www.linkedin.com/in/amansuryavanshi/',
-        ]}
-        jobTitle="Web Developer & UI/UX Designer"
-        description={ABOUT_DESCRIPTION}
-        knowsAbout={[
-          'Web Development',
-          'UI/UX Design',
-          'React',
-          'Next.js',
-          'TypeScript',
-          'Tailwind CSS',
-          'Frontend Development',
-          'Responsive Design',
-        ]}
-      /> */}
-
-      {/* <BreadcrumbJsonLd
-        itemListElements={[
-          {
-            position: 1,
-            name: 'Home',
-            item: SITE_URL,
-          },
-          {
-            position: 2,
-            name: 'About',
-            item: `${SITE_URL}/about`,
-          },
-        ]}
-      /> */}
-
-      <article className="prose prose-lg max-w-none">
-          <h1 className="sr-only">{ABOUT_TITLE}</h1>
-        <AboutMe />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aboutStructuredData)
+        }}
+      />
+      
+      <article className="prose prose-lg max-w-none" itemScope itemType="http://schema.org/Article">
+        <h1 className="sr-only">{ABOUT_TITLE}</h1>
+        <div itemProp="articleBody">
+          <AboutMe />
+        </div>
       </article>
     </>
   );
