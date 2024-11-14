@@ -60,25 +60,22 @@ const ContactForm = () => {
         <span className="text-lime-500">Us</span>
       </motion.h1>
 
+      {/* Add mobile social icons */}
+      <div className="md:hidden w-full max-w-[58rem] mt-8">
+        <HeroSocial className="flex justify-center gap-6" />
+      </div>
+
       <div className="w-full max-w-[58rem] relative flex gap-4">
-        {/* Social icons on the left */}
+        {/* Desktop social icons */}
         <div className="hidden md:flex flex-col justify-center">
-          <HeroSocial className="grid gap-12" />
+          <HeroSocial className="grid gap-4" />
         </div>
 
         <Card className="w-full overflow-hidden bg-transparent border-0 shadow-none">
           <CardContent className="p-0 bg-transparent">
             <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Contact Info Section */}
-              <div className="flex flex-col p-6 sm:p-8 lg:p-12 text-lime-500">
-                 {/* <motion.h2 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="mb-8 text-2xl sm:text-3xl font-bold text-center"
-                >
-                  <span className="text-forest-900">Get </span> in Touch
-                </motion.h2>  */}
-                
+              <div className="flex flex-col p-6 sm:p-8 lg:px-12 lg:py-10 text-lime-500">
                 <div className="flex flex-col space-y-5">
                   <ContactCard
                     icon={<Mail className="w-6 h-6" />}
@@ -108,14 +105,6 @@ const ContactForm = () => {
 
               {/* Contact Form Section */}
               <div className="flex flex-col p-6 sm:p-8 lg:p-12">
-                {/* <motion.h2 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="mb-8 text-2xl sm:text-3xl font-bold text-center text-lime-500"
-                >
-                 <span className="text-forest-900">Send</span> us a message
-                </motion.h2> */}
-
                 <form 
                   ref={form} 
                   onSubmit={sendEmail}
