@@ -27,14 +27,19 @@ interface AboutMeProps {
     image: string;
   };
   qualificationsData?: {
-    title: string;
-    date: string;
-    description: string;
-  }[];
+    qualifications: {
+      degree: string;
+      institution: string;
+      year: string;
+      description: string;
+    }[];
+  };
   skillsData?: {
-    category: string;
-    skills: string[];
-  }[];
+    skills: {
+      category: string;
+      skills: string[];
+    }[];
+  };
 }
 
 // Main AboutMe Component
