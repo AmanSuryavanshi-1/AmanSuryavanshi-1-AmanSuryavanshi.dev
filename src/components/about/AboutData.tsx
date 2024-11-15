@@ -2,56 +2,105 @@ const myData = {
   personalInfo: {
     name: "Aman Suryavanshi",
     title: "Web Developer & UI/UX Designer",
-    description: "Passionate about creating highly functional, visually captivating, and user-centered digital experiences. I bring a blend of creative flair and technical precision to every project, from frontend development to UX design.",
-    phone: "+91 1234567890", // Add actual number if available
-    email: "aman.suryavanshi@example.com", // Replace with your actual email
-    education: "Bachelor's in Computer Science and Engineering", // Replace with the exact degree if it differs
-    address: "India", // Replace with your specific location if desired
+    description:
+      "Passionate about creating highly functional, visually captivating, and user-centered digital experiences. I bring a blend of creative flair and technical precision to every project, from frontend development to UX design.",
+    phone: "+91 8745030106",
+    email: "amansurya.work@gmail.com",
+    education: "B.Tech in Electronics and Communication Engineering",
+    address: "Delhi, India",
     languages: ["English", "Hindi"],
-    image: "/path-to-your-image.jpg" // Add the actual image path here
+    image: "/path-to-your-image.jpg", // Add your actual image path
   },
-  
+
   qualificationsData: {
     qualifications: [
       {
-        degree: "Bachelor's in Computer Science and Engineering",
-        institution: "Your University Name", // Add actual university name
-        year: "Year of Graduation", // Replace with actual years (e.g., "2018-2022")
-        description: "Focused on web development, UI/UX design, and full-stack projects, building a strong foundation in technical and creative skills."
+        degree: "B.Tech in Electronics and Communication Engineering",
+        institution: "Maharaja Surajmal Institute of Technology (GGSIPU)",
+        year: "2020-2024",
+        description:
+          "Focused on web development, UI/UX design, and full-stack projects, achieving a CGPA of 8.74.",
       },
       {
-        degree: "Certifications & Courses",
-        institution: "Namaste JavaScript by Akshay Saini",
-        year: "2023",
-        description: "Completed a comprehensive course on JavaScript fundamentals and advanced concepts."
+        degree: "12th from CBSE Board - Science",
+        institution: "Army Public School Delhi Cantt",
+        year: "2019-2020",
+        description: "Achieved 79.8% in the final board examination.",
       },
       {
-        degree: "Certifications & Courses",
+        degree: "React JS Certification",
         institution: "Namaste React by Akshay Saini",
         year: "2024",
-        description: "Built a strong foundation in React, including hooks, lazy loading, suspense, and state management, with an emphasis on optimization and user experience."
+        description:
+          "Learned React fundamentals, advanced concepts, hooks, lazy loading, suspense, and state management with a focus on optimization and user experience.",
       },
-      // Add more if you have additional certifications or courses
-    ]
+      {
+        degree: "JavaScript Certification",
+        institution: "Udemy",
+        year: "2023",
+        description: "Completed an extensive course on JavaScript fundamentals and advanced concepts.",
+      },
+      {
+        degree: "HTML & CSS Certification",
+        institution: "Cisco ThingQbator",
+        year: "2023",
+        description: "Gained a solid foundation in HTML and CSS for web development.",
+      },
+    ],
   },
 
   skillsData: {
     skills: {
       "Technical Skills": [
-        "HTML", "CSS", "JavaScript", "React", "Next.js", "TypeScript", 
-        "MongoDB", "Tailwind CSS", "Redux", "Redux Toolkit", "Vite", "Parcel", "Webpack",
-        "AI-Powered Video/Image Generation", "UI/UX Design"
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React JS",
+        "Next.js",
+        "TypeScript",
+        "Redux",
+        "Redux Toolkit",
+        "Web API",
+        "JSON",
+        "AXIOS",
+        "Tailwind CSS",
+        "Material UI",
+        "Bootstrap",
+        "DaisyUI",
+        "Vite",
+        "Parcel",
+        "Webpack",
+        "AI-Powered Video/Image Creation",
+        "UI/UX Design",
+        "C/C++",
+        "Object-oriented Programming",
+        "Data Structures & Algorithms",
+        "Computer Networks",
       ],
       "Soft Skills": [
-        "Time Management", "Creativity", "Problem Solving", "Communication", 
-        "Teamwork", "Adaptability", "Attention to Detail"
+        "Time Management",
+        "Creativity",
+        "Problem Solving",
+        "Communication",
+        "Teamwork",
+        "Adaptability",
+        "Meeting Deadlines",
+        "Attention to Detail",
+        "Content Writing",
       ],
       "Tools": [
-        "Git", "GitHub", "Figma", "Material UI", "Bootstrap", "DaisyUI", 
-        "VS Code", "Docker"
-      ]
-    }
-  }
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Figma",
+        "Docker",
+        "PostCSS",
+        "EmailJS",
+        "QuillJS",
+        "ExcaliDraw",
+      ],
+    },
+  },
 };
 
 export default myData;
