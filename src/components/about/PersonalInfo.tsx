@@ -1,8 +1,30 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { User, Phone, Mail, GraduationCap, MapPin, Languages } from 'lucide-react';
 
-const PersonalInfo = ({ data }) => {
+interface PersonalData {
+  title?: string;
+  name?: string;
+  phone?: string;
+  email?: string;
+  education?: string;
+  address?: string;
+  languages?: string[];
+}
+
+interface PersonalInfoProps {
+  data?: PersonalData;
+}
+
+interface InfoItemProps {
+  icon: React.ReactNode;
+  text: string;
+  label: string;
+}
+
+function PersonalInfo({ data }: PersonalInfoProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -67,20 +89,22 @@ const PersonalInfo = ({ data }) => {
       </div>
     </motion.div>
   );
-};
+}
 
-const InfoItem = ({ icon, text, label }) => (
-  <motion.div 
-    initial={{ opacity: 0, x: -20 }}
-    animate={{ opacity: 1, x: 0 }}
-    className="flex items-start gap-3"
-  >
-    <span className="text-forest-600 flex-shrink-0 mt-1">{icon}</span>
-    <div>
-      <h3 className="text-sm font-medium text-forest-800 mb-1">{label}</h3>
-      <p className="text-forest-700">{text}</p>
-    </div>
-  </motion.div>
-);
+function InfoItem({ icon, text, label }: InfoItemProps) {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="flex items-start gap-3"
+    >
+      <span className="text-forest-600 flex-shrink-0 mt-1">{icon}</span>
+      <div>
+        <h3 className="text-sm font-medium text-forest-800 mb-1">{label}</h3>
+        <p className="text-forest-700">{text}</p>
+      </div>
+    </motion.div>
+  );
+}
 
 export default PersonalInfo;
