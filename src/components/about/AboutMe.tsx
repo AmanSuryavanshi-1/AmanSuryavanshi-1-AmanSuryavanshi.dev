@@ -35,11 +35,7 @@ interface AboutMeProps {
     }[];
   };
   skillsData?: {
-    skills: {
-      "Technical Skills": string[];
-      "Soft Skills": string[];
-      "Tools": string[];
-    };
+    skills: Record<string, string[]>;
   };
 }
 
