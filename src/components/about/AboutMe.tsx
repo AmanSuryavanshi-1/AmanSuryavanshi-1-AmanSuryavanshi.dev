@@ -15,22 +15,22 @@ import Skills from '@/components/about/Skills';
 import PersonalInfo from '@/components/about/PersonalInfo';
 
 interface AboutMeProps {
-  personalInfo: {
+  personalInfo?: {
     [key: string]: string | number
   };
-  qualificationsData: {
+  qualificationsData?: {
     title: string;
     date: string;
     description: string;
   }[];
-  skillsData: {
+  skillsData?: {
     category: string;
     skills: string[];
   }[];
 }
 
 // Main AboutMe Component
-const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps) => {
+const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps = {}) => {
   return (
     <main id="about" className="w-full pt-12">
       <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="about-heading">
