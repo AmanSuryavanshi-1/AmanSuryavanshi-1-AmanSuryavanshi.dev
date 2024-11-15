@@ -16,7 +16,15 @@ import PersonalInfo from '@/components/about/PersonalInfo';
 
 interface AboutMeProps {
   personalInfo?: {
-    [key: string]: string | number
+    name: string;
+    title: string;
+    description: string;
+    phone: string;
+    email: string;
+    education: string;
+    address: string;
+    languages: string[];
+    image: string;
   };
   qualificationsData?: {
     title: string;
