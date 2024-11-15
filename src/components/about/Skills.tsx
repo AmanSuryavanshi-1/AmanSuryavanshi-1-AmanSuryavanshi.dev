@@ -3,7 +3,7 @@ import { Brain } from 'lucide-react';
 
 
 interface SkillsProps {
-    data: {
+    data?: {
         skills?: Record<string, string[]>;
     }
 }
