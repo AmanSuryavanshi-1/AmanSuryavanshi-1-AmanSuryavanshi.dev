@@ -36,9 +36,10 @@ interface AboutMeProps {
   };
   skillsData?: {
     skills: {
-      category: string;
-      skills: string[];
-    }[];
+      "Technical Skills": string[];
+      "Soft Skills": string[];
+      "Tools": string[];
+    };
   };
 }
 
