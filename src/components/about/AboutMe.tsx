@@ -1,13 +1,23 @@
 'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+
 import SectionTitle from '@/components/about/SectionTitle';
 import ProfileImage from '@/components/about/ProfileImage';
-import AboutContent from '@/components/about/AboutContent';
 import ActionButtons from '@/components/about/ActionButtons';
 
-const AboutMe = () => {
+
+// import PersonalInfo from '@/components/about/';
+
+import Qualifications from '@/components/about/Qualifications';
+import Skills from '@/components/about/Skills';
+import PersonalInfo from '@/components/about/PersonalInfo';
+
+// Main AboutMe Component
+const AboutMe = ({ personalInfo, qualificationsData, skillsData }: { personalInfo: any, qualificationsData: any, skillsData: any }) => {
   return (
-    <main id='about' className="w-full pt-12">
+    <main id="about" className="w-full pt-12">
       <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="about-heading">
         <SectionTitle />
         
@@ -17,8 +27,29 @@ const AboutMe = () => {
           </div>
 
           <div className="lg:col-span-7 my-4">
-            <AboutContent />
-            <ActionButtons />
+            <Tabs defaultValue="personal-info" className="w-full">
+              <TabsList className="mb-6">
+                <TabsTrigger value="personal-info">Personal Info</TabsTrigger>
+                <TabsTrigger value="qualifications">Qualifications</TabsTrigger>
+                <TabsTrigger value="skills">Skills</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="personal-info">
+                <PersonalInfo data={personalInfo} />
+              </TabsContent>
+
+              <TabsContent value="qualifications">
+                <Qualifications data={qualificationsData} />
+              </TabsContent>
+
+              <TabsContent value="skills">
+                <Skills data={skillsData} />
+              </TabsContent>
+            </Tabs>
+            
+            <div className="mt-8">
+              <ActionButtons />
+            </div>
           </div>
         </div>
       </section>

@@ -1,9 +1,10 @@
+import { GoogleAnalytics } from "nextjs-google-analytics";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import UnderConstructionBanner from "../components/UnderConstructionBanner";
 import Header from "../components/Header";
-
 // Font configurations with performance optimizations
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -159,6 +160,7 @@ export default function RootLayout({
           {/* Add your footer component here */}
         </footer>
       </body>
+      <GoogleAnalytics gaId="G-T70LLLE9LY" /> 
     </html>
   );
 }

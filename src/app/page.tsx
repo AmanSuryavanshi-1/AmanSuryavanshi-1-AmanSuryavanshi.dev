@@ -5,6 +5,8 @@ import WorkBanner from '@/components/WorkBanner'
 import Services from '@/components/services/services'
 import AboutMe from '../components/about/AboutMe'
 import ContactPage from '../app/contact/page'
+import myData from '../components/about/AboutData'
+
 const page = () => {
   return (
     // <div className='bg-gradient-to-br from-primaryVariant to-bgVariant'>
@@ -13,7 +15,11 @@ const page = () => {
       <Hero/>
       {/* About */}
         <div className='min-h-screen'>
-          <AboutMe/>
+          <AboutMe
+            personalInfo={myData.personalInfo}
+            qualificationsData={myData.qualificationsData}
+            skillsData={myData.skillsData}
+          />
           <WorkBanner/>
         </div>
 
