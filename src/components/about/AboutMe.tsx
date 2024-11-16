@@ -52,7 +52,7 @@ interface AboutMeProps {
 const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps = {}) => {
   return (
     <main id="about" className="w-full py-8">
-      <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full" aria-labelledby="about-heading">
+      <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full " aria-labelledby="about-heading">
         <SectionTitle />
         
         <div className="grid grid-cols-1 lg:grid-cols-12 mb-8 gap-6 lg:gap-12 items-start">
@@ -62,24 +62,24 @@ const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps 
 
           <div className="lg:col-span-8">
             <Tabs defaultValue="about" className="w-full min-h-[58vh]">
-              <TabsList className="mb-6 py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100">
+              <TabsList className="mb-6 py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 max-md:border-0 ">
                 <TabsTrigger 
-                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 " 
+                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
                   value="about">
                   About
                 </TabsTrigger>
                 <TabsTrigger 
-                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 " 
+                 className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
                   value="personal-info">
                   Personal Info
                 </TabsTrigger>
                 <TabsTrigger 
-                   className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 " 
+                 className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
                   value="qualifications">
                   Qualifications
                 </TabsTrigger>
                 <TabsTrigger 
-                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 " 
+                 className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
                   value="skills">
                   Skills
                 </TabsTrigger>
