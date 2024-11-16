@@ -33,11 +33,13 @@ interface AboutMeProps {
         degree: string;
         institution: string;
         year: string;
+        icon: string;
       }[];
       CertificationData: {
         degree: string;
         institution: string;
         year: string;
+        icon: string;
       }[];
     };
   };
