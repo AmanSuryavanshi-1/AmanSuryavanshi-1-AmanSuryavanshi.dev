@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, Phone, Mail, GraduationCap, MapPin, Languages, UserCircle, User2, UserRound, CircleUserRoundIcon } from 'lucide-react';
+import { User, Phone, Mail, GraduationCap, MapPin, Languages} from 'lucide-react';
 
 interface PersonalData {
   title?: string;
