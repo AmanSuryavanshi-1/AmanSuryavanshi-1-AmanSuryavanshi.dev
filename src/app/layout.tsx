@@ -4,7 +4,7 @@ import "./globals.css";
 import UnderConstructionBanner from "../components/UnderConstructionBanner";
 import Header from "../components/Header";
 import GoogleAnalyticsWrapper from "../components/GoogleAnalyticsWrapper";
-
+import { Analytics } from "@vercel/analytics/react"
 // Font configurations with performance optimizations
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -159,6 +159,7 @@ export default function RootLayout({
         <footer className="mt-auto">
           {/* Add your footer component here */}
         </footer>
+        <Analytics />
         <GoogleAnalyticsWrapper />
       </body>
     </html>
