@@ -37,14 +37,14 @@ interface QualificationItem {
 }
 
 interface AboutMeProps {
-  personalInfo: PersonalInfoData;
-  qualificationsData: {
+  personalInfo?: PersonalInfoData;
+  qualificationsData?: {
     qualifications: {
       EducationData: QualificationItem[];
       CertificationData: QualificationItem[];
     };
   };
-  skillsData: {
+  skillsData?: {
     skills: Record<string, Skill[]>;
   };
 }
@@ -68,7 +68,9 @@ const defaultProps: AboutMeProps = {
 };
 
 // Main AboutMe Component
-const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps = defaultProps) => {
+const AboutMe = ({ personalInfo = defaultProps.personalInfo, 
+                  qualificationsData = defaultProps.qualificationsData, 
+                  skillsData = defaultProps.skillsData }: AboutMeProps) => {
   return (
     <main id="about" className="w-full py-8">
       <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full " aria-labelledby="about-heading">

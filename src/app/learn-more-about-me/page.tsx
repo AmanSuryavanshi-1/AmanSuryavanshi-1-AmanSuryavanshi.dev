@@ -131,6 +131,24 @@ const aboutStructuredData = {
 };
 
 export default function AboutPage() {
+  const defaultProps = {
+    personalInfo: {
+      name: 'Aman Suryavanshi',
+      email: '',
+      phone: '',
+      location: ''
+    },
+    qualificationsData: {
+      qualifications: {
+        EducationData: [],
+        CertificationData: []
+      }
+    },
+    skillsData: {
+      skills: {}
+    }
+  };
+
   return (
     <>
       <script
@@ -143,7 +161,7 @@ export default function AboutPage() {
       <article className="prose prose-lg max-w-none" itemScope itemType="http://schema.org/Article">
         <h1 className="sr-only">{ABOUT_TITLE}</h1>
         <div itemProp="articleBody">
-          <AboutMe />
+          <AboutMe {...defaultProps} />
         </div>
       </article>
     </>
