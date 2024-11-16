@@ -80,7 +80,7 @@ const Qualifications = ({ data }: QualificationsProps) => {
             <h2 className="text-lg sm:text-xl font-medium text-forest-900">Certification</h2>
           </div>
           
-          <div className="space-y-3 sm:space-y-6">
+          <div className="space-y-3">
             {CertificationData.map((item, index) => (
               <QualificationItem key={index} item={item} index={index} />
             ))}
