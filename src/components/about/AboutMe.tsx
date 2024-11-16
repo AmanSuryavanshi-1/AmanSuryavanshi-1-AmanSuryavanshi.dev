@@ -15,41 +15,60 @@ import Skills from '@/components/about/Skills';
 import PersonalInfo from '@/components/about/PersonalInfo';
 import AboutContent from './AboutContent';
 
+interface Skill {
+  name: string;
+  icon: string;
+}
+
+interface PersonalInfoData {
+  name: string;
+  email: string;
+  phone: string;
+  location: string;
+  // Add other personal info fields as needed
+}
+
+interface QualificationItem {
+  title: string;
+  institution: string;
+  year: string;
+  degree: string;
+  icon: string;
+}
+
 interface AboutMeProps {
-  personalInfo?: {
-    name: string;
-    title: string;
-    description: string;
-    phone: string;
-    email: string;
-    education: string;
-    address: string;
-    languages: string[];
-    image: string;
-  };
-  qualificationsData?: {
-    qualifications?: {
-      EducationData: {
-        degree: string;
-        institution: string;
-        year: string;
-        icon: string;
-      }[];
-      CertificationData: {
-        degree: string;
-        institution: string;
-        year: string;
-        icon: string;
-      }[];
+  personalInfo: PersonalInfoData;
+  qualificationsData: {
+    qualifications: {
+      EducationData: QualificationItem[];
+      CertificationData: QualificationItem[];
     };
   };
-  skillsData?: {
-    skills: Record<string, string[]>;
+  skillsData: {
+    skills: Record<string, Skill[]>;
   };
 }
 
+const defaultProps: AboutMeProps = {
+  personalInfo: {
+    name: '',
+    email: '',
+    phone: '',
+    location: ''
+  },
+  qualificationsData: {
+    qualifications: {
+      EducationData: [],
+      CertificationData: []
+    }
+  },
+  skillsData: {
+    skills: {}
+  }
+};
+
 // Main AboutMe Component
-const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps = {}) => {
+const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps = defaultProps) => {
   return (
     <main id="about" className="w-full py-8">
       <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full " aria-labelledby="about-heading">
