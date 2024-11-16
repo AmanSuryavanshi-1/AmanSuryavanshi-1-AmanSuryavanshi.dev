@@ -1,56 +1,79 @@
-import { motion } from 'framer-motion';
-import { Brain } from 'lucide-react';   
+import React from 'react';
+import * as LucideIcons from 'lucide-react';
+import { Brain, Palette, Briefcase, Wrench } from 'lucide-react';
 
-
-interface SkillsProps {
-    data?: {
-        skills?: Record<string, string[]>;
-    }
+interface Skill {
+  name: string;
+  icon: string;
 }
 
+interface SkillsProps {
+  data?: {
+    skills?: Record<string, Skill[]>;
+  }
+}
+
+// Category icons mapping
+const categoryIconMap = {
+  "Technical Skills": Brain,
+  "Creative Skills": Palette,
+  "Professional Skills": Briefcase,
+  "Tools & Technologies": Wrench
+};
+
 const Skills = ({ data }: SkillsProps) => {
-    const skillCategories = data?.skills || {
-      "Technical Skills": ["React", "Next.js", "TypeScript", "Node.js", "Python"],
-      "Soft Skills": ["Project Management", "Team Leadership", "Communication"],
-      "Tools": ["Git", "Docker", "AWS", "Figma"]
-    };
-  
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="space-y-8"
-      >
-        <h2 className="text-2xl font-bold mb-6">Professional Skills</h2>
-        {Object.entries(skillCategories).map(([category, skills], index) => (
-          <motion.div
-            key={category}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="space-y-4"
-          >
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Brain className="text-red-400" />
-              {category}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill: string, skillIndex: number) => (
-                <motion.span
-                  key={skillIndex}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
-                  className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-700"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    );
+  const skillCategories = data?.skills || {};
+
+  // Function to get Lucide icon component
+  const getIconComponent = (iconName: string): React.ComponentType => {
+    const pascalCase = iconName
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join('');
+    return (LucideIcons as any)[pascalCase] || LucideIcons.Circle;
   };
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {Object.entries(skillCategories).map(([category, skills]) => {
+          const CategoryIcon = categoryIconMap[category as keyof typeof categoryIconMap] || Brain;
+          
+          return (
+            <div 
+              key={category}
+              className="bg-forest-50/50 rounded-lg p-4 border border-forest-100"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <CategoryIcon className="w-5 h-5 text-forest-700" />
+                <h3 className="text-sm font-medium text-forest-900">
+                  {category}
+                  <span className="ml-2 text-forest-500 text-xs">
+                    ({skills.length})
+                  </span>
+                </h3>
+              </div>
+              
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill, index) => {
+                  const SkillIcon = getIconComponent(skill.icon);
+                  return (
+                    <span
+                      key={index}
+                      className="px-2 py-1 text-xs bg-forest-100 text-forest-700 rounded-md flex items-center gap-1"
+                    >
+                      <SkillIcon className="w-3 h-3" />
+                      {skill.name}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default Skills;

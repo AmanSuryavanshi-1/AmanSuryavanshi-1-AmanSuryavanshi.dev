@@ -54,55 +54,47 @@ const myData = {
   skillsData: {
     skills: {
       "Technical Skills": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React JS",
-        "Next.js",
-        "TypeScript",
-        "Redux",
-        "Redux Toolkit",
-        "Web API",
-        "JSON",
-        "AXIOS",
-        "Tailwind CSS",
-        "Material UI",
-        "Bootstrap",
-        "DaisyUI",
-        "Vite",
-        "Parcel",
-        "Webpack",
-        "AI-Powered Video/Image Creation",
-        "UI/UX Design",
-        "C/C++",
-        "Object-oriented Programming",
-        "Data Structures & Algorithms",
-        "Computer Networks",
+        { name: "React", icon: "react" },
+        { name: "Next.js", icon: "server" },
+        { name: "TypeScript", icon: "file-type" },
+        { name: "JavaScript", icon: "file-json" },
+        { name: "Full Stack Development", icon: "layers" },
+        { name: "Frontend Development", icon: "layout-dashboard" },
+        { name: "API Integration", icon: "webhook" },
+        { name: "Database Handling", icon: "database" },
+        { name: "Web Performance", icon: "gauge" },
+        { name: "SEO", icon: "search" }
       ],
-      "Soft Skills": [
-        "Time Management",
-        "Creativity",
-        "Problem Solving",
-        "Communication",
-        "Teamwork",
-        "Adaptability",
-        "Meeting Deadlines",
-        "Attention to Detail",
-        "Content Writing",
+      "Creative Skills": [
+        { name: "UI/UX Design", icon: "palette" },
+        { name: "Figma", icon: "figma" },
+        { name: "Creative Technology", icon: "sparkles" },
+        { name: "Content Writing", icon: "pen-line" },
+        { name: "Technical Writing", icon: "file-text" },
+        { name: "AI Video Creation", icon: "video" },
+        { name: "AI Image Generation", icon: "image-plus" },
+        { name: "User-Centered Design", icon: "user-cog" }
       ],
-      "Tools": [
-        "Git",
-        "GitHub",
-        "VS Code",
-        "Figma",
-        "Docker",
-        "PostCSS",
-        "EmailJS",
-        "QuillJS",
-        "ExcaliDraw",
+      "Professional Skills": [
+        { name: "Project Management", icon: "kanban" },
+        { name: "Team Leadership", icon: "users-round" },
+        { name: "Communication", icon: "message-square" },
+        { name: "Problem Solving", icon: "puzzle" },
+        { name: "Agile Practices", icon: "repeat" },
+        { name: "Performance Optimization", icon: "timer" },
+        { name: "Continuous Learning", icon: "graduation-cap" }
       ],
-    },
-  },
+      "Tools & Technologies": [
+        { name: "Git", icon: "git-branch" },
+        { name: "Docker", icon: "container" },
+        { name: "AWS", icon: "cloud" },
+        { name: "Figma", icon: "figma" },
+        { name: "VS Code", icon: "code-square" },
+        { name: "Terminal", icon: "terminal" },
+        { name: "DevTools", icon: "wrench" }
+      ]
+    }
+  }
 };
 
 export default myData;
