@@ -1,6 +1,6 @@
 import React from 'react';
 import * as LucideIcons from 'lucide-react';
-import { Brain, Palette, Briefcase, Wrench } from 'lucide-react';
+import { Brain, Palette, Briefcase, Wrench, Circle, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface Skill {
@@ -14,7 +14,7 @@ interface SkillsProps {
   }
 }
 
-const categoryIconMap = {
+const categoryIconMap: Record<string, LucideIcon> = {
   "Technical Skills": Brain,
   "Creative Skills": Palette,
   "Professional Skills": Briefcase,
@@ -22,12 +22,13 @@ const categoryIconMap = {
 };
 
 const SkillBanner = ({ skills }: { skills: Skill[] }) => {
-  const getIconComponent = (iconName: string) => {
+  const getIconComponent = (iconName: string): LucideIcon => {
     const pascalCase = iconName
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join('');
-    return (LucideIcons as any)[pascalCase] || LucideIcons.Circle;
+    
+    return (LucideIcons[pascalCase as keyof typeof LucideIcons] as LucideIcon) || Circle;
   };
 
   return (
@@ -62,7 +63,7 @@ const Skills = ({ data }: SkillsProps) => {
   return (
     <div className="w-full overflow-hidden">
       {Object.entries(skillCategories).map(([category, skills]) => {
-        const CategoryIcon = categoryIconMap[category as keyof typeof categoryIconMap] || Brain;
+        const CategoryIcon = categoryIconMap[category] || Brain;
         
         return (
           <div key={category} className="mb-3 last:mb-0">
