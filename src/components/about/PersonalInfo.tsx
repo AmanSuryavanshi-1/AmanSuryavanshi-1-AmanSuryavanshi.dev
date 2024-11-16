@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, Phone, Mail, GraduationCap, MapPin, Languages } from 'lucide-react';
+import { User, Phone, Mail, GraduationCap, MapPin, Languages, UserCircle, User2, UserRound, CircleUserRoundIcon } from 'lucide-react';
 
 interface PersonalData {
   title?: string;
@@ -32,11 +32,13 @@ function PersonalInfo({ data }: PersonalInfoProps) {
       className="space-y-6"
     >
       <div className="prose prose-forest max-w-none" itemScope itemType="http://schema.org/Person">
-        <h2 className="text-2xl font-bold mb-4 text-forest-800">
+        <h2 className="text-xl font-semibold text-forest-900 mb-2">
           {data?.title || "Unmatched Service Quality for Over 3 Years"}
         </h2>
-
-        <div className="grid md:grid-cols-2 gap-2 mt-5">
+        <p className="text-forest-700">
+          I specialize in crafting exceptional web experiences with modern technologies. 
+         </p>
+        <div className="grid md:grid-cols-2 gap-3 mt-5">
           <InfoItem 
             icon={<User className="h-5 w-5"/>} 
             text={data?.name || "Your Name"}
@@ -83,9 +85,9 @@ function InfoItem({ icon, text, label }: InfoItemProps) {
       animate={{ opacity: 1, x: 0 }}
       className="flex items-start gap-3"
     >
-      <span className="text-forest-600 flex-shrink-0 mt-1">{icon}</span>
+      <span className="text-forest-500 flex-shrink-0 mt-1">{icon}</span>
       <div>
-        <h3 className="text-sm font-medium text-forest-800 mb-1">{label}</h3>
+        <h3 className="text-sm font-medium text-forest-900 mb-1">{label}</h3>
         <p className="text-forest-700">{text}</p>
       </div>
     </motion.div>
