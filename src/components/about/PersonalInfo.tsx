@@ -33,18 +33,10 @@ function PersonalInfo({ data }: PersonalInfoProps) {
     >
       <div className="prose prose-forest max-w-none" itemScope itemType="http://schema.org/Person">
         <h2 className="text-2xl font-bold mb-4 text-forest-800">
-          {data?.title || "Unmatched Service Quality for Over 10 Years"}
+          {data?.title || "Unmatched Service Quality for Over 3 Years"}
         </h2>
-        
-        <p className="text-forest-700 leading-relaxed mb-4" itemProp="description">
-          Hi, I&apos;m a <span itemProp="jobTitle">web developer and UI/UX designer</span> dedicated to creating beautiful, functional, and user-centered digital experiences. With a keen eye for design and a strong technical foundation, I bridge the gap between aesthetics and functionality.
-        </p>
-        
-        <p className="text-forest-700 leading-relaxed mb-6">
-          I believe that design is about more than just making things look pretty - it&apos;s about solving problems and creating intuitive, enjoyable experiences for users. Whether I&apos;m working on a website or a mobile app, I bring my commitment to design excellence and user-centered thinking to every project I work on.
-        </p>
 
-        <div className="grid md:grid-cols-2 gap-4 mt-8">
+        <div className="grid md:grid-cols-2 gap-2 mt-5">
           <InfoItem 
             icon={<User className="h-5 w-5"/>} 
             text={data?.name || "Your Name"}
@@ -70,18 +62,11 @@ function PersonalInfo({ data }: PersonalInfoProps) {
             text={data?.address || "321 Blue Avenue, NY, USA"}
             label="Location"
           />
-          
-          <div className="col-span-2">
-            <div className="flex items-start gap-3">
-              <Languages className="h-5 w-5 text-forest-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-sm font-medium text-forest-800 mb-1">Languages</h3>
-                <p className="text-forest-700">
-                  {data?.languages?.join(", ") || "English, French, Spanish, Italian"}
-                </p>
-              </div>
-            </div>
-          </div>
+          <InfoItem
+            icon={<Languages className="h-5 w-5"/>} 
+            text={data?.languages?.join(", ") || "English, Hindi"}
+            label="Languages"
+          />
         </div>
 
         <meta itemProp="name" content={data?.name || "Aman Suryavanshi"} />
