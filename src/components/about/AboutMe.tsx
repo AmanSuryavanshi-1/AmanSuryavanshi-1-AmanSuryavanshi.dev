@@ -61,7 +61,7 @@ const AboutMe = ({ personalInfo, qualificationsData, skillsData }: AboutMeProps 
           </div>
 
           <div className="lg:col-span-8">
-            <Tabs defaultValue="about" className="w-full min-h-[58vh]">
+            <Tabs defaultValue="about" className="w-full min-h-[61vh]">
               <TabsList className="mb-6 py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 max-md:border-0 ">
                 <TabsTrigger 
                   className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 

@@ -32,13 +32,14 @@ function PersonalInfo({ data }: PersonalInfoProps) {
       className="space-y-6"
     >
       <div className="prose prose-forest max-w-none" itemScope itemType="http://schema.org/Person">
-        <h2 className="text-xl font-semibold text-forest-900 mb-2">
+        <h2 className="text-xl font-semibold text-forest-900 mb-4">
           {data?.title || "Unmatched Service Quality for Over 3 Years"}
         </h2>
         <p className="text-forest-700">
           I specialize in crafting exceptional web experiences with modern technologies. 
-         </p>
-        <div className="grid md:grid-cols-2 gap-3 mt-5">
+          My passion lies in transforming complex ideas into elegant, user-friendly solutions that drive business growth.
+        </p>
+        <div className="grid md:grid-cols-2 gap-5 mt-6">
           <InfoItem 
             icon={<User className="h-5 w-5"/>} 
             text={data?.name || "Your Name"}

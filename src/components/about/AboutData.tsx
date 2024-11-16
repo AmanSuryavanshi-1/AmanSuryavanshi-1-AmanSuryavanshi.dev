@@ -6,7 +6,7 @@ const myData = {
       "Passionate about creating highly functional, visually captivating, and user-centered digital experiences. I bring a blend of creative flair and technical precision to every project, from frontend development to UX design.",
     phone: "+91 8745030106",
     email: "amansurya.work@gmail.com",
-    education: "B.Tech in Electronics and Communication Engineering",
+    education: "B.Tech in Electronics and Communication",
     address: "Delhi, India",
     languages: ["English", "Hindi"],
     image: "/path-to-your-image.jpg", // Add your actual image path
@@ -25,6 +25,12 @@ const myData = {
           degree: "12th from CBSE Board - Science",
           institution: "Army Public School Delhi Cantt",
           year: "2019 - 2020",
+          icon: "school"
+        },
+        {
+          degree: "10th from CBSE Board",
+          institution: "Army Public School Delhi Cantt",
+          year: "2017 - 2018",
           icon: "school"
         },
       ],
