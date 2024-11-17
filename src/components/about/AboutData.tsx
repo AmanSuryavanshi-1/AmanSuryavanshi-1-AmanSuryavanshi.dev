@@ -16,19 +16,19 @@ const myData = {
     qualifications: {
       EducationData: [
         {
-          degree: "B.Tech in Electronics and Communication",
+          title: "B.Tech in Electronics and Communication",
           institution: "Maharaja Surajmal Institute of Technology (GGSIPU)",
           year: "2020 - 2024",
           icon: "graduation-cap"
         },
         {
-          degree: "12th from CBSE Board - Science",
+          title: "12th from CBSE Board - Science",
           institution: "Army Public School Delhi Cantt",
           year: "2019 - 2020",
           icon: "school"
         },
         {
-          degree: "10th from CBSE Board",
+          title: "10th from CBSE Board",
           institution: "Army Public School Delhi Cantt",
           year: "2017 - 2018",
           icon: "school"
@@ -36,19 +36,19 @@ const myData = {
       ],
       CertificationData: [
         {
-          degree: "React JS Certification",
+          title: "React JS Certification",
           institution: "Namaste React by Akshay Saini",
           year: "2024 Feb - May",
           icon: "code-2"
         },
         {
-          degree: "JavaScript Certification",
+          title: "JavaScript Certification",
           institution: "Udemy",
           year: "2023 July - December",
           icon: "code"
         },
         {
-          degree: "HTML & CSS Certification",
+          title: "HTML & CSS Certification",
           institution: "Cisco ThingQbator",
           year: "2022 - 2023",
           icon: "layout-template"

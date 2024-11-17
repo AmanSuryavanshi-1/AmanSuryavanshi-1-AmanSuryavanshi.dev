@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import AboutMe from '@/components/about/AboutMe';
-
+import myData from '@/components/about/AboutData'
 // Site Constants
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://amansuryavanshi-dev.vercel.app/";
 const ABOUT_TITLE = "About Aman Suryavanshi - Web Developer & UI/UX Designer";
@@ -131,23 +131,6 @@ const aboutStructuredData = {
 };
 
 export default function AboutPage() {
-  const defaultProps = {
-    personalInfo: {
-      name: 'Aman Suryavanshi',
-      email: '',
-      phone: '',
-      location: ''
-    },
-    qualificationsData: {
-      qualifications: {
-        EducationData: [],
-        CertificationData: []
-      }
-    },
-    skillsData: {
-      skills: {}
-    }
-  };
 
   return (
     <>
@@ -161,7 +144,10 @@ export default function AboutPage() {
       <article className="prose prose-lg max-w-none" itemScope itemType="http://schema.org/Article">
         <h1 className="sr-only">{ABOUT_TITLE}</h1>
         <div itemProp="articleBody">
-          <AboutMe {...defaultProps} />
+          <AboutMe personalInfo={myData.personalInfo}
+            qualificationsData={myData.qualificationsData}
+            skillsData={myData.skillsData}
+           />
         </div>
       </article>
     </>

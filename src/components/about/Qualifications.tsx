@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Award, GraduationCap, Code2, Code, School, LayoutTemplate } from 'lucide-react';
 
 interface QualificationItem {
-  degree: string;
+  title: string;
   institution: string;
   year: string;
   icon: string;
@@ -44,7 +44,7 @@ const QualificationItem = ({ item, index }: { item: QualificationItem; index: nu
           {iconMap[item.icon]}
         </span>
       </span>
-      <h3 className="text-sm sm:text-base font-semibold text-forest-900">{item.degree}</h3>
+      <h3 className="text-sm sm:text-base font-semibold text-forest-900">{item.title}</h3>
     </div>
     <p className="text-xs sm:text-sm text-forest-700 mt-0.5">{item.institution}</p>
     <p className="text-xs text-forest-500 mt-1">{item.year}</p>

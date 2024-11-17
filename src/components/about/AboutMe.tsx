@@ -24,7 +24,7 @@ interface PersonalInfoData {
   name: string;
   email: string;
   phone: string;
-  location: string;
+  location?: string;
   // Add other personal info fields as needed
 }
 
@@ -32,7 +32,6 @@ interface QualificationItem {
   title: string;
   institution: string;
   year: string;
-  degree: string;
   icon: string;
 }
 
