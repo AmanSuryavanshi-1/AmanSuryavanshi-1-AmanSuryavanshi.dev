@@ -71,7 +71,7 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
                   qualificationsData = defaultProps.qualificationsData, 
                   skillsData = defaultProps.skillsData }: AboutMeProps) => {
   return (
-    <main id="about" className="w-full py-8">
+    <main id="about" className="w-full py-12">
       <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full " aria-labelledby="about-heading">
         <SectionTitle />
         
