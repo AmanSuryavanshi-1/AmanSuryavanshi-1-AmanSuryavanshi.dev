@@ -26,8 +26,8 @@ const page = () => {
 
           <ExperienceCards/>
           <Services/>
-          <ContactPage/>
           <Projects/>
+          <ContactPage/>
       
     </div>
   )
