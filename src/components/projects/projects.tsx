@@ -17,7 +17,7 @@ export default function ProjectsSection() {
           animate={{ opacity: 1, y: 0 }}
           id="projects-cards-heading"
            className="text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-8 text-center">
-          My <span className="text-lime-500">Works</span>
+          My <span className="text-lime-500">Projects</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[200px] gap-4 mb-12">
           {projects.map((project) => (
