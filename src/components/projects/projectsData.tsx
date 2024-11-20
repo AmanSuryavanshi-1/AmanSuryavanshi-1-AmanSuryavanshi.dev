@@ -38,8 +38,7 @@ import {
     FileJson, 
     Webhook, 
     Component,
-    PenTool,
-    icons,
+    PenTool
   } from 'lucide-react';
   
   import { MdEmail, MdViewInAr } from 'react-icons/md';

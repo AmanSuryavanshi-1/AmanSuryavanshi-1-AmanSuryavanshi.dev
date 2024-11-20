@@ -152,7 +152,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <Header />
-        {/* <UnderConstructionBanner /> */}
+        <UnderConstructionBanner />
         <main className="flex-grow bg-gradient-to-br from-sage-100 to-lime-500">
           {children}
         </main>
