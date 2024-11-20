@@ -6,6 +6,7 @@ import Services from '@/components/services/services'
 import AboutMe from '../components/about/AboutMe'
 import ContactPage from '../app/contact/page'
 import myData from '../components/about/AboutData'
+import Projects from '@/components/projects/projects'
 
 const page = () => {
   return (
@@ -26,6 +27,7 @@ const page = () => {
           <ExperienceCards/>
           <Services/>
           <ContactPage/>
+          <Projects/>
       
     </div>
   )

@@ -20,16 +20,16 @@ const config: Config = {
 			// text: '#4A4A4A',
 				forest: {
 				  900: '#12372A',  // Dark shade for primary text and backgrounds
-				  700: '#2A5741',  // Slightly lighter shade for variety
-				  500: '#436850',  // Mid-tone for accents and secondary elements
+				  700: '#2A5741',  
+				  500: '#436850', 
 				},
 				sage: {
-				  300: '#ADBC9F',  // Light shade for backgrounds and subtle accents
-				  100: '#FBFADA',  // Very light shade for backgrounds and highlights
+				  300: '#ADBC9F', 
+				  100: '#FBFADA', 
 				},
 				lime: {
-				  500: '#9DCF6F',  // Brighter green for call-to-action and highlights
-				  700: '#749A48',  // Darker lime for contrast and variety
+				  500: '#9DCF6F',
+				  700: '#749A48',  
 				},
 
 				// forest: {
