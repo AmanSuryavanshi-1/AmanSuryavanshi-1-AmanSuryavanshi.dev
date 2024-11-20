@@ -23,7 +23,6 @@ import {
     SiNetlify,
     SiDaisyui,
     SiVite,
-    SiNetflix,
     SiMui,
     SiTypescript,
     SiNextdotjs,
@@ -205,7 +204,7 @@ import {
           { icon: FaCss3Alt, name: 'CSS' },
           { icon: FaJsSquare, name: 'JavaScript' },
           { icon: FaReact, name: 'React' },
-          { icon: SiNetflix, name: 'Netlify' },
+          { icon: SiNetlify, name: 'Netlify' }
         ],
         links: {
           live: 'https://aman-suryavanshi-portfolio.netlify.app/',
