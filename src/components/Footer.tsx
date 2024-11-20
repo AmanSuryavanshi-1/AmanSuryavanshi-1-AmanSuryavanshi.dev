@@ -9,10 +9,6 @@ import {
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { 
-  FaReact, FaLinkedin, FaGithub, FaTwitter, 
-  FaCodepen, FaServer, FaBlog 
-} from 'react-icons/fa'
-import { 
   SiNextdotjs, SiTypescript, 
   SiTailwindcss, SiVercel 
 } from 'react-icons/si'
