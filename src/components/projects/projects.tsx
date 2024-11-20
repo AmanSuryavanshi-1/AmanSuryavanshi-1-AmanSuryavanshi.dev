@@ -136,13 +136,16 @@ function ProjectCard({ project }: { project: Project }) {
               </p>
               
               <div className="flex gap-2 mt-1">
-                {project.technologies.slice(0, 6).map((tech, index) => (
-                  <tech.icon 
-                    key={index} 
-                    className="w-5 h-5 sm:w-6 sm:h-6 text-lime-400 hover:text-lime-300 transition-colors" 
-                    title={tech.name}
-                  />
-                ))}
+                {project.technologies.slice(0, 6).map((tech, index) => {
+                  const IconComponent = tech.icon;
+                  return (
+                    <IconComponent 
+                      key={index} 
+                      className="w-5 h-5 sm:w-6 sm:h-6 text-lime-400 hover:text-lime-300 transition-colors" 
+                      title={tech.name}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>

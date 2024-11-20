@@ -55,7 +55,7 @@ import {
     video?: string;
     technologies: Array<{
       name: string;
-      icon: React.ComponentType;
+      icon: React.ElementType;
     }>;
     links: {
       live: string;
