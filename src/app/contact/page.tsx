@@ -49,15 +49,14 @@ const ContactForm = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="flex flex-col pt-16 min-h-screen sm:px-8 items-center justify-center"
+      className="flex flex-col pt-10 min-h-screen sm:px-8 items-center justify-center"
     >
       <motion.h1 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-4xl font-bold text-center"
-      >
-        <span className="text-forest-900">Contact </span>
-        <span className="text-lime-500">Us</span>
+        id="Contact-us-heading"
+           className="text-3xl md:text-5xl font-bold font-serif text-forest-900 text-center">
+          Contact<span className="text-lime-500">Us</span>
       </motion.h1>
 
       {/* Add mobile social icons */}

@@ -72,14 +72,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
 // Add type annotation to ServicesSection component
 const ServicesSection: React.FC = () => {
   return (
-    <section className="w-full min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section className="w-full min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="container max-w-6xl mx-auto">
         <motion.div
           id='services'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8 pt-16"
+          className="text-center mb-8 pt-12"
         >
           <h2 className="text-3xl md:text-5xl font-bold font-serif mb-4">
             <span className="text-forest-900">Our </span>

@@ -10,15 +10,14 @@ import Link from 'next/link'
 import { Project, projects } from './projectsData'
 export default function ProjectsSection() {
   return (
-    <section id='projects' className="py-16 min-h-screen max-w-6xl mx-auto">
-      <div className="container mx-auto px-4">
+    <section id='projects' className="py-12 min-h-screen max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold mb-12 text-center"
-        >
-          <span className="text-forest-900">My </span>
-          <span className="text-lime-500">Projects</span>
+          id="projects-cards-heading"
+           className="text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-8 text-center">
+          My <span className="text-lime-500">Works</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[200px] gap-4 mb-12">
           {projects.map((project) => (
@@ -129,10 +128,15 @@ function ProjectCard({ project }: { project: Project }) {
                 </Link>
               </div>
               
-              <p className="text-gray-100 text-sm sm:text-base line-clamp-2">{project.description}</p>
+              <p className={cn(
+                "text-gray-100 text-sm sm:text-base",
+                project.size === 'tall' ? '' : 'line-clamp-2'
+              )}>
+                {project.description}
+              </p>
               
               <div className="flex gap-2 mt-1">
-                {project.technologies.map((tech, index) => (
+                {project.technologies.slice(0, 6).map((tech, index) => (
                   <tech.icon 
                     key={index} 
                     className="w-5 h-5 sm:w-6 sm:h-6 text-lime-400 hover:text-lime-300 transition-colors" 
