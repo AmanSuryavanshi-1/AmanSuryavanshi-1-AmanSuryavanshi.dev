@@ -13,6 +13,7 @@ import {
   SiTailwindcss, SiVercel 
 } from 'react-icons/si'
 import HeaderSocial from './hero/HeroSocial'
+import { FaReact } from 'react-icons/fa'
 
 const TechStack: React.FC = () => {
   const techIcons = [
