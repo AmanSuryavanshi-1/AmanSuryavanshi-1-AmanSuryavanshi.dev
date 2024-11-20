@@ -28,7 +28,6 @@ const page = () => {
           <Services/>
           <Projects/>
           <ContactPage/>
-      
     </div>
   )
 }
