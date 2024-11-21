@@ -113,25 +113,27 @@ export default function GithubProfile() {
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl mb-8 md:text-5xl flex justify-center items-center font-bold font-serif text-forest-900">
+          className="text-2xl sm:text-3xl md:text-5xl mb-6 md:mb-8 flex justify-center items-center font-bold font-serif text-forest-900">
           My <span className="text-lime-500 px-2"> GitHub</span> Profile
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-full">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-1"
+            className="md:col-span-1 h-full"
           >
-            <ProfileCard userData={userData} />
+            <div className="h-full">
+              <ProfileCard userData={userData} />
+            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:col-span-3 space-y-4"
+            className="md:col-span-3 space-y-4 h-full"
           >
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 gap-4">
               <StatCard icon={BookOpen} title="Repositories" value={userData.public_repos} />
               <StatCard icon={Users} title="Followers" value={userData.followers} />
               <StatCard icon={Users} title="Following" value={userData.following} />

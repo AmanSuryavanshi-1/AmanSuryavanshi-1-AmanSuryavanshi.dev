@@ -1,6 +1,7 @@
 import { Github, ExternalLink, LinkIcon } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 interface ProfileCardProps {
   userData: {
@@ -15,20 +16,22 @@ interface ProfileCardProps {
 
 export function ProfileCard({ userData }: ProfileCardProps) {
   return (
-    <Card className="w-full overflow-hidden rounded-2xl shadow-xl border border-sage-200 bg-white">
+    <Card className="w-full h-full overflow-hidden rounded-2xl shadow-xl border border-sage-200 bg-white">
       <CardContent className="p-4 flex flex-col items-center justify-between h-full">
-        <div className="flex flex-col items-center">
-          <div className="relative group mb-4">
-            <img
+        <div className="flex flex-col items-center flex-grow">
+          <div className="relative group mb-4 mt-4">
+            <Image
               src={userData.avatar_url}
               alt="Avatar"
-              className="w-28 h-28 rounded-full border-3 border-lime-600 transition-all duration-300 group-hover:scale-105 shadow-lg object-cover"
+              width={112}
+              height={112}
+              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-3 border-lime-600 transition-all duration-300 group-hover:scale-105 shadow-lg object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 rounded-full opacity-0 bg-forest-900 bg-opacity-70 group-hover:opacity-100">
               <Github className="w-6 h-6 text-lime-500" />
             </div>
           </div>
-          <h3 className="text-xl font-bold text-forest-900 mb-2 text-center">{userData.name || userData.login}</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-forest-900 mb-2 text-center">{userData.name || userData.login}</h3>
           <p className="text-forest-600 text-center text-sm mb-4 max-w-xs">{userData.bio}</p>
         </div>
         <div className="flex flex-col space-y-2 w-full">

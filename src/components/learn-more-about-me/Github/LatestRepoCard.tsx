@@ -17,7 +17,7 @@ interface LatestRepoCardProps {
 export function LatestRepoCard({ repo, topics }: LatestRepoCardProps) {
   return (
     <Card className="overflow-hidden rounded-2xl shadow-xl border border-sage-200 bg-white hover:shadow-lg transition-shadow duration-300">
-      <CardContent className="p-5 flex flex-col gap-4">
+      <CardContent className="p-3 sm:p-5 flex flex-col gap-4">
         <div className="flex items-center gap-4">
           <div className="bg-lime-100 p-2 rounded-lg">
             <Code className="w-5 h-5 text-lime-600" />
@@ -26,15 +26,15 @@ export function LatestRepoCard({ repo, topics }: LatestRepoCardProps) {
         </div>
         <div className="flex-1 flex flex-col justify-between">
           <div>
-            <div className="flex justify-between items-center mb-5">
-              <p className="text-lg font-bold text-forest-700 truncate max-w-[80%]">{repo.name}</p>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-2">
+              <p className="text-lg font-bold text-forest-700 truncate max-w-full sm:max-w-[80%]">{repo.name}</p>
               <a 
                 href={repo.html_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-lime-600 border-b rounded-xl px-2 py-0.5 border-lime-600 flex items-center gap-2 justify-center hover:text-lime-800 transition-colors duration-300"
+                className="text-lime-600 border-b rounded-xl text-sm px-2 py-0.5 border-lime-600 flex items-center gap-2 justify-center hover:text-lime-800 transition-colors duration-300 whitespace-nowrap"
               >
-                Repository <ExternalLink className="w-5 h-5" />
+                Repository <ExternalLink className="w-4 h-4" />
               </a>
             </div>
             <p className="text-forest-600 text-sm mb-4">
@@ -54,11 +54,9 @@ export function LatestRepoCard({ repo, topics }: LatestRepoCardProps) {
                   ))}
                 </div>
               )}
-              {repo.stargazers_count > 0 && (
-                <div className="mt-2 text-sm text-forest-600">
-                  {repo.stargazers_count} stars
-                </div>
-              )}
+              <div className="mt-2 text-sm text-forest-600">
+                {repo.stargazers_count} stars
+              </div>
             </div>
           </div>
           <Button
