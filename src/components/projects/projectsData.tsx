@@ -118,7 +118,7 @@ import {
         id: 3,
         title: 'AV-NewsStream',
         description:
-          'A hands-free news reading platform with voice-assisted functionality, real-time API integration, and seamless user experience.',
+          'A hands-free news reading & streaming platform with voice-assisted functionality, real-time API integration, and seamless user experience.',
         detailedDescription:
           'AV-NewsStream is an advanced voice-assisted news reading platform. By integrating multiple APIs such as News API, Gnews.io, YouTube API, and GitHub API, it ensures real-time and diverse updates. Features like lazy loading, shimmer UI, and error handling optimize performance, offering a smooth and effortless user experience.',
         video: '/Project/Videos/AVNewsStream.webm',
@@ -149,29 +149,27 @@ import {
       },
       {
         id: 4,
-        title: 'TextWise',
-        description:
-          'A simple yet powerful text utility app for formatting, editing, and analyzing text with an intuitive and clean UI.',
-        detailedDescription:
-          'TextWise is a robust text editing and utility application. It includes rich formatting options, case conversion, and advanced tools like speech-to-text and transliteration. It integrates features such as collaborative drawing and real-time interaction, making it an all-in-one toolkit for content creation.',
-        image: '/Project/TextWise.png',
+        title: 'Blogs X Portfolio',
+        description: 'A platform integrating blogs and portfolio showcasing projects, experiences, and technical write-ups with a focus on storytelling.',
+        image: '/Project/Portfolio.png',
         size: 'default',
-        slug: 'textwise',
+        slug: 'blogs-x-portfolio',
         technologies: [
-          { icon: FaReact, name: 'React' },
+          { icon: FaHtml5, name: 'HTML' },
+          { icon: FaCss3Alt, name: 'CSS' },
           { icon: FaJsSquare, name: 'JavaScript' },
+          { icon: SiTypescript, name: 'TypeScript' },
+          { icon: SiNextdotjs, name: 'Next.js' },
           { icon: SiTailwindcss, name: 'Tailwind CSS' },
           { icon: FaGlobe, name: 'Vercel' },
-          { icon: PenTool, name: 'QuillJS' },
-          { icon: SiPostcss, name: 'PostCSS' },
-          { icon: Route, name: 'React Router Dom' },
-          { icon: MdEmail, name: 'EmailJS' },
-          { icon: FaPencilRuler, name: 'Excalidraw' },
-          { icon: FaLanguage, name: 'Web Speech API' }
+          { icon: SiShadcnui, name: 'ShadcnUI' },
+          { icon: SiFramer, name: 'Framer Motion' },
+          { icon: SiIcon, name: 'Lucide React' },
+          { icon: FaIcons, name: 'React Icons' },
         ],
         links: {
-          live: 'https://text-wise.vercel.app/',
-          github: 'https://github.com/AmanSuryavanshi-1/TextWise-TextUtilityAPP',
+          live: 'https://amansuryavanshi-dev.vercel.app/',
+          github: 'https://github.com/AmanSuryavanshi-1/AmanSuryavanshi.dev',
         },
       },
       {
@@ -235,27 +233,30 @@ import {
       },
       {
         id: 8,
-        title: 'Blogs X Portfolio',
-        description: 'A platform integrating blogs and portfolio showcasing projects, experiences, and technical write-ups with a focus on storytelling.',
-        image: '/Project/Portfolio.png',
+        
+        title: 'TextWise',
+        description:
+          'A simple yet powerful text utility app for formatting, editing, and analyzing text with an intuitive and clean UI.',
+        detailedDescription:
+          'TextWise is a robust text editing and utility application. It includes rich formatting options, case conversion, and advanced tools like speech-to-text and transliteration. It integrates features such as collaborative drawing and real-time interaction, making it an all-in-one toolkit for content creation.',
+        image: '/Project/TextWise.png',
         size: 'wide',
-        slug: 'blogs-x-portfolio',
+        slug: 'textwise',
         technologies: [
-          { icon: FaHtml5, name: 'HTML' },
-          { icon: FaCss3Alt, name: 'CSS' },
+          { icon: FaReact, name: 'React' },
           { icon: FaJsSquare, name: 'JavaScript' },
-          { icon: SiTypescript, name: 'TypeScript' },
-          { icon: SiNextdotjs, name: 'Next.js' },
           { icon: SiTailwindcss, name: 'Tailwind CSS' },
           { icon: FaGlobe, name: 'Vercel' },
-          { icon: SiShadcnui, name: 'ShadcnUI' },
-          { icon: SiFramer, name: 'Framer Motion' },
-          { icon: SiIcon, name: 'Lucide React' },
-          { icon: FaIcons, name: 'React Icons' },
+          { icon: PenTool, name: 'QuillJS' },
+          { icon: SiPostcss, name: 'PostCSS' },
+          { icon: Route, name: 'React Router Dom' },
+          { icon: MdEmail, name: 'EmailJS' },
+          { icon: FaPencilRuler, name: 'Excalidraw' },
+          { icon: FaLanguage, name: 'Web Speech API' }
         ],
         links: {
-          live: 'https://amansuryavanshi-dev.vercel.app/',
-          github: 'https://github.com/AmanSuryavanshi-1/AmanSuryavanshi.dev',
+          live: 'https://text-wise.vercel.app/',
+          github: 'https://github.com/AmanSuryavanshi-1/TextWise-TextUtilityAPP',
         },
       },
   ];
