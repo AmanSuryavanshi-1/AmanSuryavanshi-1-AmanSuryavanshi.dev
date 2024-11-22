@@ -11,7 +11,6 @@ import ActionButtons from '@/components/about/ActionButtons';
 // import PersonalInfo from '@/components/about/';
 
 import Qualifications from '@/components/about/Qualifications';
-import Skills from '@/components/about/Skills';
 import PersonalInfo from '@/components/about/PersonalInfo';
 import AboutContent from './AboutContent';
 
@@ -43,9 +42,6 @@ interface AboutMeProps {
       CertificationData: QualificationItem[];
     };
   };
-  skillsData?: {
-    skills: Record<string, Skill[]>;
-  };
 }
 
 const defaultProps: AboutMeProps = {
@@ -60,16 +56,12 @@ const defaultProps: AboutMeProps = {
       EducationData: [],
       CertificationData: []
     }
-  },
-  skillsData: {
-    skills: {}
   }
 };
 
 // Main AboutMe Component
 const AboutMe = ({ personalInfo = defaultProps.personalInfo, 
-                  qualificationsData = defaultProps.qualificationsData, 
-                  skillsData = defaultProps.skillsData }: AboutMeProps) => {
+                  qualificationsData = defaultProps.qualificationsData }: AboutMeProps) => {
   return (
     <main id="about" className="w-full py-12">
       <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full " aria-labelledby="about-heading">
@@ -98,11 +90,6 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
                   value="qualifications">
                   Qualifications
                 </TabsTrigger>
-                <TabsTrigger 
-                 className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
-                  value="skills">
-                  Skills
-                </TabsTrigger>
               </TabsList>
 
               <TabsContent value="about">
@@ -115,10 +102,6 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
 
               <TabsContent value="qualifications">
                 <Qualifications data={qualificationsData} />
-              </TabsContent>
-
-              <TabsContent value="skills">
-                <Skills data={skillsData} />
               </TabsContent>
             </Tabs>
             

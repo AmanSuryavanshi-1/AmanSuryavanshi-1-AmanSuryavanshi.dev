@@ -6,7 +6,9 @@ import Services from '@/components/services/services'
 import AboutMe from '../components/about/AboutMe'
 import ContactPage from '../app/contact/page'
 import myData from '../components/about/AboutData'
+import skillsData  from '@/components/skills/SkillsData'
 import Projects from '@/components/projects/projects'
+import MySkills from '@/components/skills/MySkills'
 
 const page = () => {
   return (
@@ -19,12 +21,13 @@ const page = () => {
           <AboutMe
             personalInfo={myData.personalInfo}
             qualificationsData={myData.qualificationsData}
-            skillsData={myData.skillsData}
+            // skillsData={myData.skillsData}
           />
           <WorkBanner/>
         </div>
 
           <ExperienceCards/>
+          <MySkills data={skillsData} />
           <Services/>
           <Projects/>
           <ContactPage/>

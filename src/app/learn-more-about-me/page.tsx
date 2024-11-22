@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import AboutMe from '@/components/about/AboutMe';
-
-import myData from '@/components/about/AboutData'
+import myData from '@/components/about/AboutData';
 import GithubProfile from '@/components/learn-more-about-me/Github/GithubProfile';
 import { GithubCalendarComponent } from '@/components/learn-more-about-me/Github/GithubCalendar';
+import skillsData  from '@/components/skills/SkillsData';
+import MySkills from '@/components/skills/MySkills';
 
 // Site Constants
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://amansuryavanshi-dev.vercel.app/";
@@ -135,7 +136,6 @@ const aboutStructuredData = {
 };
 
 export default function AboutPage() {
-
   return (
     <>
       <script
@@ -148,12 +148,19 @@ export default function AboutPage() {
       <article className="prose prose-lg max-w-none" itemScope itemType="http://schema.org/Article">
         <h1 className="sr-only">{ABOUT_TITLE}</h1>
         <div itemProp="articleBody">
-          <AboutMe personalInfo={myData.personalInfo}
+          {/* Personal Info and Qualifications */}
+          <AboutMe 
+            personalInfo={myData.personalInfo}
             qualificationsData={myData.qualificationsData}
-            skillsData={myData.skillsData}
-           />
-           <GithubProfile/>
-           <GithubCalendarComponent/>
+            // skillsData={myData.skillsData}
+          />
+
+          {/* Skills Section */}
+          <MySkills data={skillsData} />
+
+          {/* GitHub Section */}
+          <GithubProfile/>
+          <GithubCalendarComponent/>
         </div>
       </article>
     </>

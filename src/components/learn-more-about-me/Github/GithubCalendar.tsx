@@ -20,7 +20,7 @@ export const GithubCalendarComponent: React.FC = () => {
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl sm:text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-6 md:mb-8"
+          className="text-2xl sm:text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-6 md:mb-4"
         >
           My <span className="text-lime-500">GitHub</span> Contributions
         </motion.h2>
@@ -29,7 +29,7 @@ export const GithubCalendarComponent: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-forest-700 max-w-3xl mx-auto mb-8 md:mb-12 text-base md:text-lg leading-relaxed"
+          className="text-forest-700 max-w-3xl mx-auto mb-6 md:mb-12 text-base md:text-lg leading-relaxed"
         >
           Exploring the digital landscape, one commit at a time. My GitHub journey reflects a passion for continuous learning, innovative solutions, and collaborative development.
         </motion.p>
@@ -45,10 +45,10 @@ export const GithubCalendarComponent: React.FC = () => {
           className="w-full"
         >
           <Card className="group h-full overflow-hidden rounded-3xl border-4 border-sage-100 bg-gradient-to-br from-lime-500 to-lime-100 hover:from-forest-900 hover:to-forest-500 transition-all duration-300 shadow-lg shadow-forest-500">
-            <CardContent className="p-8">
+            <CardContent className="p-6">
               <div className="flex items-center justify-center w-full gap-4 mb-6">
                 <div className="p-4 rounded-full bg-forest-900 border-[3px] shadow-md shadow-forest-900 border-sage-100 text-lime-500 group-hover:bg-lime-500 group-hover:text-forest-900 transition-colors duration-300">
-                  <Calendar className="w-5 h-5" />
+                  <Calendar className="w-4 h-4" />
                 </div>
                 <h3 className="text-xl font-bold text-forest-900 group-hover:text-lime-500 transition-colors duration-300">
                   Contribution Landscape
