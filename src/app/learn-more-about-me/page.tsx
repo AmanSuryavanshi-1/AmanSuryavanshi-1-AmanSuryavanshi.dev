@@ -1,7 +1,10 @@
 import { Metadata } from 'next';
 import AboutMe from '@/components/about/AboutMe';
+
 import myData from '@/components/about/AboutData'
 import GithubProfile from '@/components/learn-more-about-me/Github/GithubProfile';
+import { GithubCalendarComponent } from '@/components/learn-more-about-me/Github/GithubCalendar';
+
 // Site Constants
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://amansuryavanshi-dev.vercel.app/";
 const ABOUT_TITLE = "About Aman Suryavanshi - Web Developer & UI/UX Designer";
@@ -150,6 +153,7 @@ export default function AboutPage() {
             skillsData={myData.skillsData}
            />
            <GithubProfile/>
+           <GithubCalendarComponent/>
         </div>
       </article>
     </>
