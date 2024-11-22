@@ -38,21 +38,25 @@ export const GithubCalendarComponent: React.FC = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
+          whileHover={{ 
+            y: -10,
+            transition: { type: "spring", stiffness: 300 }
+          }}
           className="w-full"
         >
-          <Card className="overflow-hidden rounded-2xl shadow-xl border border-sage-200 bg-white hover:shadow-lg transition-shadow duration-300">
-            <CardContent className="p-3 sm:p-5 flex flex-col items-center gap-4">
-              <div className="flex items-center justify-center w-full gap-4">
-                <div className="bg-lime-100 p-2 rounded-3xl">
-                  <Calendar className="w-5 h-5 text-lime-600" />
+          <Card className="group h-full overflow-hidden rounded-3xl border-4 border-sage-100 bg-gradient-to-br from-lime-500 to-lime-100 hover:from-forest-900 hover:to-forest-500 transition-all duration-300 shadow-lg shadow-forest-500">
+            <CardContent className="p-8">
+              <div className="flex items-center justify-center w-full gap-4 mb-6">
+                <div className="p-4 rounded-full bg-forest-900 border-[3px] shadow-md shadow-forest-900 border-sage-100 text-lime-500 group-hover:bg-lime-500 group-hover:text-forest-900 transition-colors duration-300">
+                  <Calendar className="w-5 h-5" />
                 </div>
-                <h3 className="text-xl font-bold text-forest-900">
+                <h3 className="text-xl font-bold text-forest-900 group-hover:text-lime-500 transition-colors duration-300">
                   Contribution Landscape
                 </h3>
               </div>
               
               <div className="w-full overflow-x-auto flex justify-center items-center py-4">
-                <div className="flex justify-center min-w-fit">
+                <div className="flex justify-center min-w-fit text-forest-900 group-hover:text-lime-500">
                   <GitHubCalendar
                     username="AmanSuryavanshi-1"
                     blockSize={14}
@@ -60,9 +64,9 @@ export const GithubCalendarComponent: React.FC = () => {
                     fontSize={16}
                     theme={{
                       dark: [
-                        '#ADBC9F',  // Light sage
-                        '#749A48',  // Darker sage
-                        '#436850',  // Darkest forest
+                        '#ADBC9F',
+                        '#749A48',
+                        '#436850',
                         '#2A5741',
                         '#12372A',
                       ]
@@ -70,7 +74,7 @@ export const GithubCalendarComponent: React.FC = () => {
                   />
                 </div>
               </div>
-              <p className="text-sm text-forest-500 max-w-4xl text-center">
+              <p className="text-sm text-forest-700 group-hover:text-sage-100 transition-colors duration-300 max-w-4xl text-center">
                 This graph showcases my GitHub activity over the past year. Each square represents a day, with darker colors indicating more contributions.
               </p>
             </CardContent>

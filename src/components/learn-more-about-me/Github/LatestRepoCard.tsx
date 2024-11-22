@@ -16,52 +16,59 @@ interface LatestRepoCardProps {
 
 export function LatestRepoCard({ repo, topics }: LatestRepoCardProps) {
   return (
-    <Card className="overflow-hidden rounded-2xl shadow-xl border border-sage-200 bg-white hover:shadow-lg transition-shadow duration-300">
-      <CardContent className="p-3 sm:p-5 flex flex-col gap-4">
+    <Card className="group overflow-hidden rounded-3xl border-4 border-sage-100 bg-gradient-to-br from-lime-500 to-lime-100 hover:from-forest-900 hover:to-forest-500 transition-all duration-300 shadow-lg shadow-forest-500">
+      <CardContent className="p-5 flex flex-col gap-4">
         <div className="flex items-center gap-4">
-          <div className="bg-lime-100 p-2 rounded-lg">
-            <Code className="w-5 h-5 text-lime-600" />
+          <div className="p-3 rounded-full bg-forest-900 border-[3px] shadow-md shadow-forest-900 border-sage-100 text-lime-500 group-hover:bg-lime-500 group-hover:text-forest-900 transition-colors duration-300">
+            <Code className="w-4 h-4" />
           </div>
-          <h4 className="text-lg font-bold text-forest-900">Latest Project</h4>
+          <h4 className="text-xl font-bold text-forest-900 group-hover:text-lime-500 transition-colors duration-300">
+            Latest Project
+          </h4>
         </div>
+        
         <div className="flex-1 flex flex-col justify-between">
           <div>
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-2">
-              <p className="text-lg font-bold text-forest-700 truncate max-w-full sm:max-w-[80%]">{repo.name}</p>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+              <p className="text-lg font-bold text-forest-700 group-hover:text-sage-100 transition-colors duration-300 truncate max-w-full sm:max-w-[80%]">
+                {repo.name}
+              </p>
               <a 
                 href={repo.html_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-lime-600 border-b rounded-xl text-sm px-2 py-0.5 border-lime-600 flex items-center gap-2 justify-center hover:text-lime-800 transition-colors duration-300 whitespace-nowrap"
+                className="text-forest-900 group-hover:text-sage-100 border-[2px] rounded-full text-sm px-3 py-1 border-sage-100 flex items-center gap-2 justify-center hover:bg-forest-900/20 transition-all duration-300 whitespace-nowrap"
               >
                 Repository <ExternalLink className="w-4 h-4" />
               </a>
             </div>
-            <p className="text-forest-600 text-sm mb-4">
+            <p className="text-forest-700 group-hover:text-sage-100 text-sm mb-4 transition-colors duration-300">
               {repo.description || 'No description available'}
             </p>
             <div className="text-forest-700 mb-4">
               {topics.length > 0 && (
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm">Topics:</span>
+                  <span className="text-sm text-forest-900 group-hover:text-sage-100 transition-colors duration-300">
+                    Topics:
+                  </span>
                   {topics.map((topic) => (
                     <span 
                       key={topic} 
-                      className="bg-lime-100 text-lime-800 px-3 py-1 rounded-full text-xs font-medium"
+                      className="bg-forest-900/10 group-hover:bg-forest-900/20 text-forest-900 group-hover:text-sage-100 px-3 py-1 rounded-full text-xs font-medium border border-sage-100 transition-colors duration-300"
                     >
                       {topic}
                     </span>
                   ))}
                 </div>
               )}
-              <div className="mt-2 text-sm text-forest-600">
+              {repo.stargazers_count > 0 && <div className="mt-2 text-sm text-forest-700 group-hover:text-sage-100 transition-colors duration-300">
                 {repo.stargazers_count} stars
-              </div>
+              </div>}
             </div>
           </div>
           <Button
             asChild
-            className="w-full bg-forest-900 hover:bg-forest-800 text-white hover:text-white hover:bg-forest-500 font-semibold transition-all duration-300 rounded-xl shadow-md flex items-center justify-center gap-2"
+            className="w-full bg-forest-900 border-[3px] border-sage-100 hover:bg-lime-500 text-sage-100 hover:text-forest-900 font-bold transition-all duration-300 rounded-full shadow-md flex items-center justify-center gap-2"
           >
             <a href={repo.homepage || repo.html_url} target="_blank" rel="noopener noreferrer">
               View Project

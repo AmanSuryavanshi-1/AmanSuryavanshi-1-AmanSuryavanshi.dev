@@ -16,28 +16,29 @@ interface ProfileCardProps {
 
 export function ProfileCard({ userData }: ProfileCardProps) {
   return (
-    <Card className="w-full h-full overflow-hidden rounded-2xl shadow-xl border border-sage-200 bg-white">
-      <CardContent className="p-4 flex flex-col items-center justify-between h-full">
+    <Card className="group overflow-auto rounded-3xl border-4 border-sage-100 bg-gradient-to-br from-lime-500 to-lime-100 hover:from-forest-900 hover:to-forest-500 transition-all duration-300 shadow-lg shadow-forest-500">
+      <CardContent className="p-[1.1rem] flex flex-col items-center justify-between">
         <div className="flex flex-col items-center flex-grow">
-          <div className="relative group mb-4 mt-4">
+          <div className="relative group mt-2 mb-4">
             <Image
               src={userData.avatar_url}
               alt="Avatar"
               width={112}
               height={112}
-              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-3 border-lime-600 transition-all duration-300 group-hover:scale-105 shadow-lg object-cover"
+              className="w-28 h-28 rounded-full border-[3px] border-sage-100 shadow-md shadow-forest-900 transition-all duration-300 group-hover:scale-105 object-cover"
             />
-            <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 rounded-full opacity-0 bg-forest-900 bg-opacity-70 group-hover:opacity-100">
-              <Github className="w-6 h-6 text-lime-500" />
-            </div>
           </div>
-          <h3 className="text-lg sm:text-xl font-bold text-forest-900 mb-2 text-center">{userData.name || userData.login}</h3>
-          <p className="text-forest-600 text-center text-sm mb-4 max-w-xs">{userData.bio}</p>
+          <h3 className="text-xl font-bold text-forest-900 group-hover:text-lime-500 mb-3 text-center transition-colors duration-300">
+            {userData.name || userData.login}
+          </h3>
+          <p className="text-forest-700  group-hover:text-sage-100 text-center text-sm mb-4 max-w-xs transition-colors duration-300">
+            {userData.bio}
+          </p>
         </div>
         <div className="flex flex-col space-y-2 w-full">
           <Button
             asChild
-            className="w-full bg-lime-600 hover:bg-lime-700 text-white font-semibold transition-all duration-300 rounded-xl shadow-md flex items-center justify-center gap-2"
+            className="w-full bg-forest-900 border-[3px] border-sage-100 hover:bg-lime-500 text-sage-100 hover:text-forest-900 font-bold transition-all duration-300 rounded-full shadow-md flex items-center justify-center gap-2"
           >
             <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
               View Profile
@@ -48,7 +49,7 @@ export function ProfileCard({ userData }: ProfileCardProps) {
             <Button
               asChild
               variant="outline"
-              className="w-full border-lime-600 text-lime-600 hover:bg-lime-50 font-semibold transition-all duration-300 rounded-xl flex items-center justify-center gap-2"
+              className="w-full bg-transparent border-[3px] border-sage-100 text-forest-900 group-hover:text-sage-100 hover:bg-forest-900/20 font-bold transition-all duration-300 rounded-full flex items-center justify-center gap-2"
             >
               <a href={userData.blog} target="_blank" rel="noopener noreferrer">
                 Website

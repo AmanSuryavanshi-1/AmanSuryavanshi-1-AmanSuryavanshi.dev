@@ -87,17 +87,24 @@ export default function GithubProfile() {
     return (
       <section className="flex items-center justify-center min-h-[40vh] w-full px-4 py-6">
         <div className="w-full max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          {/* Skeleton for the title */}
+          <Skeleton className="w-48 h-12 mx-auto mb-8 rounded-lg" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             <div className="md:col-span-1">
-              {/* Skeleton is for shimmer UI */}
+              {/* Profile Card Skeleton */}
               <Skeleton className="w-full h-[300px] rounded-2xl" />
             </div>
-            <div className="md:col-span-3">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="md:col-span-3 space-y-6">
+              {/* Stat Cards Skeleton */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
                 {[1, 2, 3, 4].map((_, index) => (
                   <Skeleton key={index} className="h-[80px] rounded-2xl" />
                 ))}
               </div>
+              
+              {/* Latest Repo Card Skeleton */}
+              <Skeleton className="w-full h-[200px] rounded-2xl" />
             </div>
           </div>
         </div>
@@ -108,7 +115,7 @@ export default function GithubProfile() {
   if (!userData) return null
 
   return (
-    <section className="flex items-center justify-center w-full px-4 py-6">
+    <section className="flex items-center justify-center w-full px-4 py-8">
       <div className="w-full max-w-5xl">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
@@ -116,7 +123,7 @@ export default function GithubProfile() {
           className="text-2xl sm:text-3xl md:text-5xl mb-6 md:mb-8 flex justify-center items-center font-bold font-serif text-forest-900">
           My <span className="text-lime-500 px-2"> GitHub</span> Profile
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-full">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 h-full">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -131,9 +138,9 @@ export default function GithubProfile() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:col-span-3 space-y-4 h-full"
+            className="md:col-span-3 space-y-6 h-full"
           >
-            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 gap-5">
               <StatCard icon={BookOpen} title="Repositories" value={userData.public_repos} />
               <StatCard icon={Users} title="Followers" value={userData.followers} />
               <StatCard icon={Users} title="Following" value={userData.following} />
