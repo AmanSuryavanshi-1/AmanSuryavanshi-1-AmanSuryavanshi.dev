@@ -14,11 +14,6 @@ import Qualifications from '@/components/about/Qualifications';
 import PersonalInfo from '@/components/about/PersonalInfo';
 import AboutContent from './AboutContent';
 
-interface Skill {
-  name: string;
-  icon: string;
-}
-
 interface PersonalInfoData {
   name: string;
   email: string;
