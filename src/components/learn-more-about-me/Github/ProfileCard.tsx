@@ -1,4 +1,4 @@
-import { Github, ExternalLink, LinkIcon } from 'lucide-react'
+import { ExternalLink, LinkIcon } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
