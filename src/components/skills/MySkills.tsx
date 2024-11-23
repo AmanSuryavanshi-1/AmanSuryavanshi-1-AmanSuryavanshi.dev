@@ -22,6 +22,13 @@ interface SkillsData {
   };
 }
 
+// Add this interface near your other interfaces
+interface Skill {
+  name: string;
+  icon: string;
+  url?: string;
+}
+
 interface SkillsShowcaseProps {
   data?: SkillsData;
 }
@@ -51,7 +58,7 @@ const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ data = skillsData }) =>
     if (selectedCategory === 'All') {
       return getAllSkills();
     }
-    return categories[selectedCategory]?.skills || [];
+    return categories[selectedCategory as keyof typeof categories]?.skills || [];
   };
 
   return (
@@ -118,7 +125,7 @@ const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ data = skillsData }) =>
           className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  gap-3 md:gap-4 max-w-5xl mx-auto lg:mx-28"
           layout
         >
-          {getDisplayedSkills().map((skill, index) => {
+          {getDisplayedSkills().map((skill: Skill, index: number) => {
             const Icon = getIconComponent(skill.icon);
             return (
               <motion.div
