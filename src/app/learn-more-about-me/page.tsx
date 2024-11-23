@@ -3,7 +3,6 @@ import AboutMe from '@/components/about/AboutMe';
 import myData from '@/components/about/AboutData';
 import GithubProfile from '@/components/learn-more-about-me/Github/GithubProfile';
 import { GithubCalendarComponent } from '@/components/learn-more-about-me/Github/GithubCalendar';
-import skillsData  from '@/components/skills/SkillsData';
 import MySkills from '@/components/skills/MySkills';
 
 // Site Constants
