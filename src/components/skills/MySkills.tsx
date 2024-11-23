@@ -8,6 +8,23 @@ import * as SimpleIcons from 'react-icons/si';
 import { Card, CardContent } from '@/components/ui/card';
 import { Boxes } from 'lucide-react';
 
+// Add interface for the skills data structure
+interface SkillsData {
+  categories: {
+    [key: string]: {
+      icon: string;
+      skills: Array<{
+        name: string;
+        icon: string;
+        url?: string;
+      }>;
+    };
+  };
+}
+
+interface SkillsShowcaseProps {
+  data?: SkillsData;
+}
 
 const getIconComponent = (iconName: string): React.ElementType => {
   if (ReactIcons[iconName as keyof typeof ReactIcons]) {
@@ -19,9 +36,9 @@ const getIconComponent = (iconName: string): React.ElementType => {
   return (LucideIcons as unknown as Record<string, React.ElementType>)[iconName] || LucideIcons.Circle;
 };
 
-const SkillsShowcase = () => {
-  const [selectedCategory, setSelectedCategory] = useState<keyof typeof categories | 'All'>('All');
-  const { categories } = skillsData;
+const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ data = skillsData }) => {
+  const [selectedCategory, setSelectedCategory] = useState<keyof typeof data.categories | 'All'>('All');
+  const { categories } = data;
 
   // Function to get all skills across categories
   const getAllSkills = () => {
