@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { User2, Info, GraduationCap } from 'lucide-react';
 
 import SectionTitle from '@/components/about/SectionTitle';
 import ProfileImage from '@/components/about/ProfileImage';
@@ -73,16 +74,19 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
                 <TabsTrigger 
                   className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
                   value="about">
+                  <User2 className="w-4 h-4 mr-2" />
                   About
                 </TabsTrigger>
                 <TabsTrigger 
-                 className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
+                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
                   value="personal-info">
+                  <Info className="w-4 h-4 mr-2" />
                   Personal Info
                 </TabsTrigger>
                 <TabsTrigger 
-                 className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
+                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
                   value="qualifications">
+                  <GraduationCap className="w-4 h-4 mr-2" />
                   Qualifications
                 </TabsTrigger>
               </TabsList>

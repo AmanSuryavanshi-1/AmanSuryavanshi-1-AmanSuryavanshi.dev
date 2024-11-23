@@ -156,7 +156,7 @@ export default function AboutPage() {
           />
 
           {/* Skills Section */}
-          <MySkills data={skillsData} />
+          <MySkills />
 
           {/* GitHub Section */}
           <GithubProfile/>
