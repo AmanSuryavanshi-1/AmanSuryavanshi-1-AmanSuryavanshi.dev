@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowUpRight, Code2, BookOpen } from 'lucide-react'
+import { ArrowUpRight} from 'lucide-react'
 import { projects } from '@/components/projects/projectsData'
 import { useRef, useEffect } from 'react'
 
