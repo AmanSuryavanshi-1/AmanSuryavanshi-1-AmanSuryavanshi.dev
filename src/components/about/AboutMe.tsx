@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { User2, Info, GraduationCap } from 'lucide-react';
 
 import SectionTitle from '@/components/about/SectionTitle';
-import ProfileImage from '@/components/about/ProfileImage';
+// import ProfileImage from '@/components/learn-more-about-me/ProfileImage';
 import ActionButtons from '@/components/about/ActionButtons';
 
 
@@ -14,6 +14,7 @@ import ActionButtons from '@/components/about/ActionButtons';
 import Qualifications from '@/components/about/Qualifications';
 import PersonalInfo from '@/components/about/PersonalInfo';
 import AboutContent from './AboutContent';
+import AboutImage from './AboutImage';
 
 interface PersonalInfoData {
   name: string;
@@ -64,8 +65,8 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
         <SectionTitle />
         
         <div className="grid grid-cols-1 lg:grid-cols-12 mb-8 gap-6 lg:gap-12 items-start">
-          <div className="lg:col-span-4 py-16">
-            <ProfileImage />
+          <div className="lg:col-span-4 py-2">
+            <AboutImage />
           </div>
 
           <div className="lg:col-span-8">

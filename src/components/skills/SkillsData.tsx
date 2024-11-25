@@ -38,9 +38,9 @@ const skillsData = {
           // ],
 
           { name: "REST APIs", icon: "FaCode", url: "https://restfulapi.net" },
-        { name: "GitHub API", icon: "FaGithub", url: "https://docs.github.com/en/rest" },
-        { name: "YouTube API", icon: "FaYoutube", url: "https://developers.google.com/youtube/v3" },
-        { name: "Email Integration", icon: "Mail", url: "https://nodemailer.com" },
+        // { name: "GitHub API", icon: "FaGithub", url: "https://docs.github.com/en/rest" },
+        // { name: "YouTube API", icon: "FaYoutube", url: "https://developers.google.com/youtube/v3" },
+          { name: "Email JS", icon: "Mail", url: "https://www.emailjs.com/" },
         ]
     },
     // "APIs & Integration": {

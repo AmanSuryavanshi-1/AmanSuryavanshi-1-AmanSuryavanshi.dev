@@ -62,7 +62,7 @@ const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ data = skillsData }) =>
   };
 
   return (
-    <section className="w-full min-h-screen py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
+    <section className="w-full min-h-screen py-8 md:py-16 px-4 sm:px-6 md:px-8">
       <div className="container max-w-6xl mx-auto">
         {/* Title Section */}
         <motion.div

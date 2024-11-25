@@ -5,7 +5,7 @@ import AmanSuryavanshi from '../../../public/Profile/me main.png';
 
 const ProfileImage = () => {
   return (
-    <figure className="relative group w-full h-[280px] max-w-sm mx-auto">
+    <figure className="relative group w-full h-[270px] max-w-sm mx-auto">
       <div 
         className="absolute inset-0 rounded-2xl bg-lime-500 transform rotate-6 group-hover:rotate-[10deg] transition-transform duration-300"
         aria-hidden="true"

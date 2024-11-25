@@ -64,7 +64,7 @@ const Header = () => {
                 alt="AS Logo"
                 width={40}
                 height={40}
-                className='border-4 border-forest-500 rounded-full'
+                className='rounded-full'
               />
             </Link>
           </motion.div>

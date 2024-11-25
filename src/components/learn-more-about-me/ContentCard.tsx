@@ -60,7 +60,7 @@ const ContentCard = () => {
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
+      className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl py-16 mx-auto"
     >
       {contentItems.map((item, index) => (
         <motion.div

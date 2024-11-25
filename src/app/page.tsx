@@ -17,14 +17,15 @@ const page = () => {
       {/* Header */}
       <Hero/>
       {/* About */}
-        <div className='min-h-screen'>
+        <div className='py-16'>
           <AboutMe
             personalInfo={myData.personalInfo}
             qualificationsData={myData.qualificationsData}
             // skillsData={myData.skillsData}
           />
-          <WorkBanner/>
         </div>
+        <WorkBanner/>
+
         <MySkills data={skillsData} />
 
           <ExperienceCards/>

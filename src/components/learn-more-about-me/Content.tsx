@@ -6,7 +6,8 @@ import {
   Palette, 
   Brain,
   Laptop,
-  Coffee
+  Coffee,
+  Sparkles
 } from 'lucide-react';
 import { Card } from "@/components/ui/card";
 import Link from 'next/link';
@@ -38,7 +39,7 @@ const AboutContent = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="p-8"
+      className="py-6"
     >
       {/* Header Section */}
       <motion.div 
@@ -46,11 +47,15 @@ const AboutContent = () => {
         animate={{ y: 0, opacity: 1 }}
         className="flex flex-col items-center text-center mb-12"
       >
-        {/* <div className="p-3 rounded-full bg-forest-900 border-[3px] shadow-md shadow-forest-900 border-sage-100 text-lime-500 hover:bg-lime-500 hover:text-forest-900 transition-colors duration-300 mb-4">
-          <Sparkles className="w-8 h-8" />
-        </div> */}
-        <h1 className="text-3xl md:text-4xl font-bold text-forest-900 mb-4">
-          Creative Web Developer
+        
+        <h1 className="text-2xl flex items-center font-serif font-bold text-forest-700 mb-4">
+        <div className="mt-2 mx-2 text-lime-500">
+          <Sparkles className="w-5 h-5" />
+        </div>
+          Creative Web Developer & Designer
+          <div className="mt-2 mx-2 text-lime-500">
+          <Sparkles className="w-5 h-5" />
+        </div>
         </h1>
         <p className="text-forest-700 text-lg max-w-2xl">
           Transforming ideas into exceptional digital experiences through innovative design and development.

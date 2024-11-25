@@ -7,9 +7,9 @@ import MySkills from '@/components/skills/MySkills';
 // import AboutContent from '@/components/about/AboutContent';
 // import Qualifications from '@/components/about/Qualifications';
 import SectionTitle from '@/components/about/SectionTitle';
-import AboutImage from '@/components/learn-more-about-me/AboutImage';
 import AboutContent from '@/components/learn-more-about-me/Content';
 import ContentCard from '@/components/learn-more-about-me/ContentCard';
+import ProfileImage from '@/components/learn-more-about-me/ProfileImage';
 
 // Site Constants
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://amansuryavanshi-dev.vercel.app/";
@@ -159,13 +159,13 @@ export default function AboutPage() {
             qualificationsData={myData.qualificationsData}
             // skillsData={myData.skillsData}
           /> */}
-          <div className="container mx-auto px-4 py-12 max-w-6xl">
+          <div className="container mx-auto px-4 py-16 max-w-6xl">
             <SectionTitle/>
 
             {/* About Image and Content Section */}
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-              <div className="lg:col-span-2">
-                <AboutImage/>
+              <div className="lg:col-span-2 mx-8">
+                <ProfileImage/>
               </div>
               <div className="lg:col-span-3">
                 <AboutContent/>
