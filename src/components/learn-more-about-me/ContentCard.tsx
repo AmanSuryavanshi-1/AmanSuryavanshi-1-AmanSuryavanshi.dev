@@ -71,7 +71,7 @@ const ContentCard = () => {
           }}
           className="group h-full"
         >
-          <Card className="group overflow-hidden rounded-3xl border-4 border-sage-100 bg-gradient-to-br from-lime-500 to-lime-100 hover:from-forest-900 hover:to-forest-500 transition-all duration-300 shadow-lg shadow-forest-500 h-full">
+          <Card className="group overflow-hidden max-md:mx-4 rounded-3xl border-4 border-sage-100 bg-gradient-to-br from-lime-500 to-lime-100 hover:from-forest-900 hover:to-forest-500 transition-all duration-300 shadow-lg shadow-forest-500 h-full">
             <CardContent className="p-6 flex flex-col h-full">
               <div className="flex items-start gap-4 h-full">
                 <div className="p-3 rounded-full bg-forest-900 border-[3px] shadow-md shadow-forest-900 border-sage-100 text-lime-500 group-hover:bg-lime-500 group-hover:text-forest-900 transition-colors duration-300 shrink-0">
