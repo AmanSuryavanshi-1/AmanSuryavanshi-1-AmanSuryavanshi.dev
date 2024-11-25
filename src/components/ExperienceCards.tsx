@@ -78,7 +78,7 @@ const ExperienceCards = () => {
   ];
 
   return (
-    <section className="w-full py-16" aria-labelledby="experience-cards-heading" ref={ref}>
+    <section id="experience" className="w-full py-16" aria-labelledby="experience-cards-heading" ref={ref}>
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="experience-cards-heading" className="text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-8 text-center">
           My <span className="text-lime-500">Experience</span>

@@ -10,6 +10,7 @@ import SectionTitle from '@/components/about/SectionTitle';
 import AboutContent from '@/components/learn-more-about-me/Content';
 import ContentCard from '@/components/learn-more-about-me/ContentCard';
 import ProfileImage from '@/components/learn-more-about-me/ProfileImage';
+import CTA from '@/components/learn-more-about-me/CTA';
 
 // Site Constants
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://amansuryavanshi-dev.vercel.app/";
@@ -183,6 +184,9 @@ export default function AboutPage() {
 
            {/* Skills Section */}
            <MySkills />
+
+          {/* CTA Section */}
+          <CTA/>
 
         </div>
       </article>
