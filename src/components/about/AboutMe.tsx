@@ -70,7 +70,7 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
           </div>
 
           <div className="lg:col-span-8">
-            <Tabs defaultValue="about" className="w-full max-md:mx-auto h-[61vh] max-md:h-auto max-[375px]:mt-8">
+            <Tabs defaultValue="about" className="w-full max-md:mx-auto max-md:h-auto max-[375px]:mt-8">
               <TabsList className="py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 
                  max-md:w-full max-md:min-h-[200px] max-md:flex max-md:flex-col max-md:justify-between max-md:gap-4 max-md:p-6
                 max-[375px]:gap-2 max-[375px]:p-4">
@@ -97,15 +97,15 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="about" className="max-md:mt-6">
+              <TabsContent value="about" className="mt-6 h-[18rem] max-xl:min-h-fit">
                 <AboutContent />
               </TabsContent>
               
-              <TabsContent value="personal-info" className="max-md:mt-6">
+              <TabsContent value="personal-info" className="mt-6 h-[18rem] max-xl:min-h-fit">
                 <PersonalInfo data={personalInfo} />
               </TabsContent>
 
-              <TabsContent value="qualifications" className="max-md:mt-6">
+              <TabsContent value="qualifications" className="mt-6 h-[18rem] max-xl:min-h-fit">
                 <Qualifications data={qualificationsData} />
               </TabsContent>
             </Tabs>
