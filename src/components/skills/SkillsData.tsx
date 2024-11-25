@@ -5,6 +5,13 @@ const skillsData = {
       skills: [
         // Frontend Frameworks & Libraries
         { name: "React", icon: "FaReact", url: "https://react.dev" },
+        { name: "C/C++", icon: "SiCplusplus", url: "https://www.cppreference.com" },
+        { name: "Data Structures & Algorithms", icon: "Binary", url: "https://www.geeksforgeeks.org/data-structures/" },
+        { name: "Object-Oriented Programming", icon: "Boxes", url: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_programming" },
+        { name: "Computer Networks", icon: "Network", url: "https://www.computernetworkingnotes.com/" },
+        { name: "JSON", icon: "Braces", url: "https://www.json.org/" },
+        { name: "Axios", icon: "SiAxios", url: "https://axios-http.com/" },
+        { name: "Web APIs", icon: "Globe", url: "https://developer.mozilla.org/en-US/docs/Web/API" },
         { name: "Next.js", icon: "SiNextdotjs", url: "https://nextjs.org" },
         { name: "Redux", icon: "SiRedux", url: "https://redux.js.org" },
         { name: "TypeScript", icon: "SiTypescript", url: "https://www.typescriptlang.org" },
@@ -50,9 +57,9 @@ const skillsData = {
       icon: "Palette",
       skills: [
         { name: "UI/UX Design", icon: "Palette", url: "https://careerfoundry.com/en/blog/ux-design/what-is-ui-ux-design/" },
+        { name: "Content Writing", icon: "PenLine", url: "https://www.hubspot.com/content-marketing" },
         { name: "Figma", icon: "FaFigma", url: "https://help.figma.com" },
         { name: "Creative Technology", icon: "Sparkles" },
-        { name: "Content Writing", icon: "PenLine", url: "https://www.hubspot.com/content-marketing" },
         { name: "Technical Writing", icon: "FileText", url: "https://developers.google.com/tech-writing" },
         { name: "AI Video Creation", icon: "Video", url: "https://pictory.ai" },
         { name: "AI Image Generation", icon: "ImagePlus", url: "https://openai.com/dall-e" },
@@ -67,6 +74,7 @@ const skillsData = {
         { name: "Performance Optimization", icon: "Timer" },
         { name: "Vercel", icon: "SiVercel", url: "https://vercel.com/docs" },
         { name: "Netlify", icon: "SiNetlify", url: "https://docs.netlify.com" },
+        { name: "GitHub Pages", icon: "SiGithub", url: "https://docs.github.com/en/pages" },
         { name: "Web Analytics", icon: "BarChart", url: "https://analytics.google.com" },
         { name: "Vercel Analytics", icon: "SiVercel", url: "https://vercel.com/analytics" },
         { name: "Google Analytics", icon: "SiGoogleanalytics", url: "https://analytics.google.com" },
@@ -90,6 +98,16 @@ const skillsData = {
         { name: "v0.dev", icon: "Code", url: "https://v0.dev" },
         { name: "Notion", icon: "SiNotion", url: "https://notion.so" },
         { name: "Leonardo AI", icon: "Palette", url: "https://leonardo.ai" },
+      ]
+    },
+    "Soft Skills": {
+      icon: "Users",
+      skills: [
+        { name: "Time Management", icon: "Clock", url: "https://www.mindtools.com/pages/article/newHTE_00.htm" },
+        { name: "Problem Solving", icon: "PuzzlePiece", url: "https://www.indeed.com/career-advice/career-development/problem-solving-skills" },
+        { name: "Teamwork", icon: "Users2", url: "https://www.indeed.com/career-advice/career-development/teamwork-skills" },
+        { name: "Meeting Deadlines", icon: "Calendar", url: "https://www.mindtools.com/pages/article/deadline-management.htm" },
+        { name: "Creativity", icon: "Lightbulb", url: "https://www.creativityatwork.com/what-is-creativity/" }
       ]
     }
   }

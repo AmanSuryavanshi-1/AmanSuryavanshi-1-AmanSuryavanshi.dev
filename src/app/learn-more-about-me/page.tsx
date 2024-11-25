@@ -1,9 +1,15 @@
 import { Metadata } from 'next';
-import AboutMe from '@/components/about/AboutMe';
-import myData from '@/components/about/AboutData';
+// import AboutMe from '@/components/about/AboutMe';
+// import myData from '@/components/about/AboutData';
 import GithubProfile from '@/components/learn-more-about-me/Github/GithubProfile';
 import { GithubCalendarComponent } from '@/components/learn-more-about-me/Github/GithubCalendar';
 import MySkills from '@/components/skills/MySkills';
+// import AboutContent from '@/components/about/AboutContent';
+// import Qualifications from '@/components/about/Qualifications';
+import SectionTitle from '@/components/about/SectionTitle';
+import AboutImage from '@/components/learn-more-about-me/AboutImage';
+import AboutContent from '@/components/learn-more-about-me/Content';
+import ContentCard from '@/components/learn-more-about-me/ContentCard';
 
 // Site Constants
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://amansuryavanshi-dev.vercel.app/";
@@ -148,18 +154,36 @@ export default function AboutPage() {
         <h1 className="sr-only">{ABOUT_TITLE}</h1>
         <div itemProp="articleBody">
           {/* Personal Info and Qualifications */}
-          <AboutMe 
+          {/* <AboutMe 
             personalInfo={myData.personalInfo}
             qualificationsData={myData.qualificationsData}
             // skillsData={myData.skillsData}
-          />
+          /> */}
+          <div className="container mx-auto px-4 py-12 max-w-6xl">
+            <SectionTitle/>
 
-          {/* Skills Section */}
-          <MySkills />
+            {/* About Image and Content Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+              <div className="lg:col-span-2">
+                <AboutImage/>
+              </div>
+              <div className="lg:col-span-3">
+                <AboutContent/>
+              </div>
+            </div>
+          </div>
 
+        {/* Content Cards Section */}
+          <div className="mb-12">
+            <ContentCard />
+          </div>
           {/* GitHub Section */}
           <GithubProfile/>
           <GithubCalendarComponent/>
+
+           {/* Skills Section */}
+           <MySkills />
+
         </div>
       </article>
     </>

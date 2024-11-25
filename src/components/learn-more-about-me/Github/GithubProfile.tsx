@@ -85,7 +85,7 @@ export default function GithubProfile() {
   // Adding Shimmer UI for loading state
   if (isLoading) {
     return (
-      <section className="flex items-center justify-center min-h-[40vh] w-full px-4 py-6">
+      <section className="flex items-center justify-center min-h-[40vh] w-full px-4 py-16">
         <div className="w-full max-w-5xl">
           {/* Skeleton for the title */}
           <Skeleton className="w-48 h-12 mx-auto mb-8 rounded-lg" />
@@ -115,7 +115,7 @@ export default function GithubProfile() {
   if (!userData) return null
 
   return (
-    <section className="flex items-center justify-center w-full px-4 py-8">
+    <section className="flex items-center justify-center w-full px-4 py-16">
       <div className="w-full max-w-5xl">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}

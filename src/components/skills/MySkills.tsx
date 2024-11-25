@@ -44,7 +44,7 @@ const getIconComponent = (iconName: string): React.ElementType => {
 };
 
 const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ data = skillsData }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Technical Skills');
   const { categories } = data;
 
   // Function to get all skills across categories

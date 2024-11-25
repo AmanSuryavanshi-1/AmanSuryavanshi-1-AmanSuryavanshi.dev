@@ -25,9 +25,9 @@ const page = () => {
           />
           <WorkBanner/>
         </div>
+        <MySkills data={skillsData} />
 
           <ExperienceCards/>
-          <MySkills data={skillsData} />
           <Services/>
           <Projects/>
           <ContactPage/>
