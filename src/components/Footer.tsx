@@ -48,7 +48,7 @@ const TechStack = () => {
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
   const quickLinks = [
-    { name: 'Home', href: '/#home', icon: <Home className="w-4 h-4" /> },
+    { name: 'Home', href: '/', icon: <Home className="w-4 h-4" /> },
     { name: 'About', href: '/#about', icon: <User2 className="w-4 h-4" /> },
     { name: 'Services', href: '/#services', icon: <Briefcase className="w-4 h-4" /> },
     { name: 'Projects', href: '/#projects', icon: <FolderGit2 className="w-4 h-4" /> },

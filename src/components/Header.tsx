@@ -24,7 +24,7 @@ const Header = () => {
   // )
 
   const navItems = [
-    { name: 'Home', href: '/#home', icon: <Home className="w-4 h-4" /> },
+    { name: 'Home', href: '/', icon: <Home className="w-4 h-4" /> },
     { name: 'About', href: '/#about', icon: <User2 className="w-4 h-4" /> },
     { name: 'Services', href: '/#services', icon: <Briefcase className="w-4 h-4" /> },
     { name: 'Projects', href: '/#projects', icon: <FolderGit2 className="w-4 h-4" /> },
@@ -92,7 +92,7 @@ const Header = () => {
                       "relative px-4 py-2 text-sm font-medium flex items-center gap-2 transition-all duration-300 rounded-full",
                       activeItem === item.name 
                         ? "text-forest-900 bg-lime-500" 
-                        : "text-sage-100 hover:text-lime-500"
+                        : "text-sage-100 hover:text-forest-700"
                     )}
                   >
                     <motion.span
