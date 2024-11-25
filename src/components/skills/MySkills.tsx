@@ -62,7 +62,7 @@ const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ data = skillsData }) =>
   };
 
   return (
-    <section className="w-full min-h-screen py-8 md:py-16 px-4 sm:px-6 md:px-8">
+    <section className="w-full py-16 px-4 sm:px-6 md:px-8">
       <div className="container max-w-6xl mx-auto">
         {/* Title Section */}
         <motion.div
@@ -122,7 +122,7 @@ const SkillsShowcase: React.FC<SkillsShowcaseProps> = ({ data = skillsData }) =>
 
         {/* Skills Grid */}
         <motion.div 
-          className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  gap-3 md:gap-4 max-w-5xl mx-auto lg:mx-28"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  gap-3 md:gap-4 max-w-5xl mx-auto lg:mx-28"
           layout
         >
           {getDisplayedSkills().map((skill: Skill, index: number) => {
