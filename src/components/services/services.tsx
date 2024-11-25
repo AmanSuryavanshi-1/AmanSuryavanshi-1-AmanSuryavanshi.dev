@@ -72,7 +72,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
 // Add type annotation to ServicesSection component
 const ServicesSection: React.FC = () => {
   return (
-    <section className="w-full min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-12 px-4 sm:px-6 lg:px-8">
       <div className="container max-w-6xl mx-auto">
         <motion.div
           id='services'
