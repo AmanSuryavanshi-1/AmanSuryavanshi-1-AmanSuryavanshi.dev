@@ -52,7 +52,7 @@ export default function CTA() {
             viewport={{ once: true }}
             custom={0}
           >
-            <Link href="#experience" className="block h-full">
+            <Link href="/#experience" className="block h-full">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
