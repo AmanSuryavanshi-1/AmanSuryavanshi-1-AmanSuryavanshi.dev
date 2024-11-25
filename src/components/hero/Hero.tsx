@@ -28,10 +28,10 @@ export default function Header() {
         transition={{ duration: 1.2, ease: "easeOut" }}
       />
       <motion.div 
-        className="container relative flex flex-col items-center py-12 justify-center h-[92vh] gap-8 mx-auto md:h-5/6"
+        className="container relative flex flex-col items-center py-12 justify-center h-full gap-8 mx-auto md:h-5/6"
         style={{ opacity, scale, y }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-[10px_2fr_1fr] gap-8 md:gap-28 px-20 max-md:px-2 md:pt-22 items-center">
+        <div className="max-h-[750px]:mt-28 max-h-[650px]:mt-32 overflow-hidden  grid grid-cols-1 md:grid-cols-[10px_2fr_1fr] gap-8 md:gap-28 px-20 max-md:px-2 md:pt-22  items-center">
           <motion.div 
             className="relative order-1 w-64 h-64 mx-auto md:order-3 md:w-96 md:h-96 md:mx-0"
             initial={{ scale: 0, rotate: -180 }}

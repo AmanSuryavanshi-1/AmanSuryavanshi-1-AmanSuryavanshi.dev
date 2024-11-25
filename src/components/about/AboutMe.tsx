@@ -70,37 +70,42 @@ const AboutMe = ({ personalInfo = defaultProps.personalInfo,
           </div>
 
           <div className="lg:col-span-8">
-            <Tabs defaultValue="about" className="w-full h-[61vh]">
-              <TabsList className="mb-6 py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 max-md:border-0 ">
+            <Tabs defaultValue="about" className="w-full max-md:mx-auto h-[61vh] max-md:h-auto max-[375px]:mt-8">
+              <TabsList className="py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 
+                 max-md:w-full max-md:min-h-[200px] max-md:flex max-md:flex-col max-md:justify-between max-md:gap-4 max-md:p-6
+                max-[375px]:gap-2 max-[375px]:p-4">
                 <TabsTrigger 
-                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
+                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500
+                  max-md:w-full max-md:h-14 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0 max-[375px]:h-12 max-[375px]:text-sm" 
                   value="about">
                   <User2 className="w-4 h-4 mr-2" />
                   About
                 </TabsTrigger>
                 <TabsTrigger 
-                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
+                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500
+                  max-md:w-full max-md:h-14 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0" 
                   value="personal-info">
                   <Info className="w-4 h-4 mr-2" />
                   Personal Info
                 </TabsTrigger>
                 <TabsTrigger 
-                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500 max-md:border-0 max-md:text-xs" 
+                  className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500
+                  max-md:w-full max-md:h-14 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0" 
                   value="qualifications">
                   <GraduationCap className="w-4 h-4 mr-2" />
                   Qualifications
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="about">
+              <TabsContent value="about" className="max-md:mt-6">
                 <AboutContent />
               </TabsContent>
               
-              <TabsContent value="personal-info">
+              <TabsContent value="personal-info" className="max-md:mt-6">
                 <PersonalInfo data={personalInfo} />
               </TabsContent>
 
-              <TabsContent value="qualifications">
+              <TabsContent value="qualifications" className="max-md:mt-6">
                 <Qualifications data={qualificationsData} />
               </TabsContent>
             </Tabs>
