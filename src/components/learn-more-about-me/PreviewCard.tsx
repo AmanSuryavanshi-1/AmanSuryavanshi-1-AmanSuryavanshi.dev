@@ -16,6 +16,7 @@ export default function PreviewCard({ type, onEnter }: PreviewCardProps) {
   const videoProjects = projects.filter(project => project.video).slice(0, 2)
 
   useEffect(() => {
+    // Intersection Observer to play the videos when they are in view
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

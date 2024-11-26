@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, UserCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -24,7 +25,11 @@ const ActionButton = ({ href, icon: Icon, text, variant }: {
     const isExternal = href.startsWith('http');
     const buttonStyles = variant === 'primary' 
       ? "border-forest-900 bg-forest-900 hover:bg-forest-700 hover:border-forest-700 text-sage-100" 
-      : "border-lime-500 bg-transparent hover:bg-lime-500 text-forest-900";
+      : cn(
+          "border-lime-500 text-forest-900",
+          "animate-shimmer bg-[linear-gradient(110deg,#9DCF6F,45%,#FBFADA,55%,#9DCF6F)]",
+          "bg-[length:200%_100%] transition-colors hover:bg-lime-500"
+        );
   
     return (
       <Button
@@ -47,13 +52,7 @@ const ActionButton = ({ href, icon: Icon, text, variant }: {
             transition={{ type: "tween", ease: "easeInOut" }}
           />
           <span className="relative z-10 flex items-center">
-            <motion.div
-              className="flex items-center"
-              whileHover={{ scale: 1.2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Icon className="w-5 h-5 mr-2" />
-            </motion.div>
+            <Icon className="w-5 h-5 mr-2" />
             <span>{text}</span>
           </span>
         </motion.a>
