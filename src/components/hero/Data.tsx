@@ -75,7 +75,7 @@ const Data: React.FC = () => {
         className="max-w-lg mx-auto mb-8 text-sm text-justify md:mb-12 text-forest-700 md:text-base"
         variants={itemVariants}
       >
-        Driven by growth and excellence, I'm here to build impactful digital solutions that bring satisfaction and self-development. Let's achieve remarkable goals together—creating innovative and user-centered experiences that benefit both individuals and organizations.
+        Driven by growth and excellence, I&apos;m here to build impactful digital solutions that bring satisfaction and self-development. Let&apos;s achieve remarkable goals together—creating innovative and user-centered experiences that benefit both individuals and organizations.
       </motion.p>
       
       <motion.div 
