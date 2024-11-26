@@ -5,12 +5,15 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, MessageSquare } from 'lucide-react'
 import Link from 'next/link'
 import { Project, projects } from './projectsData'
+import { TransparentButton } from '../transparent-button'
+import { SolidButton } from '../solid-button'
+
 export default function ProjectsSection() {
   return (
-    <section id='projects' className="py-12 min-h-screen max-w-6xl mx-auto">
+    <section id='projects' className="py-20 min-h-screen max-w-6xl mx-auto">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
@@ -26,20 +29,23 @@ export default function ProjectsSection() {
         </div>
         
         <motion.div 
-          className="flex justify-center"
+          className="flex justify-center gap-4 flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
-          <Link href="/projects">
-            <Button 
-              className="px-8 py-6 bg-forest-900 hover:bg-forest-700 text-sage-100 font-medium transition-colors duration-300 rounded-3xl border-2 border-sage-100 text-lg flex items-center gap-2"
-            >
-              Explore More 
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </Link>
+          <SolidButton
+            href="/projects" 
+            icon={ArrowRight}
+            label="Explore More"
+          />
+
+          <TransparentButton
+            href="#contact" 
+            icon={MessageSquare}
+            label="Let's Work Together"
+          />
         </motion.div>
       </div>
     </section>

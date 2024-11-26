@@ -10,7 +10,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Card } from "@/components/ui/card";
-import Link from 'next/link';
+import { MotionButton } from '@/components/big-button';
 
 const AboutContent = () => {
   const skills = [
@@ -93,23 +93,18 @@ const AboutContent = () => {
       </motion.div>
 
       {/* Footer Section - Single Button */}
-      <Link href="/contact">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
         className="flex justify-center"
       >
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-forest-900 border-[3px] border-sage-100 hover:bg-lime-500 text-sage-100 hover:text-forest-900 font-bold transition-all duration-300 rounded-full shadow-md px-5 py-3 flex items-center gap-2"
-        >
-          <Coffee className="w-5 h-5" />
-          <span className="font-medium">Let&apos;s Connect</span>
-        </motion.button>
+        <MotionButton
+          href="/#contact"
+          icon={Coffee}
+          label="Let's Connect"
+        />
       </motion.div>
-      </Link>
     </motion.div>
   );
 };

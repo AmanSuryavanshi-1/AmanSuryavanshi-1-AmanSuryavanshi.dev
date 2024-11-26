@@ -4,11 +4,11 @@ import ExperienceCards from '@/components/ExperienceCards'
 import WorkBanner from '@/components/WorkBanner'
 import Services from '@/components/services/services'
 import AboutMe from '../components/about/AboutMe'
-import ContactPage from '../app/contact/page'
 import myData from '../components/about/AboutData'
-import skillsData  from '@/components/skills/SkillsData'
+// import skillsData  from '@/components/skills/SkillsData'
 import Projects from '@/components/projects/projects'
-import MySkills from '@/components/skills/MySkills'
+import Contact from '@/components/contact'
+// import MySkills from '@/components/skills/MySkills'
 
 const page = () => {
   return (
@@ -17,6 +17,9 @@ const page = () => {
       {/* Header */}
       <Hero/>
       {/* About */}
+      <Projects/>
+      <WorkBanner/>
+      <Services/>
         <div className='py-16'>
           <AboutMe
             personalInfo={myData.personalInfo}
@@ -24,14 +27,9 @@ const page = () => {
             // skillsData={myData.skillsData}
           />
         </div>
-        <WorkBanner/>
-
-        <MySkills data={skillsData} />
-
+        {/* <MySkills data={skillsData} /> */}
           <ExperienceCards/>
-          <Services/>
-          <Projects/>
-          <ContactPage/>
+          <Contact/>
     </div>
   )
 }

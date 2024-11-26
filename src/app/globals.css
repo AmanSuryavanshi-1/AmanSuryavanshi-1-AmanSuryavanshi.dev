@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* custom scrollbar */
+@layer utilities {
+  /* Hide default scrollbar */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Ensure transparent background */
+  html, 
+  body {
+    background-color: transparent !important;
+  }
+
+  /* Remove the padding-right since it might affect layout */
+  body {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+}
 /* Header animation */
 @keyframes profile__animate {
   0% {

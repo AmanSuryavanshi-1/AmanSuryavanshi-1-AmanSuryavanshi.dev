@@ -6,6 +6,9 @@ import Header from "../components/Header";
 import GoogleAnalyticsWrapper from "../components/GoogleAnalyticsWrapper";
 import { Analytics } from "@vercel/analytics/react"
 import Footer from "@/components/Footer";
+import CustomScrollbar from '@/components/custom-scrollbar';
+import { cn } from "@/lib/utils";
+
 // Font configurations with performance optimizations
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -149,9 +152,18 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body 
+      {/* <body 
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+      > */}
+      {/* added custom scrollbar for site */}
+      <body 
+        className={cn(
+          `${geistSans.variable} ${geistMono.variable}`,
+          "antialiased min-h-screen flex flex-col",
+          "bg-gradient-to-br from-sage-100 to-lime-500", // or whatever background you want
+        )}
       >
+        <CustomScrollbar />
         <Header />
         <UnderConstructionBanner />
         <main className="flex-grow bg-gradient-to-br from-sage-100 to-lime-500">

@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import services from './servicesData';
+import { ArrowRight } from 'lucide-react';
+import { MotionButton } from '@/components/big-button';
 
 interface Service {
   id: number;
@@ -101,14 +102,13 @@ const ServicesSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="flex justify-center"
         >
-          <Link
-            href="/contact"
-            className="inline-flex items-center px-8 py-3 text-md border-[3px] border-sage-100 rounded-full bg-forest-900 text-sage-100 hover:bg-forest-700 hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-forest-500/30"
-          >
-            <span className="font-bold tracking-wide">Start Your Project Today →</span>
-          </Link>
+          <MotionButton
+            href="#contact"
+            icon={ArrowRight}
+            label="Start Your Project Today"
+          />
         </motion.div>
       </div>
     </section>

@@ -67,7 +67,7 @@ const ActionButton = ({ href, icon: Icon, text, variant }: {
         variants={itemVariants}
       >
         <ActionButton
-          href="/contact"
+          href="#contact"
           icon={MessageCircle}
           text="Let's Talk"
           variant="primary"

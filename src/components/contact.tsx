@@ -46,6 +46,7 @@ const ContactForm = () => {
 
   return (
     <motion.div 
+      id='contact'
       initial="hidden"
       animate="visible"
       variants={containerVariants}
