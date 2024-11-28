@@ -70,16 +70,6 @@ const ContactForm = () => {
         <HeroSocial className="flex justify-center gap-6" />
       </div>
 
-
-      {isMessageSent && (
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-xs font-semibold text-center fixed top-28 transform -translate-x-1/2 bg-forest-700 mx-auto border-2 py-1 px-2 shadow-md shadow-forest-900 rounded-full text-sage-100 z-10"
-        >
-          Message sent successfully!
-        </motion.p>
-      )}
       <div className="w-full max-w-[58rem] relative flex gap-4">
         <div className="hidden md:flex flex-col justify-center">
           <HeroSocial className="grid gap-4" />
@@ -116,8 +106,8 @@ const ContactForm = () => {
 
               <div className="flex flex-col p-6 sm:p-8 lg:p-12">
                 <form ref={form} onSubmit={sendEmail} className="flex flex-col space-y-5">
-                  <Input name="name" placeholder="Your Full Name" />
-                  <Input name="email" type="email" placeholder="Your Email" />
+                  <Input name="from_name" placeholder="Your Full Name" />
+                  <Input name="reply_to" type="email" placeholder="Your Email" />
                   <textarea
                     name="message"
                     rows={4}
@@ -136,7 +126,15 @@ const ContactForm = () => {
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                     <Send className="ml-2 w-4 h-4" />
                   </motion.button>
-
+                  {isMessageSent && (
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-xs font-semibold text-center bg-lime-500 mx-auto border-2 py-1 px-2 shadow-md shadow-forest-900 rounded-full text-sage-100"
+                    >
+                      Message sent successfully!
+                    </motion.p>
+                  )}
                 </form>
               </div>
             </div>
