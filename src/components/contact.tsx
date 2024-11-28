@@ -1,20 +1,15 @@
-// components/contact/ContactForm.tsx
-"use client";
-
+'use client'
 import React, { useRef, useState } from 'react';
-import { Mail, Send, MessageSquare, MapPin } from 'lucide-react';
+import { Send, MessageSquare, Mail, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import HeroSocial from '@/components/hero/HeroSocial';
+import emailjs from '@emailjs/browser';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 const ContactForm = () => {
@@ -22,59 +17,77 @@ const ContactForm = () => {
   const [isMessageSent, setIsMessageSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const sendEmail = async (e: React.FormEvent) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.current) return;
 
     setIsSubmitting(true);
-    try {
-      // Replace with your email service logic
-      await fetch('/api/send-email', {
-        method: 'POST',
-        body: new FormData(form.current)
+
+    // Log form data
+    const formData = new FormData(form.current);
+    console.log('Form Data:', Object.fromEntries(formData.entries()));
+
+    // Send email to your email (template_md08ndx)
+    emailjs
+      .sendForm('service_ikm96zq', 'template_md08ndx', form.current, 'WKNcYnlqhtUUYRoXS')
+      .then((result) => {
+        console.log('Message sent to you successfully:', result.text);
+        setIsMessageSent(true);
+        if (form.current) form.current.reset();
+
+        // Hide the success message after 5 seconds
+        setTimeout(() => {
+          setIsMessageSent(false);
+        }, 5000);
+      })
+      .catch((error) => {
+        console.error('Failed to send email to you:', error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-      
-      setIsMessageSent(true);
-      form.current.reset();
-      setTimeout(() => setIsMessageSent(false), 5000);
-    } catch (error) {
-      console.error('Email sending failed:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
   };
+  
 
   return (
-    <motion.div 
-      id='contact'
+    <motion.div
+      id="contact"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
       className="flex flex-col py-16 sm:px-8 items-center justify-center"
     >
-      <motion.h1 
+      <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         id="Contact-us-heading"
-           className="text-3xl md:text-5xl font-bold font-serif text-forest-900 text-center">
-          Contact<span className="text-lime-500">Us</span>
+        className="text-3xl md:text-5xl font-bold font-serif text-forest-900 text-center"
+      >
+        Contact<span className="text-lime-500">Us</span>
       </motion.h1>
 
-      {/* Add mobile social icons */}
       <div className="md:hidden w-full max-w-[58rem] mt-8">
         <HeroSocial className="flex justify-center gap-6" />
       </div>
 
+
+      {isMessageSent && (
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-xs font-semibold text-center fixed top-28 transform -translate-x-1/2 bg-forest-700 mx-auto border-2 py-1 px-2 shadow-md shadow-forest-900 rounded-full text-sage-100 z-10"
+        >
+          Message sent successfully!
+        </motion.p>
+      )}
       <div className="w-full max-w-[58rem] relative flex gap-4">
-        {/* Desktop social icons */}
         <div className="hidden md:flex flex-col justify-center">
           <HeroSocial className="grid gap-4" />
         </div>
-
+  
         <Card className="w-full overflow-hidden bg-transparent border-0 shadow-none">
           <CardContent className="p-0 bg-transparent">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              {/* Contact Info Section */}
               <div className="flex flex-col p-6 sm:p-8 lg:px-12 lg:py-10 text-lime-500">
                 <div className="flex flex-col space-y-5">
                   <ContactCard
@@ -84,7 +97,6 @@ const ContactForm = () => {
                     link="mailto:adude890@gmail.com"
                     linkText="Send an email"
                   />
-                  
                   <ContactCard
                     icon={<MessageSquare className="w-7 h-7" />}
                     title="WhatsApp"
@@ -92,24 +104,18 @@ const ContactForm = () => {
                     link="https://api.whatsapp.com/send?phone=+918745030106&text=Hello%20there!"
                     linkText="Chat on WhatsApp"
                   />
-
                   <ContactCard
                     icon={<MapPin className="w-6 h-6" />}
                     title="Location"
-                    content="Bangalore, Karnataka, India"
-                    link="https://maps.google.com/?q=Bangalore,Karnataka,India"
+                    content="Delhi, India"
+                    link="https://maps.google.com/?q=Delhi,India"
                     linkText="View on Maps"
                   />
                 </div>
               </div>
 
-              {/* Contact Form Section */}
               <div className="flex flex-col p-6 sm:p-8 lg:p-12">
-                <form 
-                  ref={form} 
-                  onSubmit={sendEmail}
-                  className="flex flex-col space-y-5"
-                >
+                <form ref={form} onSubmit={sendEmail} className="flex flex-col space-y-5">
                   <Input name="name" placeholder="Your Full Name" />
                   <Input name="email" type="email" placeholder="Your Email" />
                   <textarea
@@ -117,9 +123,9 @@ const ContactForm = () => {
                     rows={4}
                     placeholder="Your Message"
                     required
-                    className="w-full h-52 px-4 py-4 text-sm rounded-2xl shadow-md shadow-forest-500 bg-transparent border-4 border-sage-100 text-forest-900 placeholder:text-forest-700 focus:from-forest-900 focus:to-forest-500 focus:text-sage-100 focus:placeholder:text-sage-300 transition-all duration-300 focus:outline-none resize-none"
+                    className="w-full h-52 px-4 py-4 text-sm rounded-2xl shadow-md shadow-forest-500 bg-transparent border-4 border-sage-100 text-forest-900 placeholder:text-forest-700 focus:from-forest-900 focus:to-forest-500 focus:text-forest-700 focus:placeholder:text-sage-300 transition-all duration-300 focus:outline-none resize-none"
                   />
-                  
+
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -131,15 +137,6 @@ const ContactForm = () => {
                     <Send className="ml-2 w-4 h-4" />
                   </motion.button>
 
-                  {isMessageSent && (
-                    <motion.p 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-sm text-center text-lime-500"
-                    >
-                      Message sent successfully!
-                    </motion.p>
-                  )}
                 </form>
               </div>
             </div>
@@ -150,14 +147,8 @@ const ContactForm = () => {
   );
 };
 
-const ContactCard = ({ icon, title, content, link, linkText }: {
-  icon: React.ReactNode;
-  title: string;
-  content: string;
-  link: string;
-  linkText: string;
-}) => (
-  <motion.div 
+const ContactCard = ({ icon, title, content, link, linkText }: { icon: React.ReactNode; title: string; content: string; link: string; linkText: string }) => (
+  <motion.div
     whileHover={{ scale: 1.02 }}
     className="group flex items-center space-x-4 p-6 rounded-2xl bg-gradient-to-br from-lime-500 to-lime-300/10 border-4 border-sage-100 hover:from-forest-900 hover:to-forest-500 hover:text-sage-100 transition-colors duration-300 shadow-lg shadow-forest-500"
   >
@@ -167,27 +158,20 @@ const ContactCard = ({ icon, title, content, link, linkText }: {
     <div>
       <h4 className="text-base font-semibold text-forest-900 group-hover:text-lime-500">{title}</h4>
       <p className="text-sm text-forest-500 mb-1 group-hover:text-lime-100">{content}</p>
-      <Link 
-        href={link}
-        className="text-sm font-medium text-forest-500 group-hover:text-sage-100 transition-colors duration-300"
-      >
+      <Link href={link} className="text-sm font-medium text-forest-500 group-hover:text-forest-700 transition-colors duration-200">
         {linkText}
       </Link>
     </div>
   </motion.div>
 );
 
-const Input = ({ name, type = "text", placeholder }: {
-  name: string;
-  type?: string;
-  placeholder: string;
-}) => (
+const Input = ({ name, type = 'text', placeholder }: { name: string; type?: string; placeholder: string }) => (
   <input
-    type={type}
     name={name}
+    type={type}
     placeholder={placeholder}
     required
-    className="w-full px-4 py-3 text-sm rounded-xl shadow-md shadow-forest-500 bg-transparent border-4 border-sage-100 text-forest-900 placeholder:text-forest-700 focus:from-forest-900 focus:to-forest-500 focus:text-sage-100 focus:placeholder:text-sage-300 transition-all duration-300 focus:outline-none"
+    className="w-full px-4 py-3 text-sm rounded-2xl shadow-md shadow-forest-500 bg-transparent border-4 border-sage-100 text-forest-900 placeholder:text-forest-700 focus:from-forest-900 focus:to-forest-500 focus:text-forest-700 focus:placeholder:text-sage-300 transition-all duration-300 focus:outline-none"
   />
 );
 
