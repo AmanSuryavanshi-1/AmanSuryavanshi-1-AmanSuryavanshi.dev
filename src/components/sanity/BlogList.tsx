@@ -5,6 +5,7 @@ import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/next-sanity-client"; 
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ]|order(publishedAt desc)[0...12]{ _id, title, slug, publishedAt, mainImage, author->{name, image}, categories[]->{title}, body }`;
 
@@ -53,21 +54,22 @@ return ( <main className="container mx-auto min-h-screen max-w-3xl p-8"> <h1 cla
               ? new Date().toLocaleDateString() 
               : new Date(post.publishedAt).toLocaleDateString()}
           </p>
-          <img 
+          <Image 
             src={urlFor(post.mainImage.asset._ref).width(200).url()} 
             alt={post.title}
             className="mb-4 rounded-md"
+            width={200}
+            height={200}
           />
           <div>
             {post.author && (
               <div className="flex items-center mb-2">
                 {post.author.image && (
-                  <img
+                  <Image
                     src={urlFor(post.author.image).width(40).height(40).url()}
                     alt={post.author.name}
                     width={40}
                     height={40}
-                    className="rounded-full mr-2"
                   />
                 )}
                 <span className="text-sm text-gray-700">{post.author.name}</span>

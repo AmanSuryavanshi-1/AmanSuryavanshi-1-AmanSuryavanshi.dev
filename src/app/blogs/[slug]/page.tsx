@@ -4,6 +4,7 @@ import { PortableText, type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/next-sanity-client";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -30,8 +31,14 @@ export default async function PostPage({
       <Link href="/" className="hover:underline">
         ← Back to posts
       </Link>
-      <img src={urlFor(post.mainImage.asset._ref).width(100).height(100).url()} />
-
+      {/* <img src={urlFor(post.mainImage.asset._ref).width(100).height(100).url()} /> */}
+      {/* to convert img tag to next optimized Image tag we have to add images domain in next.config.js  */}
+      <Image 
+        src={urlFor(post.mainImage.asset._ref).width(100).height(100).url()} 
+        alt={post.title} 
+        width={100} 
+        height={100} 
+      />
       {/* {postImageUrl && (
         <img
           src={postImageUrl}

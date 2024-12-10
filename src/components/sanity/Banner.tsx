@@ -35,7 +35,7 @@ const Banner: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
-           I've been programming for almost 4 years now. Throughout this year, I've worked with various technologies. I'm here to share just that. Use the search below to filter by title.
+           I&apos;ve been programming for almost 4 years now. Throughout this year, I&apos;ve worked with various technologies. I&apos;m here to share just that. Use the search below to filter by title.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
