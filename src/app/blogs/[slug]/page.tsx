@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import { PortableText, type SanityDocument } from "next-sanity";
 // import imageUrlBuilder from "@sanity/image-url";
 // import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -20,7 +21,16 @@ interface PostPageProps {
     slug: string;
   };
 }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { slug } = context.params as { slug: string };
+  const post = await client.fetch<SanityDocument>(POST_QUERY, { slug }, options);
 
+  return {
+    props: {
+      post,
+    },
+  };
+};
 export default async function PostPage({params}: PostPageProps) {
   const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
   // const postImageUrl = post.mainImage.asset._ref
