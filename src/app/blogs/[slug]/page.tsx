@@ -15,12 +15,13 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 //     : null;
 
 const options = { next: { revalidate: 30 } };
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function PostPage({params}: PostPageProps) {
   const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
   // const postImageUrl = post.mainImage.asset._ref
   //   ? urlFor(post.post.mainImage.asset._ref)?.width(550).height(310).url()
