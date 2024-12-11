@@ -1,4 +1,4 @@
-import { PortableText, PortableTextBlock } from "next-sanity";
+import { PortableText } from "next-sanity";
 import { client } from "@/sanity/next-sanity-client";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
@@ -17,7 +17,7 @@ interface Post {
     };
   };
   publishedAt: string;
-  body: PortableTextBlock[];
+  body: any[];
 }
 
 export default async function PostPage({
