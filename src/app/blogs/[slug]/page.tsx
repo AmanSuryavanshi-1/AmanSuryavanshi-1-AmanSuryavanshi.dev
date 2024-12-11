@@ -20,13 +20,12 @@ interface Post {
   body: PortableTextBlock[];
 }
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function PostPage({ params }: PageProps) {
+export default async function PostPage({ params }: Props) {
   const post = await client.fetch<Post>(POST_QUERY, params, options);
 
   if (!post) {
@@ -57,7 +56,7 @@ export default async function PostPage({ params }: PageProps) {
   );
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await client.fetch<Post>(POST_QUERY, params, options);
   
   return {
