@@ -1,9 +1,32 @@
+// import type { NextConfig } from "next";
+// const SITE_URL = "https://amansuryavanshi-dev.vercel.app/";
+// const nextConfig: NextConfig = {
+//   images: {
+//     domains: [SITE_URL, 'avatars.githubusercontent.com', 'cdn.sanity.io'],
+//   },
+// };
+
+// export default nextConfig;
 import type { NextConfig } from "next";
-const SITE_URL = "https://amansuryavanshi-dev.vercel.app/";
+
 const nextConfig: NextConfig = {
   images: {
-    domains: [SITE_URL, 'avatars.githubusercontent.com', 'cdn.sanity.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'amansuryavanshi-dev.vercel.app',
+      }
+    ],
   },
 };
 
 export default nextConfig;
+

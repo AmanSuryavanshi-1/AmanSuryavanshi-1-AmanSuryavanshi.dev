@@ -20,12 +20,9 @@ interface Post {
   body: PortableTextBlock[];
 }
 
-type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+type Params = { slug: string };
 
-export default async function PostPage({ params }: Props) {
+export default async function PostPage({ params }: { params: Params }) {
   const post = await client.fetch<Post>(POST_QUERY, params, options);
 
   if (!post) {
@@ -56,7 +53,7 @@ export default async function PostPage({ params }: Props) {
   );
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const post = await client.fetch<Post>(POST_QUERY, params, options);
   
   return {
