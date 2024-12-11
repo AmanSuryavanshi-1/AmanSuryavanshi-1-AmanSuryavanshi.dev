@@ -1,4 +1,4 @@
-import { PortableText, PortableTextBlock } from "next-sanity";
+import { Any, PortableText } from "next-sanity";
 import { client } from "@/sanity/next-sanity-client";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
@@ -17,14 +17,17 @@ interface Post {
     };
   };
   publishedAt: string;
-  body: PortableTextBlock[];
+  body: Any[];
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+// This satisfies Next.js App Router page props typing requirements
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function PostPage({ params }: PageProps) {
   const post = await client.fetch<Post>(POST_QUERY, params, options);
 
   if (!post) {
@@ -49,17 +52,14 @@ export default async function PostPage({
       <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
       <div className="prose max-w-none">
         <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-        <PortableText value={post.body} />
+        {Array.isArray(post.body) && <PortableText value={post.body} />}
       </div>
     </main>
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+// Optionally, you can also add generateMetadata for better SEO
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const post = await client.fetch<Post>(POST_QUERY, params, options);
   
   return {
