@@ -1,119 +1,92 @@
-// import { Metadata } from 'next';
-// import { client } from "@/sanity/next-sanity-client";
-// import Link from "next/link";
-// import Image from "next/image";
-// import { PortableText } from "next-sanity";
-
-// // More precise type for Sanity post
-// interface Post {
-//   title: string;
-//   mainImage?: {
-//     asset: {
-//       _ref: string;
-//     };
-//   };
-//   publishedAt: string;
-//   body: any[];
-// }
-
-// type PageProps = {
-//   params: {
-//     slug: string;
-//   };
-// }
-
-// export default async function PostPage({ params }: PageProps) {
-//   const post = await client.fetch<Post | null>(
-//     `*[_type == "post" && slug.current == "${params.slug}"][0]`, 
-//     {}, 
-//     { next: { revalidate: 30 } }
-//   );
-
-//   if (!post) return <div>Post not found</div>;
-
-//   return (
-//     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-//       <Link href="/" className="hover:underline">← Back to posts</Link>
-//       {post.mainImage && (
-//         <Image
-//           src={urlFor(post.mainImage).width(800).height(400).url()}
-//           alt={post.title || 'Post image'}
-//           className="aspect-video rounded-xl object-cover"
-//           width={800}
-//           height={400}
-//           priority
-//         />
-//       )}
-//       <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
-//       <div className="prose max-w-none">
-//         <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-//         <PortableText value={post.body} />
-//       </div>
-//     </main>
-//   );
-// }
-
-// export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-//   const post = await client.fetch<Post | null>(
-//     `*[_type == "post" && slug.current == "${params.slug}"][0]`, 
-//     {}, 
-//     { next: { revalidate: 30 } }
-//   );
-
-//   return {
-//     title: post?.title || 'Blog Post',
-//     description: 'Blog post page'
-//   };
-// }
-
-import { PortableText, type SanityDocument } from "next-sanity";
-// import imageUrlBuilder from "@sanity/image-url";
-import { urlFor } from "@/sanity/lib/image";
-// import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { Metadata } from "next";
 import { client } from "@/sanity/next-sanity-client";
-import Link from "next/link";
+import { PortableText } from "@portabletext/react";
+import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
+import { ResolvingMetadata } from 'next'
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-// const { projectId, dataset } = client.config();
-// const urlFor = (source: SanityImageSource) =>
-//   projectId && dataset
-//     ? imageUrlBuilder({ projectId, dataset }).image(source)
-//     : null;
+// Sanity query to fetch a single post
+const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
+  title,
+  body,
+  publishedAt,
+  mainImage,
+  author-> { name, image },
+  categories[]-> { title }
+}`;
 
-const options = { next: { revalidate: 30 } };
+// Fetch post data
+async function fetchPost(slug: string) {
+  return client.fetch(POST_QUERY, { slug });
+}
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
-  // const postImageUrl = post.image
-  //   ? urlFor(post.image)?.width(550).height(310).url()
-  //   : null;
+// Dynamic metadata for SEO
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = params;
+  const post = await fetchPost(slug);
+
+  return {
+    title: post?.title || "Blog Post",
+    description: post?.body?.[0]?.children?.[0]?.text || "A detailed blog post.",
+  };
+}
+
+// Page component
+export default async function Page({ params, searchParams }: Props) {
+  const { slug } = params;
+  const post = await fetchPost(slug);
+
+  if (!post) {
+    return <h1 className="text-center text-xl mt-20">Post not found</h1>;
+  }
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-      <Link href="/" className="hover:underline">
-        ← Back to posts
-      </Link>
-        {post.mainImage && (
+    <article className="container mx-auto min-h-screen max-w-3xl p-8">
+      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <p className="text-gray-600 text-sm mb-6">
+        Published on {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : "Unknown Date"}
+      </p>
+      {post.mainImage && (
+        <Image
+          src={urlFor(post.mainImage.asset._ref).url() || ""}
+          alt={post.mainImage.alt || "Post Image"}
+          width={800}
+          height={400}
+          className="rounded-md mb-6"
+        />
+      )}
+      <div className="flex items-center mb-6">
+        {post.author?.image && (
           <Image
-            src={urlFor(post.mainImage).width(800).height(400).url()}
-            alt={post.title || 'Post image'}
-            className="aspect-video rounded-xl object-cover"
-            width={800}
-            height={400}
-            priority
+            src={urlFor(post.author.image).width(50).height(50).url() || ""}
+            alt={post.author.name || "Author Image"}
+            width={50}
+            height={50}
+            className="rounded-full mr-4"
           />
         )}
-      <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
-      <div className="prose">
-        <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-        {Array.isArray(post.body) && <PortableText value={post.body} />}
+        <p className="text-gray-800">{post.author?.name}</p>
       </div>
-    </main>
+      {post.categories && (
+        <div className="flex flex-wrap gap-2 mb-6">
+          {post.categories.map((category: { title: string }) => (
+            <span key={category.title} className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">
+              {category.title}
+            </span>
+          ))}
+        </div>
+      )}
+      <div className="prose">
+        <PortableText value={post.body} />
+      </div>
+    </article>
   );
 }
