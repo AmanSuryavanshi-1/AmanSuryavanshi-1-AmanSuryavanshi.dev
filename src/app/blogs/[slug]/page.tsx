@@ -1,9 +1,10 @@
-import { Any, PortableText } from "next-sanity";
+import { PortableText } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/next-sanity-client";
 import Link from "next/link";
 import Image from "next/image";
+import type { PortableTextBlock } from "@portabletext/types";
 
 interface Post {
   _type: string;
@@ -14,7 +15,7 @@ interface Post {
   };
   mainImage?: SanityImageSource;
   publishedAt: string;
-  body: Any[];
+  body: PortableTextBlock[];
 }
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
@@ -51,11 +52,11 @@ async function getPost(slug: string) {
   return client.fetch<Post>(POST_QUERY, { slug }, options);
 }
 
-interface PageProps {
-  params: { slug: string };
+type PageProps = {
+  params: { slug: string }
 }
 
-export default async function PostPage({ params }: PageProps) {
+const PostPage = async ({ params }: PageProps) => {
   const { slug } = params;
   const post = await getPost(slug);
   
@@ -95,3 +96,5 @@ export default async function PostPage({ params }: PageProps) {
     </main>
   );
 }
+
+export default PostPage;
