@@ -4,9 +4,37 @@ import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from 'next/navigation';
+// import { SanityImageAsset } from '@sanity/image-url/lib/types/types';
 
-type Props = {
-  params: Promise<{ slug: string }> | { slug: string }
+interface SanityImage {
+  _type: 'image';
+  asset: {
+    _ref: string;
+    _type: 'reference';
+  };
+  alt?: string;
+}
+
+interface Author {
+  name: string;
+  image: SanityImage;
+}
+
+interface Category {
+  title: string;
+}
+
+interface Post {
+  title: string;
+  body: any[]; // This is typed as any[] because PortableText content is complex
+  publishedAt: string;
+  mainImage: SanityImage;
+  author: Author;
+  categories: Category[];
+}
+
+interface Props {
+  params: { slug: string }
 }
 
 // Sanity query to fetch a single post
@@ -20,15 +48,14 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
 }`;
 
 // Fetch post data
-async function fetchPost(params: { slug: string }) {
-  const slug = params.slug;
+async function fetchPost(slug: string): Promise<Post | null> {
   return client.fetch(POST_QUERY, { slug });
 }
 
 // PortableText components configuration
 const components = {
   types: {
-    image: ({ value }: any) => {
+    image: ({ value }: { value: SanityImage }) => {
       if (!value?.asset?._ref) {
         return null;
       }
@@ -49,8 +76,7 @@ const components = {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params);
-  const post = await fetchPost(resolvedParams);
+  const post = await fetchPost(params.slug);
 
   if (!post) {
     return {
@@ -60,15 +86,14 @@ export async function generateMetadata(
   }
 
   return {
-    title: post?.title || "Blog Post",
-    description: post?.body?.[0]?.children?.[0]?.text || "A detailed blog post.",
+    title: post.title || "Blog Post",
+    description: post.body?.[0]?.children?.[0]?.text || "A detailed blog post.",
   };
 }
 
 // Page component
 export default async function Page({ params }: Props) {
-  const resolvedParams = await Promise.resolve(params);
-  const post = await fetchPost(resolvedParams);
+  const post = await fetchPost(params.slug);
 
   if (!post) {
     notFound();
@@ -82,7 +107,7 @@ export default async function Page({ params }: Props) {
       </p>
       {post.mainImage && (
         <Image
-          src={urlFor(post.mainImage.asset._ref).url() || ""}
+          src={urlFor(post.mainImage).url()}
           alt={post.mainImage.alt || "Post Image"}
           width={800}
           height={400}
@@ -92,7 +117,7 @@ export default async function Page({ params }: Props) {
       <div className="flex items-center mb-6">
         {post.author?.image && (
           <Image
-            src={urlFor(post.author.image).width(50).height(50).url() || ""}
+            src={urlFor(post.author.image).width(50).height(50).url()}
             alt={post.author.name || "Author Image"}
             width={50}
             height={50}
@@ -103,7 +128,7 @@ export default async function Page({ params }: Props) {
       </div>
       {post.categories && (
         <div className="flex flex-wrap gap-2 mb-6">
-          {post.categories.map((category: { title: string }) => (
+          {post.categories.map((category) => (
             <span key={category.title} className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">
               {category.title}
             </span>
