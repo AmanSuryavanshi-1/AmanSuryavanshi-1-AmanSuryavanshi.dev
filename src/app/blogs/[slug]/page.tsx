@@ -51,14 +51,13 @@ type Props = {
   params: {
     slug: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 async function getPost(slug: string) {
   return client.fetch<Post>(POST_QUERY, { slug }, options);
 }
 
-export default async function PostPage({ params, searchParams }: Props) {
+export default async function PostPage({ params }: Props) {
   const { slug } = params;
   const post = await getPost(slug);
   
