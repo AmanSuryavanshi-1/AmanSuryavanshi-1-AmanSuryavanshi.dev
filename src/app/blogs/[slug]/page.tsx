@@ -4,8 +4,8 @@ import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from 'next/navigation';
-// import { TypedObject } from '@portabletext/types';
 
+// Type definitions
 interface SanityImage {
   _type: 'image';
   asset: {
@@ -24,25 +24,12 @@ interface Category {
   title: string;
 }
 
-interface Block {
-  _type: 'block';
-  children: Array<{
-    _type: 'span';
-    text: string;
-    marks?: string[];
-  }>;
-  markDefs?: Array<{
-    _type: string;
-    href: string;
-  }>;
-  style: string;
-}
-
-type PortableTextBlock = Block | SanityImage;
-
 interface Post {
   title: string;
-  body: PortableTextBlock[];
+  body: Array<{
+    _type: string;
+    [key: string]: unknown;
+  }>;
   publishedAt: string;
   mainImage: SanityImage;
   author: Author;
@@ -89,9 +76,7 @@ const components = {
 };
 
 // Dynamic metadata for SEO
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await fetchPost(params.slug);
 
   if (!post) {
@@ -102,8 +87,10 @@ export async function generateMetadata(
   }
 
   return {
-    title: post.title || "Blog Post",
-    description: post.body?.[0]?.children?.[0]?.text || "A detailed blog post.",
+    title: post.title,
+    description: typeof post.body[0]?.children?.[0]?.text === 'string' 
+      ? post.body[0].children[0].text 
+      : 'A detailed blog post',
   };
 }
 
