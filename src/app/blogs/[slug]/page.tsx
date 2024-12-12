@@ -4,7 +4,7 @@ import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from 'next/navigation';
-// import { SanityImageAsset } from '@sanity/image-url/lib/types/types';
+import { TypedObject } from '@portabletext/types';
 
 interface SanityImage {
   _type: 'image';
@@ -24,9 +24,25 @@ interface Category {
   title: string;
 }
 
+interface Block {
+  _type: 'block';
+  children: Array<{
+    _type: 'span';
+    text: string;
+    marks?: string[];
+  }>;
+  markDefs?: Array<{
+    _type: string;
+    href: string;
+  }>;
+  style: string;
+}
+
+type PortableTextBlock = Block | SanityImage;
+
 interface Post {
   title: string;
-  body: any[]; // This is typed as any[] because PortableText content is complex
+  body: PortableTextBlock[];
   publishedAt: string;
   mainImage: SanityImage;
   author: Author;
