@@ -4,7 +4,7 @@ import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from 'next/navigation';
-import { TypedObject } from '@portabletext/types';
+// import { TypedObject } from '@portabletext/types';
 
 interface SanityImage {
   _type: 'image';
