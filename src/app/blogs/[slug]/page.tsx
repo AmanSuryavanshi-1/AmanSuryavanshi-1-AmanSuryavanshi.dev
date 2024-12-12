@@ -3,11 +3,10 @@ import { client } from "@/sanity/next-sanity-client";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
-import { ResolvingMetadata } from 'next'
+import { notFound } from 'next/navigation';
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ slug: string }> | { slug: string }
 }
 
 // Sanity query to fetch a single post
@@ -21,17 +20,44 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
 }`;
 
 // Fetch post data
-async function fetchPost(slug: string) {
+async function fetchPost(params: { slug: string }) {
+  const slug = params.slug;
   return client.fetch(POST_QUERY, { slug });
 }
 
+// PortableText components configuration
+const components = {
+  types: {
+    image: ({ value }: any) => {
+      if (!value?.asset?._ref) {
+        return null;
+      }
+      return (
+        <Image
+          src={urlFor(value).url()}
+          alt={value.alt || 'Blog post image'}
+          width={800}
+          height={400}
+          className="my-8 rounded-md"
+        />
+      );
+    },
+  },
+};
+
 // Dynamic metadata for SEO
 export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
+  { params }: Props
 ): Promise<Metadata> {
-  const { slug } = params;
-  const post = await fetchPost(slug);
+  const resolvedParams = await Promise.resolve(params);
+  const post = await fetchPost(resolvedParams);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+      description: 'The requested blog post could not be found.',
+    };
+  }
 
   return {
     title: post?.title || "Blog Post",
@@ -40,12 +66,12 @@ export async function generateMetadata(
 }
 
 // Page component
-export default async function Page({ params, searchParams }: Props) {
-  const { slug } = params;
-  const post = await fetchPost(slug);
+export default async function Page({ params }: Props) {
+  const resolvedParams = await Promise.resolve(params);
+  const post = await fetchPost(resolvedParams);
 
   if (!post) {
-    return <h1 className="text-center text-xl mt-20">Post not found</h1>;
+    notFound();
   }
 
   return (
@@ -84,8 +110,11 @@ export default async function Page({ params, searchParams }: Props) {
           ))}
         </div>
       )}
-      <div className="prose">
-        <PortableText value={post.body} />
+      <div className="prose max-w-none">
+        <PortableText 
+          value={post.body} 
+          components={components}
+        />
       </div>
     </article>
   );
