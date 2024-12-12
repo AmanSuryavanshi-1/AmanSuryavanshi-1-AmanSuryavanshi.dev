@@ -5,6 +5,7 @@ import { client } from "@/sanity/next-sanity-client";
 import Link from "next/link";
 import Image from "next/image";
 import type { PortableTextBlock } from "@portabletext/types";
+import type { Metadata } from 'next';
 
 interface Post {
   _type: string;
@@ -52,13 +53,15 @@ async function getPost(slug: string) {
   return client.fetch<Post>(POST_QUERY, { slug }, options);
 }
 
-type PageProps = {
-  params: { slug: string }
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  return {
+    title: post?.title ?? 'Post not found',
+  };
 }
 
-const PostPage = async ({ params }: PageProps) => {
-  const { slug } = params;
-  const post = await getPost(slug);
+export default async function Page({ params }: { params: { slug: string } }) {
+  const post = await getPost(params.slug);
   
   if (!post) {
     return <div>Post not found</div>;
@@ -96,5 +99,3 @@ const PostPage = async ({ params }: PageProps) => {
     </main>
   );
 }
-
-export default PostPage;
