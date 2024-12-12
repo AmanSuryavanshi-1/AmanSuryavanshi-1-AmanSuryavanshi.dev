@@ -1,4 +1,4 @@
-import { PortableText } from "next-sanity";
+import { Any, PortableText } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/next-sanity-client";
@@ -14,7 +14,7 @@ interface Post {
   };
   mainImage?: SanityImageSource;
   publishedAt: string;
-  body: any[]; // You might want to type this more specifically based on your Portable Text structure
+  body: Any[]; // You might want to type this more specifically based on your Portable Text structure
 }
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
