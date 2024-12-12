@@ -14,7 +14,7 @@ interface Post {
   };
   mainImage?: SanityImageSource;
   publishedAt: string;
-  body: Any[]; // You might want to type this more specifically based on your Portable Text structure
+  body: Any[];
 }
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
@@ -47,17 +47,15 @@ const components = {
   },
 };
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
 async function getPost(slug: string) {
   return client.fetch<Post>(POST_QUERY, { slug }, options);
 }
 
-export default async function PostPage({ params }: Props) {
+interface PageProps {
+  params: { slug: string };
+}
+
+export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
   const post = await getPost(slug);
   
