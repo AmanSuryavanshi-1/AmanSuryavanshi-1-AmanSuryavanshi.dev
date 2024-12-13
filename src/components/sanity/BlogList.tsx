@@ -2,130 +2,141 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { type SanityDocument } from 'next-sanity';
+import Image from 'next/image';
 import { client } from '@/sanity/next-sanity-client';
 import { urlFor } from '@/sanity/lib/image';
-import Image from 'next/image';
+import type { Post } from '@/types/sanity';
 
 const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(publishedAt desc)[0...12] {
-  _id, 
-  title, 
-  slug, 
-  publishedAt, 
-  mainImage, 
-  author->{name, image}, 
-  categories[]->{title}, 
-  body 
+  _id,
+  _type,
+  title,
+  slug,
+  publishedAt,
+  mainImage,
+  excerpt,
+  author->{
+    _id,
+    _type,
+    name,
+    image
+  },
+  categories[]->{
+    _id,
+    _type,
+    title
+  }
 }`;
 
-const options = { next: { revalidate: 30 } };
-
 export default function BlogList() {
-  const [posts, setPosts] = useState<SanityDocument[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchPosts() {
-      const fetchedPosts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
-      setPosts(fetchedPosts);
-
-      const allCategories = fetchedPosts.flatMap(
-        (post) => post.categories?.map((cat: { title: string }) => cat.title) || []
-      );
-      const uniqueCategories = ['All', ...new Set(allCategories)];
-      setCategories(uniqueCategories);
-    }
+    const fetchPosts = async () => {
+      try {
+        const fetchedPosts = await client.fetch<Post[]>(POSTS_QUERY);
+        setPosts(fetchedPosts || []);
+      } catch (err) {
+        console.error('Error fetching posts:', err);
+        setError('Failed to load blog posts. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
     fetchPosts();
   }, []);
 
-  const filteredPosts = activeCategory === 'All'
-    ? posts
-    : posts.filter((post) =>
-        post.categories?.some((cat: { title: string }) => cat.title === activeCategory)
-      );
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-red-600 py-8">
+        <p>{error}</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
+  if (!posts.length) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-600">No blog posts found.</p>
+      </div>
+    );
+  }
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8">
-      <h1 className="text-4xl font-bold mb-8">Posts</h1>
-
-      {/* Categories Tabs */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            className={`px-4 py-2 rounded-full text-sm font-medium ${
-              activeCategory === category
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <ul className="flex flex-col gap-y-4">
-        {filteredPosts.map((post) => (
-          <li
-            className="hover:bg-gray-100 rounded-lg transition-colors duration-200"
-            key={post._id}
-          >
-            <Link href={`/blogs/${post.slug.current}`} className="block p-4">
-              <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-              <p className="text-gray-600 mb-2">
-                {post.publishedAt
-                  ? new Date(post.publishedAt).toLocaleDateString()
-                  : 'Unknown Date'}
-              </p>
-              {post.mainImage?.asset && (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map((post) => (
+        <Link
+          href={`/blogs/${post.slug.current}`}
+          key={post._id}
+          className="group hover:no-underline"
+        >
+          <article className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-200 ease-in-out group-hover:-translate-y-1">
+            {post.mainImage && (
+              <div className="relative h-48 w-full">
                 <Image
-                  src={urlFor(post.mainImage.asset._ref).width(200).url() || ''}
-                  alt={post.mainImage.alt || 'Post Image'}
-                  width={200}
-                  height={200}
-                  className="mb-4 rounded-md"
+                  src={urlFor(post.mainImage).width(400).height(300).url()}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
+              </div>
+            )}
+            <div className="p-4">
+              <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 line-clamp-2">
+                {post.title}
+              </h2>
+              {post.excerpt && (
+                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                  {post.excerpt}
+                </p>
               )}
-              <div>
-                {post.author && (
-                  <div className="flex items-center mb-2">
-                    {post.author.image && (
+              <div className="flex items-center justify-between text-sm text-gray-500">
+                <div className="flex items-center">
+                  {post.author?.image && (
+                    <div className="relative h-6 w-6 rounded-full overflow-hidden mr-2">
                       <Image
-                        src={urlFor(post.author.image).width(40).height(40).url() || ''}
-                        alt={post.author.name || 'Author Image'}
-                        width={40}
-                        height={40}
-                        className="rounded-full mr-2"
+                        src={urlFor(post.author.image).width(50).height(50).url()}
+                        alt={post.author.name || 'Author'}
+                        fill
+                        className="object-cover"
+                        sizes="24px"
                       />
-                    )}
-                    <span className="text-sm text-gray-700">{post.author.name}</span>
-                  </div>
-                )}
-                {post.categories && (
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {post.categories.map((category: { title: string }) => (
-                      <span
-                        key={category.title}
-                        className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded"
-                      >
-                        {category.title}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {post.body && Array.isArray(post.body) && post.body[0]?.children && (
-                  <p className="text-gray-700 text-sm line-clamp-3">
-                    {post.body[0]?.children[0]?.text || ''}...
-                  </p>
+                    </div>
+                  )}
+                  <span>{post.author?.name || 'Anonymous'}</span>
+                </div>
+                {post.publishedAt && (
+                  <time dateTime={post.publishedAt}>
+                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    })}
+                  </time>
                 )}
               </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+            </div>
+          </article>
+        </Link>
+      ))}
+    </div>
   );
 }
