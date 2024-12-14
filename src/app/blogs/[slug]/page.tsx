@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 import { urlFor } from '@/sanity/lib/image';
-import { client } from '@/sanity/next-sanity-client';
+import { client } from '@/sanity/lib/client';
 import type { Post } from '@/types/sanity';
 
 type NextPageProps = {

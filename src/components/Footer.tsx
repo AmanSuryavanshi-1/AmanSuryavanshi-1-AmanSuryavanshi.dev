@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
   ]
 
   return (
-    <footer className="bg-forest-900 mt-20 text-sage-100">
+    <footer className="bg-forest-900 text-sage-100">
       <div className="container mx-auto pt-12">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12 px-4">

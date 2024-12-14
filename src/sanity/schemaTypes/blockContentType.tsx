@@ -1,5 +1,6 @@
 import {defineType, defineArrayMember} from 'sanity'
 import {ImageIcon} from '@sanity/icons'
+import React from 'react'
 
 /**
  * This is the schema type for block content used in the post document type
@@ -29,7 +30,15 @@ export const blockContentType = defineType({
         {title: 'H2', value: 'h2'},
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},
-        {title: 'Quote', value: 'blockquote'},
+        {
+          title: 'Quote',
+          value: 'blockquote',
+          component: ({children}) => (
+            <blockquote className="border-l-4 pl-4 border-gray-300">
+              {children}
+            </blockquote>
+          )
+        },
       ],
       lists: [{title: 'Bullet', value: 'bullet'}],
       // Marks let you mark up inline text in the Portable Text Editor
@@ -61,7 +70,9 @@ export const blockContentType = defineType({
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
     defineArrayMember({
+      name: 'image',
       type: 'image',
+      title: 'Image',
       icon: ImageIcon,
       options: {hotspot: true},
       fields: [
@@ -69,6 +80,14 @@ export const blockContentType = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative Text',
+          description: 'Alternative text for screen readers',
+          validation: Rule => Rule.required(),
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Caption displayed below the image'
         }
       ]
     }),

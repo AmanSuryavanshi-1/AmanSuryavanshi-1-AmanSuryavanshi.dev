@@ -25,9 +25,9 @@ const Header = () => {
 
   const navItems = [
     { name: 'Home', href: '/', icon: <Home className="w-4 h-4" /> },
-    { name: 'About', href: '/#about', icon: <User2 className="w-4 h-4" /> },
-    { name: 'Services', href: '/#services', icon: <Briefcase className="w-4 h-4" /> },
     { name: 'Projects', href: '/#projects', icon: <FolderGit2 className="w-4 h-4" /> },
+    { name: 'Services', href: '/#services', icon: <Briefcase className="w-4 h-4" /> },
+    { name: 'About', href: '/#about', icon: <User2 className="w-4 h-4" /> },
     { name: 'Blogs', href: '/blogs', icon: <BookOpen className="w-4 h-4" /> },
   ]
 
