@@ -26,6 +26,7 @@ export interface Post {
   author?: Author;
   categories?: Category[];
   publishedAt?: string;
+  _createdAt: string;
 }
 
 export interface SanityImage {

@@ -6,27 +6,145 @@ import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 import type { Post } from '@/types/sanity';
+import FeaturedPost from './FeaturedPost';
+import { BsEye } from 'react-icons/bs';
+import { BiTime } from 'react-icons/bi';
+import { format } from 'date-fns';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Code, Briefcase, FileCode } from 'lucide-react';
 
-const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(publishedAt desc)[0...12] {
+const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(_createdAt desc) {
   _id,
   _type,
   title,
   slug,
-  publishedAt,
-  mainImage,
+  _createdAt,
+  _updatedAt,
+  mainImage {
+    asset->{
+      _id,
+      url
+    },
+    alt
+  },
   excerpt,
+  body,
   author->{
     _id,
     _type,
     name,
-    image
+    image {
+      asset->{
+        _id,
+        url
+      }
+    },
+    bio
   },
   categories[]->{
     _id,
     _type,
-    title
+    title,
+    description
   }
 }`;
+
+const calculateReadTime = (body: any[]): number => {
+  const wordsPerMinute = 200;
+  let totalWords = 0;
+  
+  body.forEach(block => {
+    if (block.children) {
+      block.children.forEach((child: any) => {
+        if (child.text) {
+          totalWords += child.text.split(' ').length;
+        }
+      });
+    }
+  });
+
+  return Math.ceil(totalWords / wordsPerMinute);
+};
+
+interface BlogPostCardProps {
+  post: Post;
+  priority?: boolean;
+}
+
+const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, priority = false }) => {
+  const readTime = calculateReadTime(post.body || []);
+  
+  return (
+    <Link href={`/blogs/${post.slug.current}`} className="group">
+      <article className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        <div className="relative h-48 w-full">
+          {post.mainImage && (
+            <Image
+              src={urlFor(post.mainImage).url()}
+              alt={post.title}
+              fill
+              priority={priority}
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
+          {post.categories && post.categories.length > 0 && (
+            <div className="absolute top-4 left-4 flex gap-2">
+              {post.categories.map((category) => (
+                <span
+                  key={category._id}
+                  className="rounded-full bg-forest-900/80 px-3 py-1 text-xs text-white"
+                >
+                  {category.title}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="p-4">
+          <h3 className="mb-2 text-xl font-semibold text-forest-900 group-hover:text-lime-600">
+            {post.title}
+          </h3>
+          <p className="mb-4 text-sm text-gray-600 line-clamp-2">
+            {post.excerpt}
+          </p>
+          <div className="flex items-center justify-between text-sm text-gray-500">
+            <div className="flex items-center gap-2">
+              {post.author?.image && (
+                <div className="relative h-6 w-6 overflow-hidden rounded-full">
+                  <Image
+                    src={urlFor(post.author.image).url()}
+                    alt={post.author.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <span>{post.author?.name}</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1">
+                <BiTime className="h-4 w-4" />
+                {readTime} min read
+              </span>
+              <span className="flex items-center gap-1">
+                <BsEye className="h-4 w-4" />
+                {format(new Date(post._createdAt), 'MMM dd, yyyy')}
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </Link>
+  );
+};
+
+const BlogPosts = ({ posts }: { posts: Post[] }) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {posts.map(post => (
+      <BlogPostCard key={post._id} post={post} />
+    ))}
+  </div>
+);
 
 export default function BlogList() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -50,93 +168,93 @@ export default function BlogList() {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-[200px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   if (error) {
-    return (
-      <div className="text-center text-red-600 py-8">
-        <p>{error}</p>
-        <button 
-          onClick={() => window.location.reload()} 
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-        >
-          Try Again
-        </button>
-      </div>
-    );
+    return <div className="min-h-screen flex items-center justify-center text-red-500">{error}</div>;
   }
 
   if (!posts.length) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-gray-600">No blog posts found.</p>
-      </div>
-    );
+    return <div className="min-h-screen flex items-center justify-center">No posts found.</div>;
   }
 
+  const [featuredPost, ...remainingPosts] = posts;
+
+  // Helper function to check if a post belongs to a category
+  const hasCategory = (post: Post, categoryName: string) => 
+    post?.categories?.some(category => category?.title?.toLowerCase() === categoryName.toLowerCase());
+
+  // Filter posts by category, including the featured post if it matches
+  const getPostsByCategory = (categoryName: string) => {
+    const categoryPosts = posts.filter(post => hasCategory(post, categoryName));
+    return categoryPosts;
+  };
+
+  const workPosts = getPostsByCategory('work');
+  const reactPosts = getPostsByCategory('react');
+  const javascriptPosts = getPostsByCategory('javascript');
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post) => (
-        <Link
-          href={`/blogs/${post.slug.current}`}
-          key={post._id}
-          className="group hover:no-underline"
-        >
-          <article className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-200 ease-in-out group-hover:-translate-y-1">
-            {post.mainImage && (
-              <div className="relative h-48 w-full">
-                <Image
-                  src={urlFor(post.mainImage).width(400).height(300).url()}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-            )}
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 line-clamp-2">
-                {post.title}
-              </h2>
-              {post.excerpt && (
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                  {post.excerpt}
-                </p>
-              )}
-              <div className="flex items-center justify-between text-sm text-gray-500">
-                <div className="flex items-center">
-                  {post.author?.image && (
-                    <div className="relative h-6 w-6 rounded-full overflow-hidden mr-2">
-                      <Image
-                        src={urlFor(post.author.image).width(50).height(50).url()}
-                        alt={post.author.name || 'Author'}
-                        fill
-                        className="object-cover"
-                        sizes="24px"
-                      />
-                    </div>
-                  )}
-                  <span>{post.author?.name || 'Anonymous'}</span>
-                </div>
-                {post.publishedAt && (
-                  <time dateTime={post.publishedAt}>
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric'
-                    })}
-                  </time>
-                )}
-              </div>
-            </div>
-          </article>
-        </Link>
-      ))}
+    <div className="container mx-auto px-4 py-8">
+      {/* Featured Post */}
+      {featuredPost && (
+        <div className="mb-12">
+          <FeaturedPost post={featuredPost} />
+        </div>
+      )}
+
+      {/* Category Tabs */}
+      <Tabs defaultValue="all" className="mb-8">
+        <TabsList className="py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 
+           max-md:w-full max-md:min-h-[200px] max-md:flex max-md:flex-col max-md:justify-between max-md:gap-4 max-md:p-6
+          max-[375px]:gap-2 max-[375px]:p-4">
+          <TabsTrigger 
+            className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500
+            max-md:w-full max-md:h-14 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0" 
+            value="all">
+            <FileCode className="w-4 h-4 mr-2" />
+            All Posts
+          </TabsTrigger>
+          <TabsTrigger 
+            className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500
+            max-md:w-full max-md:h-14 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0" 
+            value="work">
+            <Briefcase className="w-4 h-4 mr-2" />
+            Work
+          </TabsTrigger>
+          <TabsTrigger 
+            className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500
+            max-md:w-full max-md:h-14 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0" 
+            value="react">
+            <Code className="w-4 h-4 mr-2" />
+            React
+          </TabsTrigger>
+          <TabsTrigger 
+            className="mr-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 hover:bg-forest-500
+            max-md:w-full max-md:h-14 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0" 
+            value="javascript">
+            <Code className="w-4 h-4 mr-2" />
+            JavaScript
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="all" className="mt-6">
+          <BlogPosts posts={posts} />
+        </TabsContent>
+
+        <TabsContent value="work" className="mt-6">
+          <BlogPosts posts={workPosts} />
+        </TabsContent>
+
+        <TabsContent value="react" className="mt-6">
+          <BlogPosts posts={reactPosts} />
+        </TabsContent>
+
+        <TabsContent value="javascript" className="mt-6">
+          <BlogPosts posts={javascriptPosts} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
