@@ -30,7 +30,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
     const readTime = calculateReadTime(post);
 
     return (
-        <Link href={`/blog/${post.slug.current}`} className="group">
+        <Link href={`/blogs/${post.slug.current}`} className="group">
             <article className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 <div className="relative h-48 w-full">
                     {post.mainImage && (
