@@ -5,29 +5,18 @@ import { format } from 'date-fns';
 import { BsEye } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { urlFor } from '@/sanity/lib/image';
-import { PortableTextBlock } from 'sanity';
+import { PortableTextBlock, PortableTextSpan } from '@portabletext/types';
 import type { Post } from '@/types/sanity';
+import { calculateReadTime } from './calculateReadTime';
 
 interface FeaturedPostProps {
     post: Post;
 }
 
-const calculateReadTime = (post: Post): number => {
-    const bodyBlocks = post.body;
-    return Math.ceil(
-        bodyBlocks.reduce((total: number, block: PortableTextBlock) => {
-            // Ensure children exists and is an array
-            const children = Array.isArray(block.children) ? block.children : [];
-            return total + children.reduce((count: number, child: { text?: string }) => 
-                count + (child.text?.split(' ').length || 0), 0);
-        }, 0) / 200
-    );
-};
-
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
     if (!post) return null;
     
-    const readTime = calculateReadTime(post);
+    const readTime = calculateReadTime(post.body);
 
     return (
         <Link href={`/blogs/${post.slug.current}`} className="group">
@@ -36,7 +25,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
                     {post.mainImage && (
                         <Image
                             src={urlFor(post.mainImage).url()}
-                            alt={(post.mainImage?.alt as string) || post.title}
+                            alt={post.mainImage.alt || post.title}
                             fill
                             priority={true}
                             className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -20,21 +20,24 @@ export interface Post {
   _id: string;
   _type: 'post';
   title: string;
-  slug: Slug;
+  slug: { current: string; _type: 'slug' };
   excerpt?: string;
-  mainImage?: Image;
+  mainImage?: SanityImage;
   body: PortableTextBlock[];
   author?: Author;
   categories?: Category[];
   publishedAt?: string;
   _createdAt: string;
+  _updatedAt: string;
 }
 
 export interface SanityImage {
   _type: 'image';
   asset: {
-    _ref: string;
+    _id: string;
     _type: 'reference';
+    _ref: string;
+    url?: string;
   };
   alt?: string;
 }
