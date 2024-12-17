@@ -5,13 +5,30 @@ import { format } from 'date-fns';
 import { BsEye } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { urlFor } from '@/sanity/lib/image';
-import { PortableTextBlock, PortableTextSpan } from '@portabletext/types';
+import { PortableTextBlock } from '@portabletext/types';
 import type { Post } from '@/types/sanity';
 import { calculateReadTime } from './calculateReadTime';
 
 interface FeaturedPostProps {
     post: Post;
 }
+
+const extractTextFromBody = (body: PortableTextBlock[] | undefined): string => {
+    if (!body) return '';
+    
+    let text = '';
+    body.forEach(block => {
+        if (block && block._type === 'block' && Array.isArray(block.children)) {
+            block.children.forEach((child: any) => {
+                if (child && typeof child === 'object' && 'text' in child) {
+                    text += child.text + ' ';
+                }
+            });
+        }
+    });
+    
+    return text.trim().slice(0, 200) + (text.length > 200 ? '...' : '');
+};
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
     if (!post) return null;
@@ -60,6 +77,9 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
                     </h3>
                     <p className="mb-4 text-sm text-gray-600 line-clamp-2">
                         {post.excerpt}
+                    </p>
+                    <p className="mb-4 text-sm text-gray-500 line-clamp-4">
+                        {extractTextFromBody(post.body)}
                     </p>
                     <div className="flex items-center justify-between text-sm text-gray-500">
                         <div className="flex items-center gap-2">

@@ -1,5 +1,5 @@
-import { Image, Slug } from 'sanity';
-import { PortableTextBlock } from '@portabletext/types';
+import type { Image } from 'sanity';
+import type { PortableTextBlock } from '@portabletext/types';
 
 export interface Author {
   _id: string;
@@ -22,22 +22,11 @@ export interface Post {
   title: string;
   slug: { current: string; _type: 'slug' };
   excerpt?: string;
-  mainImage?: SanityImage;
+  mainImage?: Image;
   body: PortableTextBlock[];
   author?: Author;
   categories?: Category[];
   publishedAt?: string;
   _createdAt: string;
   _updatedAt: string;
-}
-
-export interface SanityImage {
-  _type: 'image';
-  asset: {
-    _id: string;
-    _type: 'reference';
-    _ref: string;
-    url?: string;
-  };
-  alt?: string;
 }
