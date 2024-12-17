@@ -12,6 +12,7 @@ import { BiTime } from 'react-icons/bi';
 import { format } from 'date-fns';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Code, Briefcase, FileCode } from 'lucide-react';
+import { PortableTextBlock } from '@portabletext/types';
 
 const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(_createdAt desc) {
   _id,
@@ -49,20 +50,14 @@ const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(_crea
   }
 }`;
 
-interface SanityBlock {
-  children?: {
-    text?: string;
-  }[];
-}
-
-const calculateReadTime = (body: SanityBlock[]): number => {
+const calculateReadTime = (body: PortableTextBlock[]): number => {
   const wordsPerMinute = 200;
   let totalWords = 0;
   
   body.forEach(block => {
-    if (block.children) {
+    if (block._type === 'block' && block.children) {
       block.children.forEach((child) => {
-        if (child.text) {
+        if ('text' in child) {
           totalWords += child.text.split(' ').length;
         }
       });
