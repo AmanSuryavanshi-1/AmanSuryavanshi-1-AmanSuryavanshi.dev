@@ -5,22 +5,21 @@ import { format } from 'date-fns';
 import { BsEye } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { urlFor } from '@/sanity/lib/image';
-import { PortableTextBlock } from '@portabletext/types';
-import type { Post } from '@/types/sanity';
+import type { Post, PortableTextBlockType } from '@/types/sanity';
 import { calculateReadTime } from './calculateReadTime';
 
 interface FeaturedPostProps {
     post: Post;
 }
 
-const extractTextFromBody = (body: PortableTextBlock[] | undefined): string => {
+const extractTextFromBody = (body: PortableTextBlockType[] | undefined): string => {
     if (!body) return '';
     
     let text = '';
     body.forEach(block => {
-        if (block && block._type === 'block' && Array.isArray(block.children)) {
-            block.children.forEach((child: any) => {
-                if (child && typeof child === 'object' && 'text' in child) {
+        if (block._type === 'block') {
+            block.children.forEach((child) => {
+                if (child._type === 'span' && child.text) {
                     text += child.text + ' ';
                 }
             });
@@ -42,7 +41,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
                     {post.mainImage && (
                         <Image
                             src={urlFor(post.mainImage).url()}
-                            alt={post.mainImage.alt || post.title}
+                            alt={post.mainImage?.alt || post.title}
                             fill
                             priority={true}
                             className="object-cover transition-transform duration-500 group-hover:scale-105"

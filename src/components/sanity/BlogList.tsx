@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
-import type { Post } from '@/types/sanity';
+import type { Post, PortableTextBlockType } from '@/types/sanity';
 import FeaturedPost from './FeaturedPost';
 import { BsEye } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
@@ -55,14 +55,14 @@ interface BlogPostCardProps {
   priority?: boolean;
 }
 
-const extractTextFromBody = (body: any[] | undefined): string => {
+const extractTextFromBody = (body: PortableTextBlockType[] | undefined): string => {
   if (!body) return '';
   
   let text = '';
   body.forEach(block => {
-    if (block && block._type === 'block' && Array.isArray(block.children)) {
-      block.children.forEach((child: any) => {
-        if (child && typeof child === 'object' && 'text' in child) {
+    if (block._type === 'block') {
+      block.children.forEach((child) => {
+        if (child._type === 'span' && child.text) {
           text += child.text + ' ';
         }
       });
@@ -82,7 +82,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, priority = false }) =
           {post.mainImage && (
             <Image
               src={urlFor(post.mainImage).url()}
-              alt={post.title}
+              alt={post.mainImage?.alt || post.title}
               fill
               priority={priority}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
