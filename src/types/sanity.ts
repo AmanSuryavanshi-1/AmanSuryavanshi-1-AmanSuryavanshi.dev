@@ -1,4 +1,5 @@
-import { Image, PortableTextBlock, Slug } from 'sanity';
+import { Image, Slug } from 'sanity';
+import { PortableTextBlock } from '@portabletext/types';
 
 export interface Author {
   _id: string;
