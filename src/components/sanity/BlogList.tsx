@@ -49,13 +49,19 @@ const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(_crea
   }
 }`;
 
-const calculateReadTime = (body: any[]): number => {
+interface SanityBlock {
+  children?: {
+    text?: string;
+  }[];
+}
+
+const calculateReadTime = (body: SanityBlock[]): number => {
   const wordsPerMinute = 200;
   let totalWords = 0;
   
   body.forEach(block => {
     if (block.children) {
-      block.children.forEach((child: any) => {
+      block.children.forEach((child) => {
         if (child.text) {
           totalWords += child.text.split(' ').length;
         }
@@ -179,7 +185,7 @@ export default function BlogList() {
     return <div className="min-h-screen flex items-center justify-center">No posts found.</div>;
   }
 
-  const [featuredPost, ...remainingPosts] = posts;
+  const [featuredPost] = posts;
 
   // Helper function to check if a post belongs to a category
   const hasCategory = (post: Post, categoryName: string) => 
