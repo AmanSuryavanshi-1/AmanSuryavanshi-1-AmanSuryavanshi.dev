@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { ArrowRight, MessageSquare } from 'lucide-react'
+import { ArrowRight, MessageSquare, ExternalLink } from 'lucide-react'
+import { FaGithub } from 'react-icons/fa'
 import Link from 'next/link'
 import { Project, projects } from './projectsData'
 import { TransparentButton } from '../transparent-button'
@@ -118,30 +119,50 @@ function ProjectCard({ project }: { project: Project }) {
       ) : null}
       <div className="absolute inset-0 bg-gradient-to-t from-forest-900/95 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
         <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end bg-gradient-to-t from-black/95 via-forest-900/90 to-transparent">
-          <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight line-clamp-2">{project.title}</h3>
-                <Link href={`/project/${project.slug}`}>
-                  <Button 
-                    size="sm" 
-                    className="px-3 bg-lime-500 hover:bg-lime-400 text-forest-900 
-                              font-semibold transition-all duration-300 rounded-full 
-                              border border-white/20 hover:border-white/40 shadow-lg text-xs"
-                  >
-                    View Details
-                  </Button>
-                </Link>
+          <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight line-clamp-2">{project.title}</h3>
+                <div className="flex items-center gap-1 shrink-0">
+                  <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
+                    <Button 
+                      size="sm" 
+                      variant="ghost"
+                      className="p-1.5 text-lime-400 hover:text-lime-300 hover:bg-forest-800/50"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </Button>
+                  </Link>
+                  <Link href={project.links.github} target="_blank" rel="noopener noreferrer">
+                    <Button 
+                      size="sm" 
+                      variant="ghost"
+                      className="p-1.5 text-lime-400 hover:text-lime-300 hover:bg-forest-800/50"
+                    >
+                      <FaGithub className="w-3.5 h-3.5" />
+                    </Button>
+                  </Link>
+                  <Link href={`/project/${project.slug}`}>
+                    <Button 
+                      size="sm" 
+                      className="px-2 py-1 bg-lime-500 hover:bg-lime-400 text-forest-900 
+                                font-semibold transition-all duration-300 rounded-full 
+                                border border-white/20 hover:border-white/40 shadow-lg text-[10px]"
+                    >
+                      View Details
+                    </Button>
+                  </Link>
+                </div>
               </div>
               
               <p className={cn(
-                "text-gray-100 text-sm sm:text-base",
+                "text-gray-100 text-xs sm:text-sm",
                 project.size === 'tall' ? '' : 'line-clamp-2'
               )}>
                 {project.description}
               </p>
-              
-              <div className="flex gap-2 mt-1">
+
+              <div className="flex gap-1.5 mt-1">
                 {project.technologies.slice(0, 6).map((tech, index) => {
                   const IconComponent = tech.icon;
                   return (

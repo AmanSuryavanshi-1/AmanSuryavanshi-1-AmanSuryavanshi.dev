@@ -12,7 +12,7 @@ interface BlogTabsProps {
 
 const BlogTabs = ({ posts, workPosts, reactPosts, javascriptPosts }: BlogTabsProps) => {
   return (
-    <Tabs defaultValue="all" className="mb-8">
+    <Tabs defaultValue="all" className="mb-8 mx-auto">
         <TabsList className="py-5 rounded-3xl bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 
            max-md:w-full max-md:min-h-[200px] max-md:flex max-md:flex-col max-md:justify-between max-md:gap-4 max-md:p-6
           max-[375px]:gap-2 max-[375px]:p-4">
