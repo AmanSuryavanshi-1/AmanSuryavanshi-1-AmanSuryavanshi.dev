@@ -4,9 +4,9 @@ import BlogPostCard from './BlogPostCard';
 interface BlogPostsProps {
   posts: Post[];
 }
-// will contain all the blog posts realted to specific category
+// will contain all the blog posts related to specific category
 const BlogPosts = ({ posts }: BlogPostsProps) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 animate-fade-in">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 py-2 animate-fade-in">
     {posts.map((post, index) => (
       <BlogPostCard 
         key={post._id} 

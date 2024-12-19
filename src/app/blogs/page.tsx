@@ -4,8 +4,8 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='mt-[9vh]'>
-      <h1>Aman&apos;s Weekly Blog</h1>
+    <div >
+      {/* <h1>Aman&apos;s Weekly Blog</h1> */}
       <Banner/>
       <BlogList />
       
