@@ -5,6 +5,7 @@ import { client } from '@/sanity/lib/client';
 import type { Post } from '@/types/sanity';
 import FeaturedPost from './FeaturedPost';
 import BlogTabs from './BlogTabs';
+import { motion } from 'framer-motion';
 
 const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(_createdAt desc) {
   _id,
@@ -98,37 +99,32 @@ export default function BlogList() {
   const javascriptPosts = getPostsByCategory('javascript');
 
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-      <div className="space-y-12">
-        <div id="featured">
-          {featuredPosts.length > 0 && (
-            <>
-              <div className="text-center space-y-4 mb-12">
-                <h2 className="text-5xl font-bold text-forest-900">
-                  Featured Posts
-                </h2>
-                <div className="flex items-center justify-center gap-2">
-                  <div className="h-1 w-12 bg-lime-500 rounded-full"></div>
-                  <div className="h-1 w-24 bg-lime-500 rounded-full"></div>
-                  <div className="h-1 w-12 bg-lime-500 rounded-full"></div>
-                </div>
-              </div>
-              <div className={`grid gap-6 ${
-                featuredPosts.length === 1 ? 'grid-cols-1' : 
-                featuredPosts.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 
-                'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-              }`}>
-                {featuredPosts.map((post) => (
-                  <FeaturedPost 
-                    key={post._id} 
-                    post={post} 
-                    isSingle={featuredPosts.length === 1} 
-                  />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
+    <section id="featured"  className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <div className="space-y-12 px-12">
+        {featuredPosts.length > 0 && (
+          <>
+            <motion.h2 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-3xl md:text-5xl font-bold font-serif text-forest-900 text-center"
+            >
+              Featured <span className="text-lime-500">Posts</span>
+            </motion.h2>
+            <div className={`grid gap-6 ${
+              featuredPosts.length === 1 ? 'grid-cols-1' : 
+              featuredPosts.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 
+              'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+            }`}>
+              {featuredPosts.map((post) => (
+                <FeaturedPost 
+                  key={post._id} 
+                  post={post} 
+                  isSingle={featuredPosts.length === 1} 
+                />
+              ))}
+            </div>
+          </>
+        )}
         <BlogTabs
           posts={posts}
           projectPosts={projectPosts}

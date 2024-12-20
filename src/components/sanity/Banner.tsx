@@ -3,6 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { BiBookOpen } from 'react-icons/bi';
+import { GoProject } from 'react-icons/go';
+import { HiOutlineBookmarkAlt } from 'react-icons/hi';
 
 const Banner = () => {
   const scrollToFeatured = () => {
@@ -13,10 +16,10 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-forest-900 via-forest-800 to-forest-900">
+    <div className="relative overflow-hidden bg-gradient-to-r from-forest-900 via-forest-800 to-forest-900 shadow-lg rounded-lg">
       {/* Decorative Elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-lime-500/10 to-transparent" />
       </div>
 
@@ -24,7 +27,7 @@ const Banner = () => {
         <div className="flex flex-col items-center text-center">
           {/* Main Heading */}
           <motion.h1 
-            className="font-heading text-4xl font-bold tracking-tight text-sage-100 sm:text-6xl"
+            className="font-heading text-5xl sm:text-7xl font-extrabold tracking-tight text-sage-100"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -34,7 +37,7 @@ const Banner = () => {
 
           {/* Description */}
           <motion.p 
-            className="mt-6 text-lg leading-8 text-sage-300 max-w-2xl"
+            className="mt-6 text-xl leading-8 text-sage-300 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -43,41 +46,45 @@ const Banner = () => {
             Join me as we dive into the fascinating world of modern web technologies.
           </motion.p>
 
-          {/* Stats */}
-          <motion.div 
-            className="mt-10 flex gap-8 justify-center text-sage-100"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="text-center">
-              <div className="text-4xl font-bold text-lime-500">50+</div>
-              <div className="text-sm text-sage-300 mt-1">Articles</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-lime-500">10k+</div>
-              <div className="text-sm text-sage-300 mt-1">Readers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-lime-500">100+</div>
-              <div className="text-sm text-sage-300 mt-1">Topics</div>
-            </div>
-          </motion.div>
-
-          {/* CTA Button */}
-          <motion.div 
-            className="mt-10"
+          {/* Call to Action Button */}
+          <motion.button
+            className="mt-8 px-8 py-3 bg-lime-500 text-sage-900 font-semibold rounded-full hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
+            onClick={scrollToFeatured}
           >
-            <button
-              onClick={scrollToFeatured}
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-forest-900 bg-lime-500 rounded-full hover:bg-lime-400 transition-colors duration-300"
-            >
-              Start Reading
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            Explore Featured <ArrowRight className="inline-block ml-2" />
+          </motion.button>
+
+          {/* Stats */}
+          <motion.div 
+            className="mt-12 flex gap-12 justify-center text-sage-100"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <div className="text-center flex flex-col items-center">
+              <div className="text-4xl font-bold text-lime-500">50+</div>
+              <div className="text-sm text-sage-300 mt-1 flex items-center gap-1">
+                <BiBookOpen className="w-4 h-4 text-lime-500" />
+                Articles
+              </div>
+            </div>
+            <div className="text-center flex flex-col items-center">
+              <div className="text-4xl font-bold text-lime-500">15+</div>
+              <div className="text-sm text-sage-300 mt-1 flex items-center gap-1">
+                <GoProject className="w-4 h-4 text-lime-500" />
+                Projects
+              </div>
+            </div>
+            <div className="text-center flex flex-col items-center">
+              <div className="text-4xl font-bold text-lime-500">5+</div>
+              <div className="text-sm text-sage-300 mt-1 flex items-center gap-1">
+                <HiOutlineBookmarkAlt className="w-4 h-4 text-lime-500" />
+                Topics
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

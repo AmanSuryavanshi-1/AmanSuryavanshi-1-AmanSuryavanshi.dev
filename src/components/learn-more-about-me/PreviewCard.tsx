@@ -2,7 +2,12 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ArrowUpRight} from 'lucide-react'
 import { projects } from '@/components/projects/projectsData'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import { client } from '@/sanity/lib/client'
+import type { Post } from '@/types/sanity'
+import { format } from 'date-fns'
+import { urlFor } from '@/sanity/lib/image'
+import Image from 'next/image'
 
 interface PreviewCardProps {
   type: 'projects' | 'blogs'
@@ -12,6 +17,7 @@ interface PreviewCardProps {
 export default function PreviewCard({ type, onEnter }: PreviewCardProps) {
   const videoRef1 = useRef<HTMLVideoElement>(null)
   const videoRef2 = useRef<HTMLVideoElement>(null)
+  const [posts, setPosts] = useState<Post[]>([])
   
   const videoProjects = projects.filter(project => project.video).slice(0, 2)
 
@@ -40,6 +46,28 @@ export default function PreviewCard({ type, onEnter }: PreviewCardProps) {
       if (videoRef2.current) observer.unobserve(videoRef2.current)
     }
   }, [])
+
+  useEffect(() => {
+    if (type === 'blogs') {
+      const fetchPosts = async () => {
+        try {
+          const query = `*[_type == "post" && defined(slug.current)] | order(_createdAt desc)[0...2] {
+            _id,
+            title,
+            slug,
+            _createdAt,
+            mainImage,
+            excerpt
+          }`
+          const fetchedPosts = await client.fetch<Post[]>(query)
+          setPosts(fetchedPosts)
+        } catch (error) {
+          console.error('Error fetching posts:', error)
+        }
+      }
+      fetchPosts()
+    }
+  }, [type])
 
   return (
     <motion.div
@@ -74,14 +102,28 @@ export default function PreviewCard({ type, onEnter }: PreviewCardProps) {
             </div>
           ) : (
             <div className="space-y-2">
-              <div className="bg-forest-700 p-2 rounded hover:bg-forest-500 transition-colors duration-300">
-                <p className="text-sage-100 text-sm">Latest Blog Post Title</p>
-                <p className="text-sage-300 text-xs">2 days ago</p>
-              </div>
-              <div className="bg-forest-700 p-2 rounded hover:bg-forest-500 transition-colors duration-300">
-                <p className="text-sage-100 text-sm">Another Blog Post Title</p>
-                <p className="text-sage-300 text-xs">1 week ago</p>
-              </div>
+              {posts.map((post) => (
+                <div key={post._id} className="bg-forest-700 p-2 rounded hover:bg-forest-500 transition-colors duration-300">
+                  <div className="flex items-center gap-2">
+                    {post.mainImage && (
+                      <div className="relative w-12 h-12 rounded overflow-hidden flex-shrink-0">
+                        <Image
+                          src={urlFor(post.mainImage).width(48).height(48).url()}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sage-100 text-sm font-medium line-clamp-1">{post.title}</p>
+                      <p className="text-sage-300 text-xs">
+                        {format(new Date(post._createdAt), 'MMM dd, yyyy')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
