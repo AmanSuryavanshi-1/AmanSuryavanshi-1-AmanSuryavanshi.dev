@@ -118,7 +118,7 @@ export default function BlogList() {
                 featuredPosts.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 
                 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
               }`}>
-                {featuredPosts.map((post, index) => (
+                {featuredPosts.map((post) => (
                   <FeaturedPost 
                     key={post._id} 
                     post={post} 

@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { SolidButton } from '../solid-button';
 
 const Banner = () => {
   const scrollToFeatured = () => {

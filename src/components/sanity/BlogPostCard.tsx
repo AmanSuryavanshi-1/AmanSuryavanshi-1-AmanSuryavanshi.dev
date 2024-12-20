@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { BsEye } from 'react-icons/bs';
-import { BiTime, BiCalendar } from 'react-icons/bi';
+import { BiTime } from 'react-icons/bi';
 import { format } from 'date-fns';
 import { urlFor } from '@/sanity/lib/image';
 import type { Post, PortableTextBlockType } from '@/types/sanity';
