@@ -9,9 +9,10 @@
     display: none;
   }
 
+  /* Firefox */
   * {
-    -ms-overflow-style: none;
     scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   /* Ensure transparent background */
@@ -26,6 +27,64 @@
     padding-right: 0 !important;
   }
 }
+
+/* Elegant Scrollbar Styles */
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(18, 55, 42, 0.03);
+    border-radius: 100vh;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      rgba(18, 55, 42, 0.3) 0%,
+      rgba(67, 104, 80, 0.4) 50%,
+      rgba(157, 207, 111, 0.3) 100%
+    );
+    border-radius: 100vh;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(18, 55, 42, 0.5) 0%,
+      rgba(67, 104, 80, 0.6) 50%,
+      rgba(157, 207, 111, 0.5) 100%
+    );
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(67, 104, 80, 0.4) transparent;
+  }
+
+  /* Ensure transparent background */
+  html, 
+  body {
+    background-color: transparent !important;
+  }
+
+  /* Hide scrollbar when not scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Header animation */
 @keyframes profile__animate {
   0% {
@@ -112,4 +171,3 @@
     @apply bg-background text-foreground;
   }
 }
-

@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import UnderConstructionBanner from "../components/UnderConstructionBanner";
 import Header from "../components/Header";
 import GoogleAnalyticsWrapper from "../components/GoogleAnalyticsWrapper";
 import { Analytics } from "@vercel/analytics/react"
-import Footer from "@/components/Footer";
-import CustomScrollbar from '@/components/custom-scrollbar';
+import Footer from "@/components/Footer"
 import { cn } from "@/lib/utils";
 
 // Font configurations with performance optimizations
@@ -163,9 +161,7 @@ export default function RootLayout({
           "bg-gradient-to-br from-sage-100 to-lime-500", // or whatever background you want
         )}
       >
-        <CustomScrollbar />
         <Header />
-        <UnderConstructionBanner />
         <main className="flex-grow bg-gradient-to-br from-sage-100 to-lime-500">
           {children}
           <footer className="mt-auto">
