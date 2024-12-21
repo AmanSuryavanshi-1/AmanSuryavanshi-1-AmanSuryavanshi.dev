@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { client } from '@/sanity/lib/client';
-import type { Post } from '@/types/sanity';
+import type { Post } from '@/sanity/sanity';
 import FeaturedPost from './FeaturedPost';
 import BlogTabs from './BlogTabs';
 import { motion } from 'framer-motion';

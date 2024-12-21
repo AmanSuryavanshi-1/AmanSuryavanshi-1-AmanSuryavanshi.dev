@@ -1,40 +1,37 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { format } from 'date-fns';
+import { BsEye } from 'react-icons/bs';
+import { BiTime } from 'react-icons/bi';
 import { PortableText } from '@portabletext/react';
 import { urlFor } from '@/sanity/lib/image';
+import { calculateReadTime } from '@/components/sanity/calculateReadTime';
 import { client } from '@/sanity/lib/client';
-import type { Post } from '@/types/sanity';
+import type { Post } from '@/sanity/sanity';
+import ShareButtons from '@/components/sanity/ShareButtons';
 
-type NextPageProps = {
-  params: Promise<{ slug: string }>;
-};
-
-// Function to fetch post data
 async function getPost(slug: string): Promise<Post | null> {
   const query = `*[_type == "post" && slug.current == $slug][0]{
     _id,
-    _type,
+    _createdAt,
     title,
+    slug,
     body,
+    excerpt,
     mainImage,
-    publishedAt,
+    views,
     author->{
       _id,
-      _type,
       name,
       image,
       bio
     },
     categories[]->{
       _id,
-      _type,
       title
-    },
-    excerpt
+    }
   }`;
-  
+
   try {
     const post = await client.fetch<Post>(query, { slug });
     return post;
@@ -44,164 +41,125 @@ async function getPost(slug: string): Promise<Post | null> {
   }
 }
 
-// Metadata generation function
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPost(slug);
-
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-      description: 'The blog post you\'re looking for doesn\'t exist.',
-    };
-  }
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  if (!post) return { title: 'Blog Post Not Found' };
 
   return {
-    title: post.title,
-    description: post.excerpt || `Read ${post.title} on our blog`,
-    openGraph: post.mainImage ? {
-      images: [{ url: urlFor(post.mainImage).width(1200).height(630).url() }],
-    } : undefined,
+    title: `${post.title} | Aman Suryavanshi`,
+    description: post.excerpt,
+    openGraph: {
+      images: post.mainImage ? [urlFor(post.mainImage).url()] : [],
+    },
   };
 }
 
-export default async function Page({ params }: NextPageProps): Promise<JSX.Element> {
-  const { slug } = await params;
-
-  const post = await getPost(slug);
-
+export default async function BlogPost({ params }: { params: { slug: string } }) {
+  const post = await getPost(params.slug);
+  
   if (!post) {
-    notFound();
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="text-2xl font-bold text-gray-800">Blog post not found</h1>
+      </div>
+    );
   }
 
-  const postImageUrl = post.mainImage
-    ? urlFor(post.mainImage).width(1200).height(675).url()
-    : null;
+  const readTime = calculateReadTime(post.body);
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl px-4 sm:px-6 lg:px-8 py-8">
-      <Link 
-        href="/blogs" 
-        className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-8 transition-colors"
-      >
-        <svg 
-          className="w-4 h-4 mr-2" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg>
-        Back to posts
-      </Link>
-      
-      <article className="prose lg:prose-xl max-w-none">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-          
-          <div className="flex flex-wrap items-center gap-4 text-gray-600">
-            {post.author && (
-              <div className="flex items-center gap-2">
-                {post.author.image && (
-                  <div className="relative h-10 w-10 rounded-full overflow-hidden">
-                    <Image
-                      src={urlFor(post.author.image).width(80).height(80).url()}
-                      alt={post.author.name}
-                      fill
-                      className="object-cover"
-                      sizes="40px"
-                    />
-                  </div>
-                )}
-                <span className="font-medium">{post.author.name}</span>
-              </div>
-            )}
-            
-            {post.publishedAt && (
-              <time dateTime={post.publishedAt} className="text-sm">
-                {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </time>
-            )}
-
-            {post.categories && post.categories.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+    <article className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+      {/* Hero Section */}
+      <div className="relative h-[70vh] w-full">
+        {post.mainImage && (
+          <>
+            <Image
+              src={urlFor(post.mainImage).url()}
+              alt={post.mainImage.alt || post.title}
+              fill
+              priority
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          </>
+        )}
+        
+        {/* Hero Content */}
+        <div className="absolute bottom-0 w-full p-8 text-white">
+          <div className="container mx-auto max-w-4xl">
+            {post.categories && (
+              <div className="mb-4 flex gap-2">
                 {post.categories.map((category) => (
-                  <span 
+                  <span
                     key={category._id}
-                    className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm"
+                    className="rounded-full bg-forest-500 px-3 py-1 text-sm"
                   >
                     {category.title}
                   </span>
                 ))}
               </div>
             )}
+            <h1 className="mb-4 text-4xl md:text-5xl lg:text-6xl font-bold">{post.title}</h1>
+            <div className="flex items-center gap-6 text-sm">
+              <div className="flex items-center gap-2">
+                <BiTime className="h-5 w-5" />
+                <span>{readTime} min read</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BsEye className="h-5 w-5" />
+                <span>
+                  {/* {post.views || 0} */}
+                   28K views</span>
+              </div>
+              <time className="flex items-center gap-2">
+                {format(new Date(post._createdAt), 'MMM dd, yyyy')}
+              </time>
+            </div>
           </div>
-        </header>
+        </div>
+      </div>
 
-        {postImageUrl && (
-          <figure className="relative aspect-video w-full mb-8 rounded-lg overflow-hidden">
-            <Image
-              src={postImageUrl}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </figure>
+      {/* Main Content */}
+      <div className="container mx-auto max-w-4xl px-4 py-12">
+        {/* Author Info */}
+        {post.author && (
+          <div className="mb-12 flex items-center gap-4">
+            {post.author.image && (
+              <Image
+                src={urlFor(post.author.image).url()}
+                alt={post.author.name}
+                width={64}
+                height={64}
+                className="rounded-full"
+              />
+            )}
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900">{post.author.name}</h3>
+              {post.author.bio && (
+                <div className="text-gray-600 prose-sm">
+                  <PortableText value={post.author.bio} />
+                </div>
+              )}
+            </div>
+          </div>
         )}
 
-        <div className="mt-8">
-          <PortableText
-            value={post.body}
-            components={{
-              block: {
-                h1: ({children}) => (
-                  <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
-                ),
-                h2: ({children}) => (
-                  <h2 className="text-2xl font-bold mt-6 mb-3">{children}</h2>
-                ),
-                normal: ({children}) => (
-                  <p className="mb-4 leading-relaxed">{children}</p>
-                ),
-              },
-              list: {
-                bullet: ({children}) => (
-                  <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>
-                ),
-                number: ({children}) => (
-                  <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>
-                ),
-              },
-              marks: {
-                link: ({value, children}) => {
-                  const target = (value?.href || '').startsWith('http') ? '_blank' : undefined;
-                  return (
-                    <a 
-                      href={value?.href} 
-                      target={target}
-                      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-                      className="text-blue-600 hover:text-blue-800 transition-colors"
-                    >
-                      {children}
-                    </a>
-                  );
-                },
-              },
-            }}
-          />
+        {/* Blog Content */}
+        <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-forest-600 prose-strong:text-gray-900">
+          <PortableText value={post.body} />
         </div>
-      </article>
-    </main>
+
+        {/* Share Section */}
+        <div className="mt-12 flex items-center justify-between border-t border-gray-200 pt-6">
+          <div className="flex items-center gap-4">
+            <span className="font-medium text-gray-700">Share this post:</span>
+            <ShareButtons 
+              title={post.title} 
+              url={`${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${post.slug.current}`} 
+            />
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }

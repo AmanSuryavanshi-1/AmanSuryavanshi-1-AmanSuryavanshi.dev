@@ -1,4 +1,4 @@
-import type { Post } from '@/types/sanity';
+import type { Post } from '@/sanity/sanity';
 import BlogPostCard from './BlogPostCard';
 
 interface BlogPostsProps {

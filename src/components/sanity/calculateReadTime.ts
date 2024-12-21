@@ -1,4 +1,4 @@
-import type { PortableTextBlockType } from '@/types/sanity';
+import type { PortableTextBlockType } from '@/sanity/sanity';
 
 export const calculateReadTime = (body: PortableTextBlockType[] | undefined): number => {
   if (!body || !Array.isArray(body)) return 0;

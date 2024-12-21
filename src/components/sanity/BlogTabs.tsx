@@ -1,6 +1,6 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Code, Briefcase, FileCode } from 'lucide-react';
-import type { Post } from '@/types/sanity';
+import type { Post } from '@/sanity/sanity';
 import BlogPosts from './BlogPosts';
 
 interface BlogTabsProps {

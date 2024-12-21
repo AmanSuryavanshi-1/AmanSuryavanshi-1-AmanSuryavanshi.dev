@@ -4,7 +4,7 @@ import { BsEye } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { format } from 'date-fns';
 import { urlFor } from '@/sanity/lib/image';
-import type { Post, PortableTextBlockType } from '@/types/sanity';
+import type { Post, PortableTextBlockType } from '@/sanity/sanity';
 import { calculateReadTime } from './calculateReadTime';
 
 interface BlogPostCardProps {

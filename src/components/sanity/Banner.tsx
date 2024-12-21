@@ -16,7 +16,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-forest-900 via-forest-800 to-forest-900 shadow-lg rounded-lg">
+    <div className="relative overflow-hidden h-[100vh] bg-gradient-to-r from-forest-900 via-forest-800 to-forest-900 shadow-lg">
       {/* Decorative Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
