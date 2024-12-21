@@ -10,6 +10,10 @@ import { client } from '@/sanity/lib/client';
 import type { Post } from '@/sanity/sanity';
 import ShareButtons from '@/components/sanity/ShareButtons';
 
+type NextPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
 async function getPost(slug: string): Promise<Post | null> {
   const query = `*[_type == "post" && slug.current == $slug][0]{
     _id,
@@ -41,8 +45,10 @@ async function getPost(slug: string): Promise<Post | null> {
   }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  
   if (!post) return { title: 'Blog Post Not Found' };
 
   return {
@@ -54,8 +60,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+export default async function BlogPost({ params }: NextPageProps): Promise<JSX.Element> {
+  const { slug } = await params;
+  const post = await getPost(slug);
   
   if (!post) {
     return (
