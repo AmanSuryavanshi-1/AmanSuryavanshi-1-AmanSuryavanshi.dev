@@ -157,12 +157,12 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
         </div>
 
         {/* Share Section */}
-        <div className="mt-16 border-t-2 border-gray-200">
+        <div className="mt-16 border-t-2 border-forest-500/30">
           <div className="mx-auto max-w-3xl py-8">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-medium text-gray-900">Share this article</h3>
-                <p className="mt-1 text-sm text-lime-700">Help others discover this content</p>
+                <h3 className="text-base font-medium text-forest-900">Share this article</h3>
+                <p className="mt-1 text-sm text-lime-700 font-medium">Help others discover this content</p>
               </div>
               <div>
                 <ShareButtons 

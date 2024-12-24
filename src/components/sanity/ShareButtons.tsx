@@ -59,7 +59,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
     try {
       await navigator.clipboard.writeText(url);
       toast.success('Link copied to clipboard!');
-    } catch (err) {
+    } catch (_) {
       toast.error('Failed to copy link');
     }
   };
@@ -77,7 +77,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-forest-900 hover:text-lime-700 transition-colors duration-200"
+          className="text-forest-900 hover:text-lime-700 transition-colors duration-300"
           variants={itemVariants}
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
@@ -88,7 +88,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
       ))}
       <motion.button
         onClick={copyToClipboard}
-        className="text-forest-900 hover:text-lime-700 transition-colors duration-200"
+        className="text-forest-900 hover:text-lime-700 transition-colors duration-300"
         variants={itemVariants}
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.95 }}
