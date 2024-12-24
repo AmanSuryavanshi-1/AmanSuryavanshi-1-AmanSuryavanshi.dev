@@ -99,8 +99,8 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
                 {post.categories.map((category) => (
                   <span
                     key={category._id}
-                    className="rounded-full bg-forest-500 px-3 py-1 text-sm"
-                  >
+                    className="px-4 py-1 text-xs font-medium bg-forest-900 border-2 bg-opacity-80 border-white text-sage-100 backdrop-blur-sm rounded-full group-hover:bg-lime-500 group-hover:text-forest-900 transition-colors duration-300"
+                    >
                     {category.title}
                   </span>
                 ))}
@@ -157,13 +157,20 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
         </div>
 
         {/* Share Section */}
-        <div className="mt-12 flex items-center justify-between border-t border-gray-200 pt-6">
-          <div className="flex items-center gap-4">
-            <span className="font-medium text-gray-700">Share this post:</span>
-            <ShareButtons 
-              title={post.title} 
-              url={`${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${post.slug.current}`} 
-            />
+        <div className="mt-16 border-t-2 border-gray-200">
+          <div className="mx-auto max-w-3xl py-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-base font-medium text-gray-900">Share this article</h3>
+                <p className="mt-1 text-sm text-lime-700">Help others discover this content</p>
+              </div>
+              <div>
+                <ShareButtons 
+                  title={post.title} 
+                  url={`${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${post.slug.current}`} 
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

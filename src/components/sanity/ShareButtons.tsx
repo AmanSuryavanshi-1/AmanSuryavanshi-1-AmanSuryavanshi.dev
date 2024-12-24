@@ -1,13 +1,9 @@
 'use client';
 
 import React from 'react';
-import {
-  FaTwitter,
-  FaLinkedinIn,
-  FaFacebookF,
-  FaWhatsapp,
-  FaCopy,
-} from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { Twitter, Linkedin, Facebook, Copy } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { toast } from 'sonner';
 
 interface ShareButtonsProps {
@@ -19,66 +15,87 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 
+  const containerVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { 
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   const shareLinks = [
     {
       name: 'Twitter',
-      icon: FaTwitter,
+      icon: Twitter,
       href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
-      bgColor: 'bg-[#1DA1F2] hover:bg-[#1a8cd8]',
     },
     {
       name: 'LinkedIn',
-      icon: FaLinkedinIn,
+      icon: Linkedin,
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      bgColor: 'bg-[#0A66C2] hover:bg-[#094ea3]',
     },
     {
       name: 'Facebook',
-      icon: FaFacebookF,
+      icon: Facebook,
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      bgColor: 'bg-[#1877F2] hover:bg-[#1664d9]',
     },
     {
       name: 'WhatsApp',
       icon: FaWhatsapp,
       href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
-      bgColor: 'bg-[#25D366] hover:bg-[#20bd5a]',
-    },
+    }
   ];
 
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(url);
       toast.success('Link copied to clipboard!');
-    } catch {
+    } catch (err) {
       toast.error('Failed to copy link');
     }
   };
 
   return (
-    <div className="flex items-center gap-3">
-      {shareLinks.map((link) => {
-        const Icon = link.icon;
-        return (
-          <a
-            key={link.name}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${link.bgColor} text-white p-2 rounded-full transition-all duration-300 hover:scale-110`}
-            title={`Share on ${link.name}`}
-          >
-            <Icon className="w-4 h-4" />
-          </a>
-        );
-      })}
-      <button
+    <motion.div
+      className="flex items-center gap-4"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {shareLinks.map((link) => (
+        <motion.a
+          key={link.name}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-forest-900 hover:text-lime-700 transition-colors duration-200"
+          variants={itemVariants}
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={`Share on ${link.name}`}
+        >
+          <link.icon className="h-5 w-5" />
+        </motion.a>
+      ))}
+      <motion.button
         onClick={copyToClipboard}
-        className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
-        title="Copy link"
+        className="text-forest-900 hover:text-lime-700 transition-colors duration-200"
+        variants={itemVariants}
+        whileHover={{ y: -2 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Copy link"
       >
-        <FaCopy className="w-4 h-4" />
-      </button>
-    </div>
+        <Copy className="h-5 w-5" />
+      </motion.button>
+    </motion.div>
   );
 }
