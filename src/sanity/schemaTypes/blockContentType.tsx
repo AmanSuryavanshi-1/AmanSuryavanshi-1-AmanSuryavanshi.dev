@@ -20,10 +20,6 @@ export const blockContentType = defineType({
   of: [
     defineArrayMember({
       type: 'block',
-      // Styles let you define what blocks can be marked up as. The default
-      // set corresponds with HTML tags, but you can set any title or value
-      // you want, and decide how you want to deal with it where you want to
-      // use your content.
       styles: [
         {title: 'Normal', value: 'normal'},
         {title: 'H1', value: 'h1'},
@@ -39,57 +35,124 @@ export const blockContentType = defineType({
             </blockquote>
           )
         },
+        {
+          title: 'Toggle',
+          value: 'toggle',
+          component: ({children}) => (
+            <details className="group">
+              <summary className="list-none cursor-pointer">
+                {children}
+              </summary>
+              <div className="pl-4 mt-2">
+                {/* Content will be nested here */}
+              </div>
+            </details>
+          )
+        },
       ],
-      lists: [{title: 'Bullet', value: 'bullet'}],
-      // Marks let you mark up inline text in the Portable Text Editor
+      lists: [
+        {title: 'Bullet', value: 'bullet'},
+        {title: 'Numbered', value: 'number'},
+        {title: 'Check List', value: 'checkbox'}
+      ],
       marks: {
-        // Decorators usually describe a single property – e.g. a typographic
-        // preference or highlighting
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
+          {title: 'Code', value: 'code'},
+          {title: 'Underline', value: 'underline'},
+          {title: 'Strike', value: 'strike-through'},
+          {title: 'Highlight', value: 'highlight'},
         ],
-        // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'URL',
-            name: 'link',
+            name: 'color',
+            title: 'Color',
             type: 'object',
             fields: [
               {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
+                name: 'value',
+                title: 'Color',
+                type: 'string',
+                options: {
+                  list: [
+                    {title: 'Default', value: 'default'},
+                    {title: 'Primary', value: 'primary'},
+                    {title: 'Secondary', value: 'secondary'},
+                    {title: 'Success', value: 'success'},
+                    {title: 'Warning', value: 'warning'},
+                    {title: 'Danger', value: 'danger'},
+                    {title: 'Info', value: 'info'},
+                  ],
+                },
               },
             ],
+            components: {
+              annotation: ({children, value}: {children: React.ReactNode, value?: {value: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'}}) => {
+                const colorMap = {
+                  default: 'text-gray-900',
+                  primary: 'text-blue-600',
+                  secondary: 'text-purple-600',
+                  success: 'text-green-600',
+                  warning: 'text-yellow-600',
+                  danger: 'text-red-600',
+                  info: 'text-cyan-600',
+                } as const;
+                return <span className={colorMap[value?.value || 'default']}>{children}</span>
+              }
+            },
           },
-        ],
-      },
+          {
+            name: 'link',
+            type: 'object',
+            title: 'Link',
+            fields: [
+              {
+                name: 'href',
+                type: 'url',
+                title: 'URL'
+              }
+            ]
+          }
+        ]
+      }
     }),
-    // You can add additional types here. Note that you can't use
-    // primitive types such as 'string' and 'number' in the same array
-    // as a block type.
     defineArrayMember({
-      name: 'image',
       type: 'image',
-      title: 'Image',
       icon: ImageIcon,
       options: {hotspot: true},
       fields: [
         {
           name: 'alt',
           type: 'string',
-          title: 'Alternative Text',
-          description: 'Alternative text for screen readers',
-          validation: Rule => Rule.required(),
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
         },
         {
           name: 'caption',
           type: 'string',
           title: 'Caption',
-          description: 'Caption displayed below the image'
+          description: 'Image caption displayed below the image.'
         }
       ]
     }),
-  ],
+    defineArrayMember({
+      type: 'code',
+      name: 'code',
+      title: 'Code Block',
+      options: {
+        language: 'javascript',
+        languageAlternatives: [
+          {title: 'JavaScript', value: 'javascript'},
+          {title: 'TypeScript', value: 'typescript'},
+          {title: 'HTML', value: 'html'},
+          {title: 'CSS', value: 'css'},
+          {title: 'Python', value: 'python'},
+          {title: 'JSX', value: 'jsx'},
+          {title: 'TSX', value: 'tsx'},
+        ],
+        withFilename: true,
+      },
+    })
+  ]
 })

@@ -9,6 +9,7 @@ import { calculateReadTime } from '@/components/sanity/calculateReadTime';
 import { client } from '@/sanity/lib/client';
 import type { Post } from '@/sanity/sanity';
 import ShareButtons from '@/components/sanity/ShareButtons';
+import { portableTextComponents } from '@/components/sanity/PortableTextComponents';
 
 type NextPageProps = {
   params: Promise<{ slug: string }>;
@@ -75,9 +76,9 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
   const readTime = calculateReadTime(post.body);
 
   return (
-    <article className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <article className="min-h-screen bg-gradient-to-b from-sage-100 to-lime-200">
       {/* Hero Section */}
-      <div className="relative h-[70vh] w-full">
+      <div className="relative h-[65vh] w-full">
         {post.mainImage && (
           <>
             <Image
@@ -153,7 +154,10 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
 
         {/* Blog Content */}
         <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-forest-600 prose-strong:text-gray-900">
-          <PortableText value={post.body} />
+          <PortableText 
+            value={post.body} 
+            components={portableTextComponents}
+          />
         </div>
 
         {/* Share Section */}
