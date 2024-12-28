@@ -99,8 +99,8 @@ export default function BlogList() {
   const javascriptPosts = getPostsByCategory('javascript');
 
   return (
-    <section id="featured"  className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-      <div className="space-y-12 px-12">
+    <section id="featured"  className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 max-md:px-4">
+      <div className="space-y-12">
         {featuredPosts.length > 0 && (
           <>
             <motion.h2 
