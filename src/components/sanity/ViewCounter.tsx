@@ -11,6 +11,7 @@ interface ViewCounterProps {
 
 export default function ViewCounter({ postId, noCount = false, increment = false }: ViewCounterProps) {
   const [views, setViews] = useState<number>(0);
+  const [error, setError] = useState<boolean>(false);
   const hasIncremented = useRef(false);
 
   useEffect(() => {
@@ -27,19 +28,33 @@ export default function ViewCounter({ postId, noCount = false, increment = false
         // Only increment if we're on the blog post page and haven't incremented yet
         if (increment && !hasIncremented.current) {
           hasIncremented.current = true;
-          await fetch('/api/increment-views', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ postId }),
-          });
+          
+          try {
+            const response = await fetch('/api/increment-views', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ postId }),
+            });
 
-          // Update the local state
-          setViews((prev) => prev + 1);
+            const data = await response.json();
+
+            if (!response.ok) {
+              console.error('Failed to increment views. Status:', response.status);
+              console.error('Error details:', data);
+              return;
+            }
+
+            // Update the local state only if the API call was successful
+            setViews((prev) => prev + 1);
+          } catch (incrementError) {
+            console.error('Error during view increment:', incrementError);
+          }
         }
       } catch (error) {
-        console.error('Error with views:', error);
+        console.error('Error fetching views:', error);
+        setError(true);
       }
     };
 
@@ -48,6 +63,10 @@ export default function ViewCounter({ postId, noCount = false, increment = false
 
   if (noCount) {
     return null;
+  }
+
+  if (error) {
+    return <span>Error loading views</span>;
   }
 
   return <span>{views} views</span>;
