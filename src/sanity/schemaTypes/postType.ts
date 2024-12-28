@@ -59,6 +59,12 @@ export const postType = defineType({
       type: 'blockContent',
       title: 'Body Content'
     }),
+    defineField({
+      name: 'viewCount',
+      type: 'number',
+      title: 'View Count',
+      initialValue: 0,
+    }),
   ],
   preview: {
     select: {

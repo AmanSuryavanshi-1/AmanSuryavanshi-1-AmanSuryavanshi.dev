@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { urlFor } from '@/sanity/lib/image';
 import type { Post, PortableTextBlockType } from '@/sanity/sanity';
 import { calculateReadTime } from './calculateReadTime';
+import ViewCounter from './ViewCounter';
 
 interface BlogPostCardProps {
   post: Post;
@@ -78,7 +79,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, priority = false }) =
                 />
               )}
               <div>
-                <p className="text-sm font-medium text-forest-900">{post.author?.name}</p>
+                <p className="text-xs font-medium text-forest-900 ">{post.author?.name}</p>
                 <p className="text-xs text-forest-600">
                   {format(new Date(post._createdAt), 'MMM dd, yyyy')}
                 </p>
@@ -86,12 +87,12 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, priority = false }) =
             </div>
             <div className="flex items-center gap-3 text-forest-600 text-sm">
               <span className="flex items-center gap-1">
-                <BiTime className="w-4 h-4" />
+                <BiTime className="w-3 h-3" />
                 {readTime} min
               </span>
               <span className="flex items-center gap-1">
-                <BsEye className="w-4 h-4" />
-                {/* {post.views || 0} */} 986 
+                <BsEye className="w-3 h-3" />
+                <ViewCounter postId={post._id} />
               </span>
             </div>
           </div>

@@ -10,6 +10,7 @@ import { client } from '@/sanity/lib/client';
 import type { Post } from '@/sanity/sanity';
 import ShareButtons from '@/components/sanity/ShareButtons';
 import { portableTextComponents } from '@/components/sanity/PortableTextComponents';
+import ViewCounter from '@/components/sanity/ViewCounter';
 
 type NextPageProps = {
   params: Promise<{ slug: string }>;
@@ -34,7 +35,8 @@ async function getPost(slug: string): Promise<Post | null> {
     categories[]->{
       _id,
       title
-    }
+    },
+    viewCount
   }`;
 
   try {
@@ -115,9 +117,7 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
               </div>
               <div className="flex items-center gap-2">
                 <BsEye className="h-5 w-5" />
-                <span>
-                  {/* {post.views || 0} */}
-                   28K views</span>
+                <ViewCounter postId={post._id} increment={true} />
               </div>
               <time className="flex items-center gap-2">
                 {format(new Date(post._createdAt), 'MMM dd, yyyy')}

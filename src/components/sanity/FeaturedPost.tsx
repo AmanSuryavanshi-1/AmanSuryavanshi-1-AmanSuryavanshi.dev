@@ -7,6 +7,7 @@ import { BiTime } from 'react-icons/bi';
 import { urlFor } from '@/sanity/lib/image';
 import type { Post, PortableTextBlockType } from '@/sanity/sanity';
 import { calculateReadTime } from './calculateReadTime';
+import ViewCounter from './ViewCounter';
 
 interface FeaturedPostProps {
     post: Post;
@@ -117,21 +118,21 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post, isSingle }) => {
                             )}
                             <div>
                                 <p className="text-sm font-medium text-sage-100">{post.author?.name}</p>
-                                <p className="text-xs text-sage-300">
-                                    {format(new Date(post._createdAt), 'MMM dd, yyyy')}
-                                </p>
                             </div>
                         </div>
                         
-                        <div className="flex items-center gap-4 text-sm text-sage-300">
-                            <span className="flex items-center gap-1.5">
-                                <BiTime className="w-4 h-4" />
-                                {readTime} min
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                                <BsEye className="w-4 h-4" />
-                                {/* {post.views || 0} */} 296
-                            </span>
+                        <div className="flex items-center gap-4 text-sm">
+                            <div className="flex items-center gap-1 text-sage-100">
+                                <BiTime className="h-4 w-4" />
+                                <span>{readTime} min read</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-sage-100">
+                                <BsEye className="h-4 w-4" />
+                                <ViewCounter postId={post._id} />
+                            </div>
+                            <time className="flex items-center gap-1 text-sage-100">
+                                {format(new Date(post._createdAt), 'MMM dd, yyyy')}
+                            </time>
                         </div>
                     </div>
                 </div>
