@@ -1,6 +1,16 @@
 import { NextResponse } from 'next/server';
 import { writeClient } from '@/sanity/lib/client';
 
+// Define error types
+interface SanityError extends Error {
+  message: string;
+  statusCode?: number;
+}
+
+interface RequestError extends Error {
+  message: string;
+}
+
 export async function POST(request: Request) {
   if (!process.env.NEXT_PUBLIC_SANITY_API_WRITE_TOKEN) {
     console.error('Sanity write token is missing in API route');
@@ -29,7 +39,8 @@ export async function POST(request: Request) {
         .commit();
 
       return NextResponse.json({ success: true });
-    } catch (sanityError: any) {
+    } catch (error) {
+      const sanityError = error as SanityError;
       console.error('Sanity mutation error:', sanityError);
       return NextResponse.json(
         { 
@@ -39,12 +50,13 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
-  } catch (error: any) {
-    console.error('Error incrementing view count:', error);
+  } catch (error) {
+    const requestError = error as RequestError;
+    console.error('Error incrementing view count:', requestError);
     return NextResponse.json(
       { 
         error: 'Failed to increment view count',
-        details: error.message
+        details: requestError.message
       },
       { status: 500 }
     );
