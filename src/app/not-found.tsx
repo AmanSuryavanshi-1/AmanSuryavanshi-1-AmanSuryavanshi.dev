@@ -52,7 +52,6 @@ const Firefly = ({ delay = 0 }) => (
 const EyesAnimation = () => {
   const leftEyeControls = useAnimationControls()
   const rightEyeControls = useAnimationControls()
-  const [isReading, setIsReading] = useState(false)
 
   const blink = async () => {
     await Promise.all([
@@ -74,7 +73,6 @@ const EyesAnimation = () => {
 
     const sequence = async () => {
       const readLine = async (startX: number, endX: number, y: number) => {
-        setIsReading(true)
         for (let x = startX; x <= endX; x += 1) {
           await Promise.all([
             leftEyeControls.start({ x, y, transition: { duration: 0.2 } }),
@@ -95,8 +93,6 @@ const EyesAnimation = () => {
         await readLine(-4, 4, 6)
         await readLine(-4, 4, 7)
         
-        setIsReading(false)
-        
         for (let i = 0; i < 3; i++) {
           const x = Math.random() * 6 - 3
           const y = Math.random() * 4
@@ -111,7 +107,7 @@ const EyesAnimation = () => {
 
     sequence()
     return () => clearInterval(blinkInterval)
-  }, [leftEyeControls, rightEyeControls])
+  }, [leftEyeControls, rightEyeControls, blink])
 
   return (
     <motion.div 
@@ -248,11 +244,11 @@ export default function NotFound() {
           className="space-y-6"
         >
           <h1 className="text-3xl md:text-5xl font-bold text-sage-100 leading-tight">
-            Oops! You've wandered off the trail.
+            Oops! You&apos;ve wandered off the trail.
           </h1>
           
           <p className="text-xl text-sage-300 max-w-lg mx-auto leading-relaxed">
-            Don't worry, even the most experienced explorers get lost sometimes. Let's get you back on track!
+            Don&apos;t worry, even the most experienced explorers get lost sometimes. Let&apos;s get you back on track!
           </p>
 
           <motion.div
