@@ -6,22 +6,19 @@ import { FaHome } from 'react-icons/fa'
 import { IoArrowBackOutline } from 'react-icons/io5'
 import { useEffect } from 'react'
 
-const Tree = ({ scale = 1, position = 0, delay = 0, zIndex = 0 }) => (
+const Tree = ({ height = '30vh', left = 0, delay = 0 }) => (
   <motion.div
     className="absolute bottom-0"
     style={{ 
-      left: `${position}%`,
-      transform: `scale(${scale})`,
-      width: '120px',
-      height: '240px',
-      zIndex,
-      opacity: 0.8 - (zIndex * 0.1)
+      left: `${left}%`,
+      height,
+      aspectRatio: '1/2',
     }}
     initial={{ y: 20, opacity: 0 }}
-    animate={{ y: 0, opacity: 0.8 - (zIndex * 0.1) }}
+    animate={{ y: 0, opacity: 0.8 }}
     transition={{ duration: 0.5, delay }}
   >
-    <svg viewBox="0 0 100 200" className="text-forest-900/30">
+    <svg viewBox="0 0 100 200" className="w-full h-full text-forest-900/40">
       <path d="M50 0 L10 80 H90 Z" fill="currentColor"/>
       <path d="M50 40 L0 120 H100 Z" fill="currentColor"/>
       <path d="M50 80 L5 160 H95 Z" fill="currentColor"/>
@@ -30,21 +27,32 @@ const Tree = ({ scale = 1, position = 0, delay = 0, zIndex = 0 }) => (
   </motion.div>
 )
 
-const Firefly = ({ delay = 0 }) => (
+const GlowingBall = ({ delay = 0, left = 50 }) => (
   <motion.div
-    className="absolute w-2 h-2 bg-sage-100 rounded-full"
-    initial={{ scale: 0, opacity: 0 }}
+    className="absolute top-0 pointer-events-none"
+    style={{ 
+      left: `${left}%`,
+      width: '6px',
+      height: '6px',
+      background: 'white',
+      borderRadius: '50%',
+      boxShadow: `
+        0 0 4px 2px rgba(255, 255, 255, 0.3),
+        0 0 8px 4px rgba(255, 255, 255, 0.2),
+        0 0 12px 6px rgba(255, 255, 255, 0.1)
+      `
+    }}
+    initial={{ y: -20, opacity: 0 }}
     animate={{
-      scale: [1, 0.5, 1],
-      opacity: [0, 0.8, 0],
-      y: [-20, -40, -20],
-      x: [-10, 10, -10]
+      y: ['0vh', '100vh'],
+      opacity: [0, 1, 0],
+      scale: [0.8, 1.2, 0.8]
     }}
     transition={{
-      duration: 4,
+      duration: 5 + Math.random() * 3,
       delay,
       repeat: Infinity,
-      ease: "easeInOut"
+      ease: "linear"
     }}
   />
 )
@@ -111,113 +119,103 @@ const EyesAnimation = () => {
 
   return (
     <motion.div 
-      className="w-40 h-40 md:w-48 md:h-48 mx-auto mb-8 relative"
+      className="w-40 h-40 md:w-44 md:h-44 mx-auto mb-8 relative"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
-      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      transition={{ duration: 0.3 }}
     >
+      {/* Spring Antenna */}
       <motion.div 
-        className="w-full h-full rounded-full bg-lime-500 flex items-center justify-center
-                   shadow-[0_0_30px_rgba(157,207,111,0.3)] transition-shadow duration-300"
-        animate={{ 
-          scale: [1, 1.05, 1],
+        className="absolute -top-6 left-1/2 -translate-x-1/2"
+        animate={{
+          rotateZ: [-4, 4, -4],
         }}
-        transition={{ 
-          duration: 3,
+        transition={{
+          duration: 2,
           repeat: Infinity,
           ease: "easeInOut"
         }}
       >
-        {[...Array(5)].map((_, i) => (
-          <Firefly key={i} delay={i * 0.8} />
-        ))}
-        
+        <div className="w-1.5 bg-forest-700" style={{ height: '20px' }}>
+          <svg width="6" height="20" viewBox="0 0 6 20">
+            <path
+              d="M3,0 Q6,4 3,8 Q0,12 3,16 Q6,20 3,20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+          </svg>
+        </div>
+        <div className="w-3 h-3 rounded-full bg-lime-500 absolute -top-1.5 left-1/2 -translate-x-1/2
+                     shadow-[0_0_8px_rgba(157,207,111,0.6)]" />
+      </motion.div>
+
+      {/* Head */}
+      <div className="w-full h-full bg-sage-100 rounded-xl flex items-center justify-center
+                    relative border-2 border-forest-900 shadow-lg">
+        {/* Side Panels */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-3 h-7 bg-lime-500 rounded-l-lg border-2 border-forest-900" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-3 h-7 bg-lime-500 rounded-r-lg border-2 border-forest-900" />
+
+        {/* Rivets */}
+        <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-forest-700" />
+        <div className="absolute top-3 left-3 w-1.5 h-1.5 rounded-full bg-forest-700" />
+        <div className="absolute bottom-3 right-3 w-1.5 h-1.5 rounded-full bg-forest-700" />
+        <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full bg-forest-700" />
+
+        {/* Eyes */}
         <div className="flex gap-6 -mt-2">
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-forest-700 flex items-center justify-center relative overflow-hidden">
+          <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-sage-300 flex items-center justify-center relative
+                       border-2 border-forest-900">
             <motion.div 
-              className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-sage-100 absolute"
+              className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-lime-500 absolute
+                       shadow-[0_0_8px_rgba(157,207,111,0.4)]"
               animate={leftEyeControls}
               transition={{ duration: 0.4 }}
-            />
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-1.5 h-1.5 bg-sage-100 rounded-full" />
+              </div>
+            </motion.div>
           </div>
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-forest-700 flex items-center justify-center relative overflow-hidden">
+          <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-sage-300 flex items-center justify-center relative
+                       border-2 border-forest-900">
             <motion.div 
-              className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-sage-100 absolute"
+              className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-lime-500 absolute
+                       shadow-[0_0_8px_rgba(157,207,111,0.4)]"
               animate={rightEyeControls}
               transition={{ duration: 0.4 }}
-            />
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-1.5 h-1.5 bg-sage-100 rounded-full" />
+              </div>
+            </motion.div>
           </div>
         </div>
-      </motion.div>
+
+        {/* Mouth */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-16 h-3 bg-sage-300 rounded-sm
+                     border-2 border-forest-900" />
+      </div>
     </motion.div>
   )
 }
 
 export default function NotFound() {
   return (
-    <main className="flex flex-col items-center justify-center py-16 relative bg-gradient-to-br from-forest-900 via-forest-700 to-forest-900 overflow-hidden">
-      <div className="absolute inset-0">
-        <motion.div 
-          className="absolute inset-0 bg-[linear-gradient(45deg,transparent_0%,#436850_100%)]"
-          animate={{
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+    <main className="flex flex-col items-center justify-center h-screen py-12 pt-32 relative bg-gradient-to-br from-forest-900 via-forest-700 to-forest-900 overflow-hidden">
+      {/* Trees */}
+      <Tree height="60vh" left={2} delay={0} />
+      <Tree height="35vh" left={15} delay={0.2} />
+
+      {/* Glowing Balls */}
+      {[...Array(30)].map((_, i) => (
+        <GlowingBall 
+          key={i} 
+          delay={i * 0.2} 
+          left={Math.random() * 100}
         />
-        <div className="absolute inset-0 backdrop-blur-[100px]" />
-      </div>
-
-      {/* Large trees on the left side */}
-      <div className="absolute left-[-5%] bottom-0 z-10">
-        <Tree scale={5} position={-5} delay={0} zIndex={4} />
-        <Tree scale={4} position={5} delay={0.1} zIndex={4} />
-        <Tree scale={3.5} position={15} delay={0.2} zIndex={4} />
-        <Tree scale={3} position={25} delay={0.3} zIndex={4} />
-      </div>
-
-      {/* Additional medium trees */}
-      <div className="absolute left-[-2%] bottom-0 z-9">
-        <Tree scale={2.8} position={25} delay={0.3} zIndex={3} />
-        <Tree scale={2.5} position={35} delay={0.4} zIndex={3} />
-        <Tree scale={2.2} position={45} delay={0.5} zIndex={3} />
-        <Tree scale={2} position={55} delay={0.6} zIndex={3} />
-      </div>
-
-      <div className="absolute bottom-0 w-full overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <Tree 
-            key={`back-${i}`}
-            scale={1.2 + Math.random() * 0.5}
-            position={i * 8 - 20}
-            delay={i * 0.1}
-            zIndex={1}
-          />
-        ))}
-        
-        {[...Array(18)].map((_, i) => (
-          <Tree 
-            key={`mid-${i}`}
-            scale={0.8 + Math.random() * 0.4}
-            position={i * 7 - 15}
-            delay={i * 0.1}
-            zIndex={2}
-          />
-        ))}
-        
-        {[...Array(25)].map((_, i) => (
-          <Tree 
-            key={`front-${i}`}
-            scale={0.4 + Math.random() * 0.3}
-            position={i * 5 - 10}
-            delay={i * 0.1}
-            zIndex={3}
-          />
-        ))}
-      </div>
+      ))}
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 text-center">
         <motion.div
@@ -251,17 +249,11 @@ export default function NotFound() {
             Don&apos;t worry, even the most experienced explorers get lost sometimes. Let&apos;s get you back on track!
           </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8"
-          >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
             <Link
               href="/"
               className="group flex items-center gap-3 px-8 py-4 bg-lime-500 text-forest-900 rounded-xl
-                       hover:bg-lime-700 transform hover:scale-105 transition-all duration-300 font-medium
-                       shadow-[0_0_20px_rgba(157,207,111,0.3)] hover:shadow-[0_0_30px_rgba(157,207,111,0.5)]"
+                       hover:bg-lime-700 transition-all duration-300 font-medium shadow-lg"
             >
               <FaHome className="w-5 h-5" />
               <span>Return to Base Camp</span>
@@ -270,30 +262,14 @@ export default function NotFound() {
               onClick={() => window.history.back()}
               className="group flex items-center gap-3 px-8 py-4 text-sage-100 rounded-xl
                        border-2 border-sage-300/20 hover:border-sage-300/40 hover:bg-sage-300/5
-                       transform hover:scale-105 transition-all duration-300"
+                       transition-all duration-300"
             >
               <IoArrowBackOutline className="w-5 h-5 group-hover:-translate-x-2 transition-transform duration-300" />
               <span>Retrace Your Steps</span>
             </button>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
-
-      <motion.div 
-        className="absolute -bottom-1/2 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full"
-        style={{
-          background: 'radial-gradient(circle, rgba(157,207,111,0.1) 0%, rgba(157,207,111,0) 70%)',
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
     </main>
   )
 }
