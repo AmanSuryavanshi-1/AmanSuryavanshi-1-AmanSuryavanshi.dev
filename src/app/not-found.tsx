@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { motion, useAnimationControls } from 'framer-motion'
 import { FaHome } from 'react-icons/fa'
 import { IoArrowBackOutline } from 'react-icons/io5'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 const Tree = ({ scale = 1, position = 0, delay = 0, zIndex = 0 }) => (
   <motion.div
