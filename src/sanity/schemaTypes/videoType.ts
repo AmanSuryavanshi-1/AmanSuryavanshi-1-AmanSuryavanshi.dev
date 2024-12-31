@@ -11,7 +11,7 @@ export const videoType = defineType({
       title: 'caption',
       media: 'videoFile'
     },
-    prepare({title, media}) {
+    prepare({title}) {
       return {
         title: title || 'Untitled Video',
         media: BiVideo
