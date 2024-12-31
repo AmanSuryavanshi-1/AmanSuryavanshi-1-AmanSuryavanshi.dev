@@ -64,6 +64,7 @@ export const postType = defineType({
       type: 'number',
       title: 'View Count',
       initialValue: 0,
+      validation: (Rule) => Rule.min(0)
     }),
   ],
   preview: {

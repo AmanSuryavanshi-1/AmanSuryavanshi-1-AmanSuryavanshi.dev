@@ -59,12 +59,13 @@ export const portableTextComponents: PortableTextComponents = {
     },
     link: ({children, value}) => {
       const target = (value?.href || '').startsWith('http') ? '_blank' : undefined;
+      const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
       return (
         <a
           href={value?.href}
           target={target}
-          rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-          className="text-forest-500 hover:underline"
+          rel={rel}
+          className="text-forest-900 underline decoration-1 underline-offset-2 transition-colors duration-200 hover:text-lime-500"
         >
           {children}
         </a>
