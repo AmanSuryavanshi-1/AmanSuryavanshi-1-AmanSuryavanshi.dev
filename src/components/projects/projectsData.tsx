@@ -123,7 +123,7 @@ import {
           'AV-NewsStream is an advanced voice-assisted news reading platform. By integrating multiple APIs such as News API, Gnews.io, YouTube API, and GitHub API, it ensures real-time and diverse updates. Features like lazy loading, shimmer UI, and error handling optimize performance, offering a smooth and effortless user experience.',
         video: '/Project/Videos/AVNewsStream.webm',
         size: 'tall',
-        slug: 'av-newsstream',
+        slug: 'av-news-stream',
         technologies: [
           { icon: FaReact, name: 'React' },
           { icon: FaJsSquare, name: 'JavaScript' },

@@ -11,6 +11,8 @@ import type { Post } from '@/sanity/sanity';
 import ShareButtons from '@/components/sanity/ShareButtons';
 import { portableTextComponents } from '@/components/sanity/PortableTextComponents';
 import ViewCounter from '@/components/sanity/ViewCounter';
+import NotFound from '@/app/not-found';
+import { notFound } from 'next/navigation';
 
 type NextPageProps = {
   params: Promise<{ slug: string }>;
@@ -59,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = await getPost(slug);
   
-  if (!post) return { title: 'Blog Post Not Found' };
+  if (!post) notFound();
 
   return {
     title: `${post.title} | Aman Suryavanshi`,
@@ -76,9 +78,7 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
   
   if (!post) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-bold text-gray-800">Blog post not found</h1>
-      </div>
+      <NotFound/>
     );
   }
 
