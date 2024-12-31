@@ -22,7 +22,14 @@ async function getPost(slug: string): Promise<Post | null> {
     _createdAt,
     title,
     slug,
-    body,
+    body[]{
+      ...,
+      _type == "video" => {
+        "videoUrl": videoFile.asset->url,
+        caption,
+        alt
+      }
+    },
     excerpt,
     mainImage,
     views,

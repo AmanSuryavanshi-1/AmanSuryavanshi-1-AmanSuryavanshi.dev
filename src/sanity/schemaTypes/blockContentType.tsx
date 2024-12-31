@@ -26,34 +26,13 @@ export const blockContentType = defineType({
         {title: 'H2', value: 'h2'},
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},
-        {
-          title: 'Quote',
-          value: 'blockquote',
-          component: ({children}) => (
-            <blockquote className="border-l-4 pl-4 border-gray-300">
-              {children}
-            </blockquote>
-          )
-        },
-        {
-          title: 'Toggle',
-          value: 'toggle',
-          component: ({children}) => (
-            <details className="group">
-              <summary className="list-none cursor-pointer">
-                {children}
-              </summary>
-              <div className="pl-4 mt-2">
-                {/* Content will be nested here */}
-              </div>
-            </details>
-          )
-        },
+        {title: 'Quote', value: 'blockquote'},
+        {title: 'Toggle', value: 'toggle'},
       ],
       lists: [
         {title: 'Bullet', value: 'bullet'},
         {title: 'Numbered', value: 'number'},
-        {title: 'Check List', value: 'checkbox'}
+        {title: 'Checkbox', value: 'checkbox'}
       ],
       marks: {
         decorators: [
@@ -61,19 +40,18 @@ export const blockContentType = defineType({
           {title: 'Emphasis', value: 'em'},
           {title: 'Code', value: 'code'},
           {title: 'Underline', value: 'underline'},
-          {title: 'Strike', value: 'strike-through'},
           {title: 'Highlight', value: 'highlight'},
         ],
         annotations: [
           {
             name: 'color',
-            title: 'Color',
             type: 'object',
+            title: 'Color',
             fields: [
               {
                 name: 'value',
-                title: 'Color',
                 type: 'string',
+                title: 'Color',
                 options: {
                   list: [
                     {title: 'Default', value: 'default'},
@@ -87,20 +65,6 @@ export const blockContentType = defineType({
                 },
               },
             ],
-            components: {
-              annotation: ({children, value}: {children: React.ReactNode, value?: {value: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'}}) => {
-                const colorMap = {
-                  default: 'text-gray-900',
-                  primary: 'text-blue-600',
-                  secondary: 'text-purple-600',
-                  success: 'text-green-600',
-                  warning: 'text-yellow-600',
-                  danger: 'text-red-600',
-                  info: 'text-cyan-600',
-                } as const;
-                return <span className={colorMap[value?.value || 'default']}>{children}</span>
-              }
-            },
           },
           {
             name: 'link',
@@ -110,12 +74,25 @@ export const blockContentType = defineType({
               {
                 name: 'href',
                 type: 'url',
-                title: 'URL'
-              }
-            ]
-          }
-        ]
-      }
+                title: 'Url',
+              },
+            ],
+          },
+          {
+            name: 'indent',
+            type: 'object',
+            title: 'Indent',
+            fields: [
+              {
+                name: 'level',
+                type: 'number',
+                title: 'Indent Level',
+                validation: Rule => Rule.required().min(0).max(5)
+              },
+            ],
+          },
+        ],
+      },
     }),
     defineArrayMember({
       type: 'image',
@@ -126,15 +103,25 @@ export const blockContentType = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative text',
-          description: 'Important for SEO and accessiblity.',
+          description: 'Important for SEO and accessibility.',
+          validation: Rule => Rule.required(),
         },
         {
           name: 'caption',
           type: 'string',
           title: 'Caption',
-          description: 'Image caption displayed below the image.'
+        },
+      ],
+    }),
+    defineArrayMember({
+      type: 'video',
+      title: 'Video',
+      preview: {
+        select: {
+          title: 'caption',
+          media: 'videoFile'
         }
-      ]
+      }
     }),
     defineArrayMember({
       type: 'code',

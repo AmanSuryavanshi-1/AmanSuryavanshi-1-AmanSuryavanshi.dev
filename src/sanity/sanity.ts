@@ -5,6 +5,13 @@ export interface SanityImage extends Image {
   alt?: string;
 }
 
+export interface SanityVideo {
+  _type: 'video';
+  videoUrl: string;
+  caption?: string;
+  alt: string;
+}
+
 export interface PortableTextChild {
   _key: string;
   _type: 'span';
@@ -13,8 +20,11 @@ export interface PortableTextChild {
 }
 
 export interface PortableTextBlockType extends PortableTextBlock {
-  _type: 'block';
+  _type: 'block' | 'video';
   children: PortableTextChild[];
+  videoUrl?: string;
+  caption?: string;
+  alt?: string;
 }
 
 export interface Author {
