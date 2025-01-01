@@ -15,9 +15,9 @@ const myData = {
     qualifications: {
       EducationData: [
         {
-          title: "B.Tech in Electronics and Communication",
-          institution: "Maharaja Surajmal Institute of Technology (GGSIPU)",
-          year: "2020 - 2024",
+          title: "B.Tech in Electronics & Communication",
+          institution: "Maharaja Surajmal Institute of Technology",
+          year: "2020 - 2024 (GGSIPU)",
           icon: "graduation-cap"
         },
         {

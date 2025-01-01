@@ -35,10 +35,10 @@ const QualificationItem = ({ item, index }: { item: QualificationItem; index: nu
     transition={{ delay: index * 0.1 }}
     className="relative pl-4 sm:pl-6 border-l-2 border-sage-300"
   >
-    <div className="absolute left-[-4px] top-2">
+    <div className="absolute left-[-4px] top-1">
       <div className="w-1.5 h-1.5 rounded-full bg-lime-500" />
     </div>
-    <div className="flex items-center gap-2 mb-1">
+    <div className="flex items-center gap-1 mb-1">
       <span className="text-forest-500">
         <span className="w-4 h-4 sm:w-5 sm:h-5">
           {iconMap[item.icon]}
@@ -47,7 +47,7 @@ const QualificationItem = ({ item, index }: { item: QualificationItem; index: nu
       <h3 className="text-sm sm:text-base font-semibold text-forest-900">{item.title}</h3>
     </div>
     <p className="text-xs sm:text-sm text-forest-700 mt-0.5">{item.institution}</p>
-    <p className="text-xs text-forest-500 mt-1">{item.year}</p>
+    <p className="text-xs text-forest-500 mt-0.5">{item.year}</p>
   </motion.div>
 );
 
@@ -58,7 +58,7 @@ const Qualifications = ({ data }: QualificationsProps) => {
 
   return (
     <div className="max-w-4xl mx-auto px-2 sm:px-4 overflow-hidden">
-      <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-x-8">
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-x-6">
         {/* Education Column */}
         <div>
           <div className="flex items-center gap-2 mb-4">

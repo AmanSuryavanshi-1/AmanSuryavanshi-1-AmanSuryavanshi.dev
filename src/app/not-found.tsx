@@ -203,7 +203,7 @@ const EyesAnimation = () => {
 
 export default function NotFound() {
   return (
-    <main className="flex flex-col items-center justify-center h-screen py-12 pt-32 relative bg-gradient-to-br from-forest-900 via-forest-700 to-forest-900 overflow-hidden">
+    <main className="flex flex-col items-center justify-center h-screen max-md:h-auto py-12 pt-32 relative bg-gradient-to-br from-forest-900 via-forest-700 to-forest-900 overflow-hidden">
       {/* Trees */}
       <Tree height="60vh" left={2} delay={0} />
       <Tree height="35vh" left={15} delay={0.2} />
@@ -229,9 +229,9 @@ export default function NotFound() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-lime-500 font-medium text-2xl mb-6 tracking-wider"
+            className="text-lime-500 font-medium font-sans text-2xl mb-6 tracking-wider"
           >
-            404 Error
+            404 ERROR
           </motion.div>
         </motion.div>
 
@@ -239,9 +239,9 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="space-y-6"
+          className="space-y-4"
         >
-          <h1 className="text-3xl md:text-5xl font-bold text-sage-100 leading-tight">
+          <h1 className="text-3xl md:text-4xl font-bold text-sage-100 leading-tight">
             Oops! You&apos;ve wandered off the trail.
           </h1>
           
