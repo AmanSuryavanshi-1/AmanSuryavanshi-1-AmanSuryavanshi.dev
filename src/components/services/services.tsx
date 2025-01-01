@@ -105,7 +105,7 @@ const ServicesSection: React.FC = () => {
           className="flex justify-center"
         >
           <MotionButton
-            href="#contact"
+            href="/#contact"
             icon={ArrowRight}
             label="Start Your Project Today"
           />

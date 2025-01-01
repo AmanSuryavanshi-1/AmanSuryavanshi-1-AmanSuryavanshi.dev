@@ -39,7 +39,7 @@ export default function ProjectsSection() {
           />
 
           <TransparentButton
-            href="#contact" 
+            href="/#contact" 
             icon={MessageSquare}
             label="Let's Work Together"
           />

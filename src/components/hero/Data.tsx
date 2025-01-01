@@ -90,7 +90,7 @@ const Data: React.FC = () => {
         />
 
         <SolidButton
-          href="#contact"
+          href="/#contact"
           icon={MessageCircle}
           label="Say Hello"
         />

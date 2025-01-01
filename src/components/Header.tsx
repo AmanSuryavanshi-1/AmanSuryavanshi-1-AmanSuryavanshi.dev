@@ -131,7 +131,7 @@ const Header = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href="#contact">
+              <Link href="/#contact">
                 <Button
                   variant="default"
                   className="bg-lime-500 hover:bg-lime-700 text-forest-900 flex items-center gap-2 rounded-full"
@@ -221,7 +221,7 @@ const Header = () => {
                 <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Toggle theme</span>
               </Button>
-              <Link href="#contact">
+              <Link href="/#contact">
                 <Button
                   variant="default"
                   className="bg-lime-500 hover:bg-lime-700 text-forest-900 flex items-center gap-2 rounded-full"

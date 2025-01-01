@@ -147,7 +147,7 @@ const Footer: React.FC = () => {
               </div>
               <div className='w-fit mt-16'>
                 <Link 
-                  href="#contact"
+                  href="/#contact"
                   className="my-auto w-auto mx-auto bg-lime-300 text-forest-900 px-6 py-2 rounded-full font-semibold 
                   hover:bg-lime-500 transition-all duration-300 group flex items-center justify-center space-x-1"
                 >
