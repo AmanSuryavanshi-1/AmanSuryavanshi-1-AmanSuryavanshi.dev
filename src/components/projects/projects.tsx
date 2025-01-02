@@ -33,7 +33,7 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           <SolidButton
-            href="/projects" 
+            href="/blogs#projects-tab" 
             icon={ArrowRight}
             label="Explore More"
           />

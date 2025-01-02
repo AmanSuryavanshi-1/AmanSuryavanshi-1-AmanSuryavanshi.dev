@@ -2,7 +2,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Code, Briefcase, FileCode } from 'lucide-react';
 import type { Post } from '@/sanity/sanity';
 import BlogPosts from './BlogPosts';
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useEffect, useState } from 'react';
 
 interface BlogTabsProps {
   posts: Post[];
@@ -14,6 +14,16 @@ interface BlogTabsProps {
 const MemoizedBlogPosts = memo(BlogPosts);
 
 const BlogTabs = ({ posts, projectPosts, reactPosts, javascriptPosts }: BlogTabsProps) => {
+  // Redirecting to the projects tab from projects section on landing page
+  const [activeTab, setActiveTab] = useState('all');
+
+  useEffect(() => {
+    if (window.location.hash === '#projects-tab') {
+      setActiveTab('project');
+      document.getElementById('projects-tab')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   const tabContent = useMemo(() => ({
     all: <MemoizedBlogPosts posts={posts} />,
     project: <MemoizedBlogPosts posts={projectPosts} />,
@@ -22,7 +32,8 @@ const BlogTabs = ({ posts, projectPosts, reactPosts, javascriptPosts }: BlogTabs
   }), [posts, projectPosts, reactPosts, javascriptPosts]);
 
   return (
-    <Tabs defaultValue="all" className="mb-6 py-16">
+    // When user comes from project section on landing page, scroll to projects tab else show all posts
+    <Tabs id="projects-tab" value={activeTab} onValueChange={setActiveTab} className="mb-6 py-16" >
         <TabsList className="flex justify-center py-6 max-w-[29rem] mx-auto rounded-full bg-forest-900 border-[3px] border-sage-100 shadow-lg shadow-forest-500 text-sage-100 
           max-md:rounded-3xl max-md:w-50 max-md:min-h-[10rem] max-md:flex max-md:flex-col max-md:justify-between max-md:gap-1 max-md:py-2"
           >
@@ -36,7 +47,9 @@ const BlogTabs = ({ posts, projectPosts, reactPosts, javascriptPosts }: BlogTabs
           <TabsTrigger 
             className="mr-2 py-1 rounded-3xl border-2 border-transparent data-[state=active]:bg-lime-500 data-[state=active]:border-sage-100 data-[state=active]:shadow-sm data-[state=active]:shadow-sage-300 transition-colors duration-200 will-change-transform
             max-md:w-full max-md:h-8 max-md:flex max-md:items-center max-md:justify-center max-md:mr-0" 
-            value="project">
+            value="project"
+            // id="projects-tab" 
+            >
             <Briefcase className="w-4 h-4 mr-2" />
             Projects
           </TabsTrigger>
@@ -71,7 +84,7 @@ const BlogTabs = ({ posts, projectPosts, reactPosts, javascriptPosts }: BlogTabs
         <TabsContent value="javascript" className="mt-6">
           {tabContent.javascript}
         </TabsContent>
-      </Tabs>
+    </Tabs>
   );
 };
 

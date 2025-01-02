@@ -5,10 +5,8 @@ import React from 'react'
 const page = () => {
   return (
     <div >
-      {/* <h1>Aman&apos;s Weekly Blog</h1> */}
       <Banner/>
       <BlogList />
-      
     </div>
   )
 }
