@@ -11,7 +11,7 @@ import { ProjectCard } from './projectCard'
 export default function ProjectsSection() {
   return (
     <section id='projects' className="py-20 min-h-screen max-w-6xl mx-auto">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ export default function ProjectsSection() {
            className="text-3xl md:text-5xl font-bold font-serif text-forest-900 mb-8 text-center">
           My <span className="text-lime-500">Projects</span>
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[200px] gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[200px] gap-3 mb-12">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

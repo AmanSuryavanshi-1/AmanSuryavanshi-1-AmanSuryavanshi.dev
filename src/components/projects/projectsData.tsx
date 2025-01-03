@@ -48,7 +48,7 @@ import {
     title: string;
     description: string;
     detailedDescription?: string;
-    slug: string;
+    slug?: string;
     size?: 'default' | 'tall' | 'wide';
     image?: string;
     video?: string;
@@ -95,23 +95,24 @@ import {
       },
       {
         id: 2,
-        title: 'E-Commerce',
-        description:
-          'A React-based E-commerce clone web app with multiple responsive pages with product listings details, Shopping Categories, shopping cart & providing a seamless shopping experience for users.',
-        detailedDescription:
-          'The E-Commerce app offers a user-friendly shopping experience through responsive design and efficient features. With product listings, categories, and a functional shopping cart, users can explore and purchase seamlessly. It demonstrates mastery in React and modern design principles.',
-        image: '/Project/Ecommerce.png',
+        title: 'Freelance Project for an Enterprise',
+        description: 'A marketplace for flooring materials like tiles and marbles, designed as a freelancing project with a focus on modern UI and user-friendly functionality.',
+        image: '/Project/Enterprise-mobile.webp',
         size: 'default',
-        slug: 'e-commerce',
+        slug: 'a-freelance-project-for-an-enterprise',
         technologies: [
           { icon: FaReact, name: 'React' },
-          { icon: SiMui, name: 'MaterialUI' },
           { icon: FaJsSquare, name: 'JavaScript' },
-          { icon: SiNetlify, name: 'Netlify' }
+          { icon: FaGlobe, name: 'Vercel' },
+          { icon: SiTailwindcss, name: 'Tailwind CSS' },
+          { icon: FaChartLine, name: 'Vercel Analytics' },
+          { icon: FaMobileAlt, name: 'React LazyLoad' },
+          { icon: MdViewInAr, name: 'PDF.js' },
+          { icon: Component, name: 'React Icons' },
         ],
         links: {
-          live: 'https://ase-commerce.netlify.app/',
-          github: 'https://github.com/AmanSuryavanshi-1/E-commerce-App',
+          live: 'https://barkat-enterprise.vercel.app/',
+          github: 'https://github.com/AmanSuryavanshi-1/BarkatEnterprise',
         },
       },
       {
@@ -149,10 +150,68 @@ import {
       },
       {
         id: 4,
-        title: 'Blogs X Portfolio',
-        description: 'A platform integrating blogs and portfolio showcasing projects, experiences, and technical write-ups with a focus on storytelling.',
-        image: '/Project/Portfolio.png',
+        title: 'Spotify',
+        description: 'A responsive and interactive Spotify clone, showcasing attention to detail in UI/UX design and modern CSS frameworks.',
+        detailedDescription: '',
+        image: '/Project/Spotify.webp',
         size: 'default',
+        // slug: 'spotify-clone',
+        technologies: [
+          { icon: FaHtml5, name: 'HTML' },
+          { icon: FaCss3Alt, name: 'CSS' },
+          { icon: FaJsSquare, name: 'JavaScript' },
+        ],
+        links: {
+          live: 'https://amansuryavanshi-1.github.io/Spotify-Clone/',
+          github: 'https://github.com/AmanSuryavanshi-1/Spotify-Clone',
+        },
+      },
+      {
+        id: 5,
+        title: 'E-Commerce',
+        description:
+          'A React-based E-commerce clone web app with multiple responsive pages with product listings details, Shopping Categories, shopping cart & providing a seamless shopping experience for users.',
+        detailedDescription:
+          'The E-Commerce app offers a user-friendly shopping experience through responsive design and efficient features. With product listings, categories, and a functional shopping cart, users can explore and purchase seamlessly. It demonstrates mastery in React and modern design principles.',
+        image: '/Project/Ecommerce.webp',
+        size: 'default',
+        slug: 'e-commerce',
+        technologies: [
+          { icon: FaReact, name: 'React' },
+          { icon: SiMui, name: 'MaterialUI' },
+          { icon: FaJsSquare, name: 'JavaScript' },
+          { icon: SiNetlify, name: 'Netlify' }
+        ],
+        links: {
+          live: 'https://ase-commerce.netlify.app/',
+          github: 'https://github.com/AmanSuryavanshi-1/E-commerce-App',
+        },
+      },
+      {
+        id: 6,
+        title: 'Old Portfolio',
+        description: 'My original portfolio website showcasing early projects, emphasizing foundational skills in web development and UI/UX design.',
+        image: '/Project/Portfolio-old.webp',
+        size: 'default',
+        // slug: 'old-portfolio',
+        technologies: [
+          { icon: FaHtml5, name: 'HTML' },
+          { icon: FaCss3Alt, name: 'CSS' },
+          { icon: FaJsSquare, name: 'JavaScript' },
+          { icon: FaReact, name: 'React' },
+          { icon: SiNetlify, name: 'Netlify' }
+        ],
+        links: {
+          live: 'https://aman-suryavanshi-portfolio.netlify.app/',
+          github: 'https://github.com/AmanSuryavanshi-1/Portfolio_AS',
+        },
+      },
+      {
+        id: 7,
+        title: 'Blogs & Portfolio',
+        description: 'A platform integrating blogs and portfolio showcasing projects, experiences, and technical write-ups with a focus on storytelling.',
+        image: '/Project/Portfolio.webp',
+        size: 'tall',
         slug: 'blogs-x-portfolio',
         technologies: [
           { icon: FaHtml5, name: 'HTML' },
@@ -173,65 +232,6 @@ import {
         },
       },
       {
-        id: 5,
-        title: 'Spotify',
-        description: 'A responsive and interactive Spotify clone, showcasing attention to detail in UI/UX design and modern CSS frameworks.',
-        detailedDescription: '',
-        image: '/Project/Spotify.jpg',
-        size: 'default',
-        slug: 'spotify-clone',
-        technologies: [
-          { icon: FaHtml5, name: 'HTML' },
-          { icon: FaCss3Alt, name: 'CSS' },
-          { icon: FaJsSquare, name: 'JavaScript' },
-        ],
-        links: {
-          live: '',
-          github: '',
-        },
-      },
-      {
-        id: 6,
-        title: 'Old Portfolio',
-        description: 'My original portfolio website showcasing early projects, emphasizing foundational skills in web development and UI/UX design.',
-        image: '/Project/Portfolio-old.png',
-        size: 'default',
-        slug: 'old-portfolio',
-        technologies: [
-          { icon: FaHtml5, name: 'HTML' },
-          { icon: FaCss3Alt, name: 'CSS' },
-          { icon: FaJsSquare, name: 'JavaScript' },
-          { icon: FaReact, name: 'React' },
-          { icon: SiNetlify, name: 'Netlify' }
-        ],
-        links: {
-          live: 'https://aman-suryavanshi-portfolio.netlify.app/',
-          github: 'https://github.com/AmanSuryavanshi-1/Portfolio_AS',
-        },
-      },
-      {
-        id: 7,
-        title: 'Barakat Enterprise',
-        description: 'A marketplace for flooring materials like tiles and marbles, designed as a freelancing project with a focus on modern UI and user-friendly functionality.',
-        image: '/Project/Enterprise-mobile.png',
-        size: 'tall',
-        slug: 'barakat-enterprise',
-        technologies: [
-          { icon: FaReact, name: 'React' },
-          { icon: FaJsSquare, name: 'JavaScript' },
-          { icon: FaGlobe, name: 'Vercel' },
-          { icon: SiTailwindcss, name: 'Tailwind CSS' },
-          { icon: FaChartLine, name: 'Vercel Analytics' },
-          { icon: FaMobileAlt, name: 'React LazyLoad' },
-          { icon: MdViewInAr, name: 'PDF.js' },
-          { icon: Component, name: 'React Icons' },
-        ],
-        links: {
-          live: 'https://barkat-enterprise.vercel.app/',
-          github: 'https://github.com/AmanSuryavanshi-1/BarkatEnterprise',
-        },
-      },
-      {
         id: 8,
         
         title: 'TextWise',
@@ -239,7 +239,7 @@ import {
           'A simple yet powerful text utility app for formatting, editing, and analyzing text with an intuitive and clean UI.',
         detailedDescription:
           'TextWise is a robust text editing and utility application. It includes rich formatting options, case conversion, and advanced tools like speech-to-text and transliteration. It integrates features such as collaborative drawing and real-time interaction, making it an all-in-one toolkit for content creation.',
-        image: '/Project/TextWise.png',
+        image: '/Project/TextWise.webp',
         size: 'wide',
         slug: 'textwise',
         technologies: [
