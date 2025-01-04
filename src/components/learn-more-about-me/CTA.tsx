@@ -1,13 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Briefcase, Code2, BookOpen, Mail, Linkedin, Github, Instagram, Twitter, MessageSquare, ArrowRight, Send } from 'lucide-react'
-import Link from 'next/link'
+import { Briefcase, Code2, BookOpen, MessageSquare, Linkedin, Github, Instagram, Twitter } from 'lucide-react'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import PreviewCard from './PreviewCard'
 import { TransparentButton } from '../transparent-button'
-import { SolidButton } from '../solid-button'
 
 export default function CTA() {
   const [activePreview, setActivePreview] = useState<string | null>(null)
@@ -66,9 +64,9 @@ export default function CTA() {
           className="text-center space-y-8 py-12 bg-white/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-forest-100"
         >
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-forest-900">Let's Create Something Amazing Together!</h3>
+            <h3 className="text-2xl font-bold text-forest-900">Let&apos;s Create Something Amazing Together!</h3>
             <p className="text-forest-900/70 max-w-2xl mx-auto">
-              Whether you have a project in mind or just want to connect, I'm always excited to collaborate and bring ideas to life.
+              Whether you have a project in mind or just want to connect, I&apos;m always excited to collaborate and bring ideas to life.
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
               {/* <SolidButton
@@ -80,7 +78,7 @@ export default function CTA() {
               <TransparentButton
                 href="/#contact" 
                 icon={MessageSquare}
-                label="Let's Work Together"
+                label="Let&apos;s Work Together"
               />
             </div>
           </div>
@@ -133,7 +131,7 @@ export default function CTA() {
               Continue the <span className="text-lime-500">Journey</span>
             </h2>
             <p className="text-forest-900/80 max-w-2xl mx-auto">
-              Thanks for taking the time to explore my work! Let's connect and create something amazing together.
+              Thanks for taking the time to explore my work! Let&apos;s connect and create something amazing together.
             </p>
           </div>
 
