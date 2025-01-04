@@ -175,7 +175,7 @@ import {
           'The E-Commerce app offers a user-friendly shopping experience through responsive design and efficient features. With product listings, categories, and a functional shopping cart, users can explore and purchase seamlessly. It demonstrates mastery in React and modern design principles.',
         image: '/Project/Ecommerce.webp',
         size: 'default',
-        slug: 'e-commerce',
+        // slug: 'e-commerce',
         technologies: [
           { icon: FaReact, name: 'React' },
           { icon: SiMui, name: 'MaterialUI' },
@@ -212,7 +212,7 @@ import {
         description: 'A platform integrating blogs and portfolio showcasing projects, experiences, and technical write-ups with a focus on storytelling.',
         image: '/Project/Portfolio.webp',
         size: 'tall',
-        slug: 'blogs-x-portfolio',
+        // slug: 'blogs-x-portfolio',
         technologies: [
           { icon: FaHtml5, name: 'HTML' },
           { icon: FaCss3Alt, name: 'CSS' },
@@ -241,7 +241,7 @@ import {
           'TextWise is a robust text editing and utility application. It includes rich formatting options, case conversion, and advanced tools like speech-to-text and transliteration. It integrates features such as collaborative drawing and real-time interaction, making it an all-in-one toolkit for content creation.',
         image: '/Project/TextWise.webp',
         size: 'wide',
-        slug: 'textwise',
+        // slug: 'textwise',
         technologies: [
           { icon: FaReact, name: 'React' },
           { icon: FaJsSquare, name: 'JavaScript' },
