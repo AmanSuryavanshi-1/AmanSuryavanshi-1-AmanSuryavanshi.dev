@@ -13,6 +13,7 @@ import { portableTextComponents } from '@/components/sanity/PortableTextComponen
 import ViewCounter from '@/components/sanity/ViewCounter';
 import NotFound from '@/app/not-found';
 import { notFound } from 'next/navigation';
+import CTA from '@/components/learn-more-about-me/CTA';
 
 type NextPageProps = {
   params: Promise<{ slug: string }>;
@@ -185,6 +186,9 @@ export default async function BlogPost({ params }: NextPageProps): Promise<JSX.E
           </div>
         </div>
       </div>
+      {/* CTA Section */}
+    <CTA/>
     </article>
+    
   );
 }

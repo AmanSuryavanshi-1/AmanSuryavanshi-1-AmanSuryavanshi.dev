@@ -36,7 +36,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, priority = false }) =
   return (
     <Link href={`/blogs/${post.slug.current}`} className="group">
       <article className="overflow-hidden rounded-3xl border-4 border-white backdrop-blur-sm shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-4 bg-white">
-        <div className="relative h-52 sm:h-48 w-full overflow-hidden">
+        <div className="relative h-52 w-full overflow-hidden">
           {post.mainImage && (
             <Image
               src={urlFor(post.mainImage).url()}
@@ -60,7 +60,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, priority = false }) =
           )}
         </div>
         <div className="p-4 sm:p-5 py-6 sm:py-7">
-          <h2 className="text-lg sm:text-xl font-bold text-forest-900 group-hover:text-lime-500 transition-colors duration-300 line-clamp-2 mb-2">
+          <h2 className="text-lg line-clamp-1 sm:text-xl font-bold text-forest-900 group-hover:text-lime-500 transition-colors duration-300 mb-2">
             {post.title}
           </h2>
           <p className="text-forest-700 text-xs sm:text-sm line-clamp-4 mb-4">
