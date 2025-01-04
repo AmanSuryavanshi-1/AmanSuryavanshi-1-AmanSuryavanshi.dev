@@ -35,7 +35,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, priority = false }) =
 
   return (
     <Link href={`/blogs/${post.slug.current}`} className="group">
-      <article className="overflow-hidden rounded-3xl border-4 border-white backdrop-blur-sm shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-4 bg-white">
+      <article className="overflow-hidden rounded-3xl border-4 border-white backdrop-blur-sm shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-white">
         <div className="relative h-52 w-full overflow-hidden">
           {post.mainImage && (
             <Image

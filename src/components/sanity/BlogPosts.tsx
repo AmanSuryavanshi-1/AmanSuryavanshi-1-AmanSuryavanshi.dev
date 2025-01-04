@@ -6,7 +6,7 @@ interface BlogPostsProps {
 }
 // will contain all the blog posts related to specific category
 const BlogPosts = ({ posts }: BlogPostsProps) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 px-4 py-2 animate-fade-in">
+  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-4 py-2 animate-fade-in">
     {posts.map((post, index) => (
       <BlogPostCard 
         key={post._id} 
