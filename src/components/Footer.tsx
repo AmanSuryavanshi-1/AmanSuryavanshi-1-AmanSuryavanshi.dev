@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
     { name: 'Services', href: '/#services', icon: <Briefcase className="w-4 h-4" /> },
     { name: 'Projects', href: '/#projects', icon: <FolderGit2 className="w-4 h-4" /> },
     { name: 'Blogs', href: '/blogs', icon: <BookOpen className="w-4 h-4" /> },
-    { href: "/resume.pdf", name: "Resume", icon: <Download className="w-4 h-4" /> }
+    { href: "https://drive.google.com/file/d/1usAGhGuzhnHi3uhFgw8ori5JWNkxsuPx/view?usp=drive_link", name: "Resume", icon: <Download className="w-4 h-4" /> }
   ]
 
   return (
