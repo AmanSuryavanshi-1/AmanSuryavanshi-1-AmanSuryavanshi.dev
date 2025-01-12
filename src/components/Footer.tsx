@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
     { name: 'Services', href: '/#services', icon: <Briefcase className="w-4 h-4" /> },
     { name: 'Projects', href: '/#projects', icon: <FolderGit2 className="w-4 h-4" /> },
     { name: 'Blogs', href: '/blogs', icon: <BookOpen className="w-4 h-4" /> },
-    { href: "https://drive.google.com/file/d/1usAGhGuzhnHi3uhFgw8ori5JWNkxsuPx/view?usp=drive_link", name: "Resume", icon: <Download className="w-4 h-4" /> }
+    { href: "/AmanSuryavanshi_Resume_Latest.pdf", name: "Resume", icon: <Download className="w-4 h-4" />, download: true }
   ]
 
   return (
@@ -114,6 +114,7 @@ const Footer: React.FC = () => {
                   href={link.href}
                   className="flex items-center space-x-2 font-semibold text-sage-100 hover:text-lime-500 transition-colors group justify-center lg:justify-start"
                   target={link.name === "Resume" ? "_blank" : "_self"}
+                  download={link.download}
                 >
                   {link.icon}
                   <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
@@ -170,7 +171,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-sm text-sage-300 text-center md:text-left">
-              © {currentYear} Aman Suryavanshi. All Rights Reserved.
+              &copy; {currentYear} Aman Suryavanshi. All Rights Reserved.
             </p>
           </div>
         </div>

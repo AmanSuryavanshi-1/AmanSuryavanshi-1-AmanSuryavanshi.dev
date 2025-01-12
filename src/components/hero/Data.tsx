@@ -83,7 +83,7 @@ const Data: React.FC = () => {
         variants={itemVariants}
       >
         <TransparentButton
-          href="https://drive.google.com/file/d/1usAGhGuzhnHi3uhFgw8ori5JWNkxsuPx/view?usp=drive_link"
+          href="https://drive.google.com/file/d/1cdRIpqASZSMGbtmBZVqvjpAM1jZTROrm/view?usp=drive_link"
           icon={Download}
           label="Download CV"
           external
