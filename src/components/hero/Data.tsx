@@ -83,10 +83,11 @@ const Data: React.FC = () => {
         variants={itemVariants}
       >
         <TransparentButton
-          href="https://drive.google.com/file/d/1cdRIpqASZSMGbtmBZVqvjpAM1jZTROrm/view?usp=drive_link"
+          href="/AmanSuryavanshi_Resume_Latest.pdf"
           icon={Download}
           label="Download CV"
           external
+          download
         />
 
         <SolidButton

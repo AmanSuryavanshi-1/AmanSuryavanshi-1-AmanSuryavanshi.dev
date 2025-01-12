@@ -8,19 +8,22 @@ interface TransparentButtonProps {
   icon: LucideIcon
   label: string
   external?: boolean
+  download?: boolean
 }
 
 export function TransparentButton({ 
   href, 
   icon: Icon, 
   label,
-  external 
+  external,
+  download 
 }: TransparentButtonProps) {
   const ButtonWrapper = external ? motion.a : motion(Link)
   const buttonProps = external ? { 
     href,
     target: "_blank",
-    rel: "noopener noreferrer"
+    rel: "noopener noreferrer",
+    download: download
   } : { href }
 
   return (
