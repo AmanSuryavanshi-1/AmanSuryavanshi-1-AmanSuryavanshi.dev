@@ -111,7 +111,7 @@ import {
           { icon: Component, name: 'React Icons' },
         ],
         links: {
-          live: 'https://barkat-enterprise.vercel.app/',
+          live: 'https://barkat-enterprise-copy.vercel.app/',
           github: 'https://github.com/AmanSuryavanshi-1/BarkatEnterprise',
         },
       },
